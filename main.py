@@ -14,7 +14,6 @@ from Interfaz.Dialogo_ConfirmData_gui import Ui_Dialog as ConfirmData
 from Interfaz.Loggin_gui import Ui_Dialog as Loggin
 from Printer import ConsultStatePrint, PrinterState
 
-
 dataBase = managerDataBase()
 class ConfirmData(QDialog, ConfirmData):
     def __init__(self, parent=None):
@@ -283,7 +282,7 @@ class Atlas(QMainWindow):
 
                     case 2:  # Add Table and DB
                         print(self.state)
-                        #dataBase.addModule(self.SerialNum, self.CodeRadd, self.DateLabel)
+                        dataBase.addModule(self.SerialNum, self.CodeRadd, self.DateLabel)
                         Approve(self.ui_main)
                         self.Alerts.singleShot(1000, lambda: HideAlerts(self.ui_main))
 

@@ -89,6 +89,7 @@ def ConsultStatePrint(ui_main, printer_state):
 
     except Exception as e:
         print("fatal error", e)
+        printer_state.mState=5
 
         ui_main.lbl_PrinterState.setStyleSheet(u"QLabel {\n"
                                                "    border: 2px solid #FF0000; /* Cambia el color del borde a rojo */\n"
