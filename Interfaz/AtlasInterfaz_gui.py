@@ -22,13 +22,12 @@ from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QGridLayout,
     QWidget)
 import resources_rc
 import resources_rc
-import resources_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1475, 640)
+        MainWindow.resize(1439, 640)
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -1218,7 +1217,7 @@ class Ui_MainWindow(object):
         self.lbl_labelMasterEdit.setMinimumSize(QSize(700, 200))
         self.lbl_labelMasterEdit.setMaximumSize(QSize(700, 500))
         self.lbl_labelMasterEdit.setStyleSheet(u"background-color: rgba(0, 85, 127, 180);")
-        self.lbl_labelMasterEdit.setPixmap(QPixmap(u"../../../../.designer/Label_Master.PNG"))
+        self.lbl_labelMasterEdit.setPixmap(QPixmap(u"../Label_Master.PNG"))
         self.lbl_labelMasterEdit.setScaledContents(True)
 
         self.verticalLayout_34.addWidget(self.lbl_labelMasterEdit)
@@ -1236,45 +1235,6 @@ class Ui_MainWindow(object):
         self.verticalLayout_25 = QVBoxLayout(self.verticalFrame_2)
         self.verticalLayout_25.setObjectName(u"verticalLayout_25")
         self.verticalLayout_25.setContentsMargins(-1, 40, -1, -1)
-        self.label_8 = QLabel(self.verticalFrame_2)
-        self.label_8.setObjectName(u"label_8")
-        sizePolicy5.setHeightForWidth(self.label_8.sizePolicy().hasHeightForWidth())
-        self.label_8.setSizePolicy(sizePolicy5)
-
-        self.verticalLayout_25.addWidget(self.label_8)
-
-        self.box_PartNo = QComboBox(self.verticalFrame_2)
-        self.box_PartNo.setObjectName(u"box_PartNo")
-        self.box_PartNo.setStyleSheet(u"background-color: rgba(161, 161, 161,90);")
-
-        self.verticalLayout_25.addWidget(self.box_PartNo)
-
-        self.label_9 = QLabel(self.verticalFrame_2)
-        self.label_9.setObjectName(u"label_9")
-        sizePolicy5.setHeightForWidth(self.label_9.sizePolicy().hasHeightForWidth())
-        self.label_9.setSizePolicy(sizePolicy5)
-
-        self.verticalLayout_25.addWidget(self.label_9)
-
-        self.box_Cantidad = QComboBox(self.verticalFrame_2)
-        self.box_Cantidad.setObjectName(u"box_Cantidad")
-        self.box_Cantidad.setStyleSheet(u"background-color: rgba(161, 161, 161,90);")
-
-        self.verticalLayout_25.addWidget(self.box_Cantidad)
-
-        self.label_10 = QLabel(self.verticalFrame_2)
-        self.label_10.setObjectName(u"label_10")
-        sizePolicy5.setHeightForWidth(self.label_10.sizePolicy().hasHeightForWidth())
-        self.label_10.setSizePolicy(sizePolicy5)
-
-        self.verticalLayout_25.addWidget(self.label_10)
-
-        self.box_proveedor = QComboBox(self.verticalFrame_2)
-        self.box_proveedor.setObjectName(u"box_proveedor")
-        self.box_proveedor.setStyleSheet(u"background-color: rgba(161, 161, 161,90);")
-
-        self.verticalLayout_25.addWidget(self.box_proveedor)
-
         self.label_11 = QLabel(self.verticalFrame_2)
         self.label_11.setObjectName(u"label_11")
         sizePolicy5.setHeightForWidth(self.label_11.sizePolicy().hasHeightForWidth())
@@ -1288,18 +1248,75 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_25.addWidget(self.box_serial)
 
+        self.label_8 = QLabel(self.verticalFrame_2)
+        self.label_8.setObjectName(u"label_8")
+        self.label_8.setEnabled(False)
+        sizePolicy5.setHeightForWidth(self.label_8.sizePolicy().hasHeightForWidth())
+        self.label_8.setSizePolicy(sizePolicy5)
+
+        self.verticalLayout_25.addWidget(self.label_8)
+
+        self.lbl_PartNoprint = QLabel(self.verticalFrame_2)
+        self.lbl_PartNoprint.setObjectName(u"lbl_PartNoprint")
+        self.lbl_PartNoprint.setMinimumSize(QSize(0, 25))
+        font3 = QFont()
+        font3.setFamilies([u"Segoe UI"])
+        font3.setPointSize(10)
+        font3.setBold(False)
+        font3.setItalic(False)
+        self.lbl_PartNoprint.setFont(font3)
+        self.lbl_PartNoprint.setStyleSheet(u"color: rgb(255, 196, 0);\n"
+"background-color: rgba(161, 161, 161,90);")
+
+        self.verticalLayout_25.addWidget(self.lbl_PartNoprint)
+
+        self.label_9 = QLabel(self.verticalFrame_2)
+        self.label_9.setObjectName(u"label_9")
+        self.label_9.setEnabled(False)
+        sizePolicy5.setHeightForWidth(self.label_9.sizePolicy().hasHeightForWidth())
+        self.label_9.setSizePolicy(sizePolicy5)
+
+        self.verticalLayout_25.addWidget(self.label_9)
+
+        self.lbl_QtyPrint = QLabel(self.verticalFrame_2)
+        self.lbl_QtyPrint.setObjectName(u"lbl_QtyPrint")
+        self.lbl_QtyPrint.setMinimumSize(QSize(0, 25))
+        self.lbl_QtyPrint.setStyleSheet(u"color: rgb(255, 196, 0);\n"
+"background-color: rgba(161, 161, 161,90);")
+
+        self.verticalLayout_25.addWidget(self.lbl_QtyPrint)
+
+        self.label_10 = QLabel(self.verticalFrame_2)
+        self.label_10.setObjectName(u"label_10")
+        self.label_10.setEnabled(False)
+        sizePolicy5.setHeightForWidth(self.label_10.sizePolicy().hasHeightForWidth())
+        self.label_10.setSizePolicy(sizePolicy5)
+
+        self.verticalLayout_25.addWidget(self.label_10)
+
+        self.lbl_ProveedorPrint = QLabel(self.verticalFrame_2)
+        self.lbl_ProveedorPrint.setObjectName(u"lbl_ProveedorPrint")
+        self.lbl_ProveedorPrint.setMinimumSize(QSize(0, 25))
+        self.lbl_ProveedorPrint.setStyleSheet(u"color: rgb(255, 196, 0);\n"
+"background-color: rgba(161, 161, 161,90);")
+
+        self.verticalLayout_25.addWidget(self.lbl_ProveedorPrint)
+
         self.label_12 = QLabel(self.verticalFrame_2)
         self.label_12.setObjectName(u"label_12")
+        self.label_12.setEnabled(False)
         sizePolicy5.setHeightForWidth(self.label_12.sizePolicy().hasHeightForWidth())
         self.label_12.setSizePolicy(sizePolicy5)
 
         self.verticalLayout_25.addWidget(self.label_12)
 
-        self.box_OT = QComboBox(self.verticalFrame_2)
-        self.box_OT.setObjectName(u"box_OT")
-        self.box_OT.setStyleSheet(u"background-color: rgba(161, 161, 161,90);")
+        self.lbl_OTPrint = QLabel(self.verticalFrame_2)
+        self.lbl_OTPrint.setObjectName(u"lbl_OTPrint")
+        self.lbl_OTPrint.setMinimumSize(QSize(0, 25))
+        self.lbl_OTPrint.setStyleSheet(u"color: rgb(255, 196, 0);\n"
+"background-color: rgba(161, 161, 161,90);")
 
-        self.verticalLayout_25.addWidget(self.box_OT)
+        self.verticalLayout_25.addWidget(self.lbl_OTPrint)
 
         self.verticalSpacer_9 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
 
@@ -1544,11 +1561,6 @@ class Ui_MainWindow(object):
         sizePolicy7.setHeightForWidth(self.btn_message.sizePolicy().hasHeightForWidth())
         self.btn_message.setSizePolicy(sizePolicy7)
         self.btn_message.setMinimumSize(QSize(0, 45))
-        font3 = QFont()
-        font3.setFamilies([u"Segoe UI"])
-        font3.setPointSize(10)
-        font3.setBold(False)
-        font3.setItalic(False)
         self.btn_message.setFont(font3)
         self.btn_message.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_message.setLayoutDirection(Qt.LeftToRight)
@@ -1603,7 +1615,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.MenuPrincipal.setCurrentIndex(7)
+        self.MenuPrincipal.setCurrentIndex(5)
         self.MenuModel_CK.setCurrentIndex(0)
 
 
@@ -1675,16 +1687,16 @@ class Ui_MainWindow(object):
         self.label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:26pt; font-weight:700; color:#fcc101;\">Historial Modelo Actual</span></p></body></html>", None))
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:18pt; font-weight:700; color:#ffc400;\">GENERAR ETIQUETA</span></p></body></html>", None))
         self.lbl_labelMasterEdit.setText("")
-        self.label_8.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:11pt; font-weight:700;\">Numero de Parte:</span></p></body></html>", None))
-        self.box_PartNo.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Numero de Parte", None))
-        self.label_9.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:11pt; font-weight:700;\">Cantidad:</span></p></body></html>", None))
-        self.box_Cantidad.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Cantidad", None))
-        self.label_10.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:11pt; font-weight:700;\">Proveedor:</span></p></body></html>", None))
-        self.box_proveedor.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Proveedor", None))
         self.label_11.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:11pt; font-weight:700;\">Serial:</span></p></body></html>", None))
         self.box_serial.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Serial", None))
+        self.label_8.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:11pt; font-weight:700;\">Numero de Parte:</span></p></body></html>", None))
+        self.lbl_PartNoprint.setText("")
+        self.label_9.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:11pt; font-weight:700;\">Cantidad:</span></p></body></html>", None))
+        self.lbl_QtyPrint.setText("")
+        self.label_10.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:11pt; font-weight:700;\">Proveedor:</span></p></body></html>", None))
+        self.lbl_ProveedorPrint.setText("")
         self.label_12.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:11pt; font-weight:700;\">Orden de Trabajo:</span></p></body></html>", None))
-        self.box_OT.setPlaceholderText(QCoreApplication.translate("MainWindow", u"O.T", None))
+        self.lbl_OTPrint.setText("")
         self.btn_saveDataLabel.setText(QCoreApplication.translate("MainWindow", u"GUARDAR", None))
         self.btn_PrintLabel.setText(QCoreApplication.translate("MainWindow", u"IMPRIMIR", None))
         self.label_CodigoActual.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; font-weight:700;\">Codigo Actual:</span></p></body></html>", None))

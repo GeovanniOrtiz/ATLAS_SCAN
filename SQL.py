@@ -200,7 +200,20 @@ class managerDataBase:
             else:
                 return None
 
-    def GetSerialMAster(self, tabla):
+    def GetDataMaster(self, serial):
+        self.connect()
+        with self.connection.cursor() as cursor:
+            query = f"SELECT * FROM atlas_master WHERE SerialMaster = %s"
+            cursor.execute(query, (serial,))
+            result = cursor.fetchone()
+
+            if result:
+                # Convertir la tupla a una lista antes de devolverla
+                return list(result)
+            else:
+                return None
+
+    def GetSerialMaster(self, tabla):
         self.connect()
         with self.connection.cursor() as cursor:
             query = f"SELECT SerialMaster FROM {tabla}"

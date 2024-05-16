@@ -91,11 +91,11 @@ class Atlas(QMainWindow):
         self.ui_main.setupUi(self)
         self.setWindowFlag(Qt.FramelessWindowHint)
         self.showFullScreen()
-
         self.InitSlots()
         self.InitAnimations()
         self.initGui()
 
+        #print(dataBase.GetDataMaster("180213052024084458"))
 
     def InitAnimations(self):
         # Configuración de la animación menu principal
@@ -131,7 +131,6 @@ class Atlas(QMainWindow):
         self.ui_main.btn_initCancel.released.connect(self.CancelChange)
         self.ui_main.btn_EditAction.released.connect(lambda:self.ui_main.MenuPrincipal.setCurrentIndex(3))
         self.ui_main.btn_PrintAction.released.connect(self.PrintPressed)
-
     def initGui(self):
         #Esconde el label de Alertas de proceso
         HideAlerts(self.ui_main)
@@ -142,7 +141,7 @@ class Atlas(QMainWindow):
         #Timer para consultar el estado de la impresora
         self.StatePrinter = QTimer()
         self.StatePrinter.timeout.connect(lambda:ConsultStatePrint(self.ui_main, self.printer_state))
-        self.StatePrinter.start(1000)
+        #self.StatePrinter.start(1000)
 
         #timer para correr el proceso de escaneado
         self.TimeProcess = QTimer()
@@ -202,18 +201,18 @@ class Atlas(QMainWindow):
         self.tableMastertaBase.hide()
         self.tableWidgetdataBase.hide()
 
-        #Inicializa en la hoja de home
-        self.ui_main.MenuPrincipal.setCurrentIndex(6)
+        #Inicializa en la hoja de home 6
+        self.ui_main.MenuPrincipal.setCurrentIndex(5)
 
         #Esconde el boton de savedata
         self.ui_main.btn_saveDataLabel.hide()
 
         #Inicializa los combobox de la etiqueta
-        self.ui_main.box_PartNo.addItems(["3QF121251E"])
-        self.ui_main.box_Cantidad.addItems(["5", "6", "7", "8", "9", "10"])
-        self.ui_main.box_proveedor.addItems(["6001003941"])
-        self.ui_main.box_serial.addItems(dataBase.GetSerialMAster("atlas_master"))
-        self.ui_main.box_OT.addItems(dataBase.GetOTMaster("atlas_master"))
+        #self.ui_main.box_PartNo.addItems(["3QF121251E"])
+        #self.ui_main.box_Cantidad.addItems(["5", "6", "7", "8", "9", "10"])
+        #self.ui_main.box_proveedor.addItems(["6001003941"])
+        self.ui_main.box_serial.addItems(dataBase.GetSerialMaster("atlas_master"))
+        #self.ui_main.box_OT.addItems(dataBase.GetOTMaster("atlas_master"))
 
         #Inivializa los combox de configuracion inicial
         self.ui_main.initBox_PartNo.addItems(["3QF121251E"])
@@ -221,10 +220,8 @@ class Atlas(QMainWindow):
         mData = dataBase.GetDataBackUp()
         PzsTotales = mData[4]
         self.ui_main.initBox_Cantidad.setCurrentText(PzsTotales)
-
         self.ui_main.initBox_Proveedor.addItems(["6001003941"])
         self.ui_main.initTxt_OT.clear()
-
     def CloseMainMenu(self):
         if self.ui_main.toggleButton.isChecked():
             self.ui_main.toggleButton.setChecked(False)
@@ -366,12 +363,10 @@ class Atlas(QMainWindow):
                         # QApplication.processEvents()
                         self.ui_main.txt_input.clear()
                         self.state = 0
-
             else:
                 if self.state != 2:
                     QMessageBox.warning(None, "Verificar Impresora",
                                         "Verificar que la impresora este correctamente configurada")
-
     def CreateTable(self):
         # Crear la tabla sin especificar el número de filas y columnas
         self.tableWidgetdataBase = QTableWidget(0, 5, self.ui_main.DatabaseWidget)
@@ -443,9 +438,9 @@ class Atlas(QMainWindow):
     def PrintPressed(self):
         if self.Key == True:
             self.ui_main.box_serial.clear()
-            self.ui_main.box_OT.clear()
-            self.ui_main.box_serial.addItems(dataBase.GetSerialMAster("atlas_master"))
-            self.ui_main.box_OT.addItems(dataBase.GetOTMaster("atlas_master"))
+            #self.ui_main.box_OT.clear()
+            self.ui_main.box_serial.addItems(dataBase.GetSerialMaster("atlas_master"))
+            #self.ui_main.box_OT.addItems(dataBase.GetOTMaster("atlas_master"))
             self.ui_main.MenuPrincipal.setCurrentIndex(5)
     def HomePressed(self):
         self.Key = False
@@ -462,7 +457,33 @@ class Atlas(QMainWindow):
             # Oculta el diálogo si enable es False
             dialog.hide()
     def GetData(self):
-        if len(self.ui_main.box_PartNo.currentText())>0 and len(self.ui_main.box_Cantidad.currentText())>0 and len(self.ui_main.box_proveedor.currentText())>0 and len(self.ui_main.box_serial.currentText())>0 and len(self.ui_main.box_OT.currentText())>0:
+        if len(self.ui_main.box_serial.currentText())>0:
+            self.ui_main.btn_PrintLabel.hide()
+            serial = self.ui_main.box_serial.currentText()
+
+            print(serial, type(serial))
+            result = dataBase.GetDataMaster(serial)
+            data = dataBase.GetDataBackUp()
+            partno = data[1]
+            qty = result[2]
+            supplier = data[2]
+            ot = result[3]
+
+            self.ui_main.lbl_PartNoprint.setText(partno)
+            self.ui_main.lbl_QtyPrint.setText(qty)
+            self.ui_main.lbl_ProveedorPrint.setText(supplier)
+            self.ui_main.lbl_OTPrint.setText(ot)
+
+            #partno = self.ui_main.box_PartNo.currentText()
+            #qty = self.ui_main.box_Cantidad.currentText()
+            #supplier = self.ui_main.box_proveedor.currentText()
+            #ot = self.ui_main.box_OT.currentText()
+            self.ConfirmPrint(partno, qty, supplier, serial, ot)
+        else:
+            QMessageBox.warning(None, "Informacion Incompleta", "Verificar que todos los campos esten correctamente especificados")
+
+    def GetData_original(self):
+        if len(self.ui_main.box_PartNo.currentText()) > 0 and len(self.ui_main.box_Cantidad.currentText()) > 0 and len(self.ui_main.box_proveedor.currentText()) > 0 and len(self.ui_main.box_serial.currentText()) > 0 and len(self.ui_main.box_OT.currentText()) > 0:
             self.ui_main.btn_PrintLabel.hide()
             partno = self.ui_main.box_PartNo.currentText()
             qty = self.ui_main.box_Cantidad.currentText()
@@ -471,7 +492,9 @@ class Atlas(QMainWindow):
             ot = self.ui_main.box_OT.currentText()
             self.ConfirmPrint(partno, qty, supplier, serial, ot)
         else:
-            QMessageBox.warning(None, "Informacion Incompleta", "Verificar que todos los campos esten correctamente especificados")
+            QMessageBox.warning(None, "Informacion Incompleta",
+                                "Verificar que todos los campos esten correctamente especificados")
+
     def ConfirmPrint(self, PartNo,Qty,Supplier,Serial,OT):
         ConfirmPrint = ConfirmData()
         ConfirmPrint.setModal(True)
@@ -508,7 +531,6 @@ class Atlas(QMainWindow):
         else:
             self.ui_main.MenuPrincipal.setCurrentIndex(6)
             self.Key=False
-
     def SetCurrentData(self):
         if len(self.ui_main.initBox_PartNo.currentText())>0 and len(self.ui_main.initBox_Cantidad.currentText())>0 and len(self.ui_main.initBox_Proveedor.currentText())>0 and len(self.ui_main.initTxt_OT.toPlainText())>0:
             print("Guardar Datos")

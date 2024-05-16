@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1475</width>
+    <width>1439</width>
     <height>640</height>
    </rect>
   </property>
@@ -1275,7 +1275,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                 <enum>QFrame::NoFrame</enum>
                </property>
                <property name="currentIndex">
-                <number>7</number>
+                <number>5</number>
                </property>
                <widget class="QWidget" name="Home_page">
                 <property name="contextMenuPolicy">
@@ -2215,7 +2215,7 @@ background-color: rgba(255, 196, 0, 150);</string>
                           <string/>
                          </property>
                          <property name="pixmap">
-                          <pixmap>../../../../.designer/Label_Master.PNG</pixmap>
+                          <pixmap>../Label_Master.PNG</pixmap>
                          </property>
                          <property name="scaledContents">
                           <bool>true</bool>
@@ -2253,75 +2253,6 @@ background-color: rgba(255, 196, 0, 150);</string>
                          <number>40</number>
                         </property>
                         <item>
-                         <widget class="QLabel" name="label_8">
-                          <property name="sizePolicy">
-                           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                           </sizepolicy>
-                          </property>
-                          <property name="text">
-                           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:700;&quot;&gt;Numero de Parte:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QComboBox" name="box_PartNo">
-                          <property name="styleSheet">
-                           <string notr="true">background-color: rgba(161, 161, 161,90);</string>
-                          </property>
-                          <property name="placeholderText">
-                           <string>Numero de Parte</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QLabel" name="label_9">
-                          <property name="sizePolicy">
-                           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                           </sizepolicy>
-                          </property>
-                          <property name="text">
-                           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:700;&quot;&gt;Cantidad:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QComboBox" name="box_Cantidad">
-                          <property name="styleSheet">
-                           <string notr="true">background-color: rgba(161, 161, 161,90);</string>
-                          </property>
-                          <property name="placeholderText">
-                           <string>Cantidad</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QLabel" name="label_10">
-                          <property name="sizePolicy">
-                           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                           </sizepolicy>
-                          </property>
-                          <property name="text">
-                           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:700;&quot;&gt;Proveedor:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QComboBox" name="box_proveedor">
-                          <property name="styleSheet">
-                           <string notr="true">background-color: rgba(161, 161, 161,90);</string>
-                          </property>
-                          <property name="placeholderText">
-                           <string>Proveedor</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
                          <widget class="QLabel" name="label_11">
                           <property name="sizePolicy">
                            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -2345,7 +2276,117 @@ background-color: rgba(255, 196, 0, 150);</string>
                          </widget>
                         </item>
                         <item>
+                         <widget class="QLabel" name="label_8">
+                          <property name="enabled">
+                           <bool>false</bool>
+                          </property>
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                          <property name="text">
+                           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:700;&quot;&gt;Numero de Parte:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="lbl_PartNoprint">
+                          <property name="minimumSize">
+                           <size>
+                            <width>0</width>
+                            <height>25</height>
+                           </size>
+                          </property>
+                          <property name="font">
+                           <font>
+                            <family>Segoe UI</family>
+                            <pointsize>10</pointsize>
+                            <italic>false</italic>
+                            <bold>false</bold>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">color: rgb(255, 196, 0);
+background-color: rgba(161, 161, 161,90);</string>
+                          </property>
+                          <property name="text">
+                           <string/>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="label_9">
+                          <property name="enabled">
+                           <bool>false</bool>
+                          </property>
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                          <property name="text">
+                           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:700;&quot;&gt;Cantidad:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="lbl_QtyPrint">
+                          <property name="minimumSize">
+                           <size>
+                            <width>0</width>
+                            <height>25</height>
+                           </size>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">color: rgb(255, 196, 0);
+background-color: rgba(161, 161, 161,90);</string>
+                          </property>
+                          <property name="text">
+                           <string/>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="label_10">
+                          <property name="enabled">
+                           <bool>false</bool>
+                          </property>
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                          <property name="text">
+                           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:700;&quot;&gt;Proveedor:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="lbl_ProveedorPrint">
+                          <property name="minimumSize">
+                           <size>
+                            <width>0</width>
+                            <height>25</height>
+                           </size>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">color: rgb(255, 196, 0);
+background-color: rgba(161, 161, 161,90);</string>
+                          </property>
+                          <property name="text">
+                           <string/>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
                          <widget class="QLabel" name="label_12">
+                          <property name="enabled">
+                           <bool>false</bool>
+                          </property>
                           <property name="sizePolicy">
                            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                             <horstretch>0</horstretch>
@@ -2358,12 +2399,19 @@ background-color: rgba(255, 196, 0, 150);</string>
                          </widget>
                         </item>
                         <item>
-                         <widget class="QComboBox" name="box_OT">
-                          <property name="styleSheet">
-                           <string notr="true">background-color: rgba(161, 161, 161,90);</string>
+                         <widget class="QLabel" name="lbl_OTPrint">
+                          <property name="minimumSize">
+                           <size>
+                            <width>0</width>
+                            <height>25</height>
+                           </size>
                           </property>
-                          <property name="placeholderText">
-                           <string>O.T</string>
+                          <property name="styleSheet">
+                           <string notr="true">color: rgb(255, 196, 0);
+background-color: rgba(161, 161, 161,90);</string>
+                          </property>
+                          <property name="text">
+                           <string/>
                           </property>
                          </widget>
                         </item>
@@ -2901,7 +2949,6 @@ border-radius:7px;</string>
  <resources>
   <include location="../resources.qrc"/>
   <include location="../resources.qrc"/>
-  <include location="../../../../.designer/resources.qrc"/>
  </resources>
  <connections/>
 </ui>

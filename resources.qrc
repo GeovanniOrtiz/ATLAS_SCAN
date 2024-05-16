@@ -1,6 +1,5 @@
 <RCC>
   <qresource prefix="images">
-    <file>Logginvw.png</file>
     <file>images/logovw.png</file>
     <file>images/Label_Spec.PNG</file>
     <file>images/qr5.png</file>
