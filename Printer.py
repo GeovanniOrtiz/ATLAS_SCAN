@@ -104,10 +104,10 @@ def SendTemplate():
     try:
         ser = serial.Serial(COM, baudrate=9600, bytesize=8, timeout=10,
                             stopbits=serial.STOPBITS_ONE)  # Open port
-
+        #^DFR:SAMPLE.GRF^FS
         template = f"""
         ^XA
-        ^DFR:SAMPLE.GRF^FS
+        ^PMR:Label_Atlas.ZPL^FS
         ^MMT
         ^PW815
         ^LL1215
@@ -147,7 +147,6 @@ def SendTemplate():
         ^FH\^FN5^FS                                   
         ^BY3,3,136^FT560,300^BCB,,Y,N
         ^FH\^FN6^FS                                   
-        ^PQ1,,,Y
         ^XZ
         """
         ser.write(bytes(template.encode('UTF-8')))
@@ -161,15 +160,17 @@ def SendReqPrint(fecha,partNo,Qty,supplier,serie,OT):
         ser = serial.Serial(COM, baudrate=9600, bytesize=8, timeout=10,
                             stopbits=serial.STOPBITS_ONE)  # Open port
 
+        #^XFR:SAMPLE.GRF
         reqPrint = f"""
         ^XA
-        ^XFR:SAMPLE.GRF
+        ^XFR:Label_Atlas.ZPL^FS
         ^FN1^FD{fecha}^FS	
         ^FN2^FD>:{partNo}^FS
         ^FN3^FD>:{Qty}^FS
         ^FN4^FD>;{supplier}^FS
         ^FN5^FD>;{serie}^FS
         ^FN6^FD>;{OT}^FS
+        ^PQ1,,,Y
         ^XZ
         """
         ser.write(bytes(reqPrint.encode('UTF-8')))
