@@ -142,7 +142,7 @@ class Atlas(QMainWindow):
         #Timer para consultar el estado de la impresora
         self.StatePrinter = QTimer()
         self.StatePrinter.timeout.connect(lambda:ConsultStatePrint(self.ui_main, self.printer_state))
-        self.StatePrinter.start(700)
+        self.StatePrinter.start(1000)
 
         #timer para correr el proceso de escaneado
         self.TimeProcess = QTimer()
@@ -355,9 +355,6 @@ class Atlas(QMainWindow):
                             self.state = 0
 
                         else:
-                            # Activa por 1.5segundos el label de aprobado
-                            #QApplication.processEvents()
-
                             # Limpia el contenedor del text edit y reinicia el escaneo
                             self.ui_main.txt_input.clear()
                             self.state = 0
