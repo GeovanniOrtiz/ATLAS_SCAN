@@ -484,12 +484,15 @@ class Atlas(QMainWindow):
             print("Imprime Etiqueta")
             currDate = datetime.now()
             currDate = currDate.strftime("%d/%m/%Y %H:%M:%S")
+            self.StatePrinter.stop()
             SendReqPrint(currDate, PartNo,Qty,Supplier,Serial,OT)
             QMessageBox.information(None, "Etiqueta Impresa", "Se ha enviado la etiqueta correctamente")
 
             self.ui_main.btn_PrintLabel.show()
             self.ui_main.MenuPrincipal.setCurrentIndex(6)
             self.Key = False
+            self.StatePrinter.start(1000)
+
         else:
             print("Editar informacion")
             self.ui_main.btn_PrintLabel.show()
