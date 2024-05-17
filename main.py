@@ -131,6 +131,8 @@ class Atlas(QMainWindow):
         self.ui_main.btn_initCancel.released.connect(self.CancelChange)
         self.ui_main.btn_EditAction.released.connect(lambda:self.ui_main.MenuPrincipal.setCurrentIndex(3))
         self.ui_main.btn_PrintAction.released.connect(self.PrintPressed)
+
+
     def initGui(self):
         #Esconde el label de Alertas de proceso
         HideAlerts(self.ui_main)
@@ -193,6 +195,9 @@ class Atlas(QMainWindow):
         self.CreateTable()
         self.CreateTableMaster()
 
+        #slot de index de tabla
+        self.tableMastertaBase.cellClicked.connect(self.print_selected_row)
+
         #Actualiza los displays de contenedores
         self.ui_main.lcdNumber_Realizado.display(self.PzsRealizadas)
         self.ui_main.lcdNumber_Faltantes.display(self.PzsFaltantes)
@@ -202,7 +207,7 @@ class Atlas(QMainWindow):
         self.tableWidgetdataBase.hide()
 
         #Inicializa en la hoja de home 6
-        self.ui_main.MenuPrincipal.setCurrentIndex(5)
+        self.ui_main.MenuPrincipal.setCurrentIndex(6)
 
         #Esconde el boton de savedata
         self.ui_main.btn_saveDataLabel.hide()
@@ -222,6 +227,9 @@ class Atlas(QMainWindow):
         self.ui_main.initBox_Cantidad.setCurrentText(PzsTotales)
         self.ui_main.initBox_Proveedor.addItems(["6001003941"])
         self.ui_main.initTxt_OT.clear()
+
+
+        self.ui_main.btn_printCurrIndex.hide()
     def CloseMainMenu(self):
         if self.ui_main.toggleButton.isChecked():
             self.ui_main.toggleButton.setChecked(False)
@@ -412,8 +420,6 @@ class Atlas(QMainWindow):
         self.tableMastertaBase.setSelectionBehavior(QTableWidget.SelectRows)
         self.tableMastertaBase.setSelectionMode(QTableWidget.SingleSelection)
 
-        self.tableMastertaBase.cellClicked.connect(self.print_selected_row)
-
         if self.ui_main.DatabaseWidget.layout() is not None:
             self.ui_main.DatabaseWidget.layout().addWidget(self.tableMastertaBase)
         else:
@@ -432,8 +438,18 @@ class Atlas(QMainWindow):
                 row_data.append('')
         print(f"Row {row} data: {row_data}")
 
+        # obtiene el respaldo de los datos
+        data = dataBase.GetDataBackUp()
+        # Variables que se inicializan con el backup
+        partno = data[1]
+        supplier=data[2]
+        serial= row_data[1]
+        cantidad = row_data[2]
+        ot= row_data[3]
+        self.ConfirmPrint(partno, cantidad, supplier, serial, ot)
 
     def HistorialPressed(self):
+        self.ui_main.btn_printCurrIndex.hide()
         self.tableMastertaBase.hide()
         self.tableWidgetdataBase.show()
         dataBase.InsertinTable(1,self.tableWidgetdataBase, 10)
@@ -442,6 +458,7 @@ class Atlas(QMainWindow):
         self.ui_main.MenuPrincipal.setCurrentIndex(4)
         self.Key = False
     def HistorialMasterPressed(self):
+        self.ui_main.btn_printCurrIndex.hide()
         self.tableWidgetdataBase.hide()
         self.tableMastertaBase.show()
         dataBase.InsertinTable(2, self.tableMastertaBase, 10)
@@ -450,17 +467,20 @@ class Atlas(QMainWindow):
         self.ui_main.MenuPrincipal.setCurrentIndex(4)
         self.Key=False
     def PrintPressed(self):
+        self.ui_main.btn_printCurrIndex.hide()
         if self.Key == True:
             self.ui_main.box_serial.clear()
             #self.ui_main.box_OT.clear()
             self.ui_main.box_serial.addItems(dataBase.GetSerialMaster("atlas_master"))
             #self.ui_main.box_OT.addItems(dataBase.GetOTMaster("atlas_master"))
-            self.ui_main.MenuPrincipal.setCurrentIndex(5)
+            self.ui_main.MenuPrincipal.setCurrentIndex(4)#5
     def HomePressed(self):
         self.Key = False
+        self.ui_main.btn_printCurrIndex.hide()
         self.ui_main.MenuPrincipal.setCurrentIndex(6)
     def DataMatrixPressed(self):
         self.Key = False
+        self.ui_main.btn_printCurrIndex.hide()
         self.ui_main.MenuPrincipal.setCurrentIndex(7)
     def ShowDialog(self, dialog, enable):
         if enable:
@@ -474,7 +494,6 @@ class Atlas(QMainWindow):
         if len(self.ui_main.box_serial.currentText())>0:
             self.ui_main.btn_PrintLabel.hide()
             serial = self.ui_main.box_serial.currentText()
-
             print(serial, type(serial))
             result = dataBase.GetDataMaster(serial)
             data = dataBase.GetDataBackUp()
@@ -518,22 +537,24 @@ class Atlas(QMainWindow):
         result = ConfirmPrint.state
 
         if result == True:
-            print("Imprime Etiqueta")
-            currDate = datetime.now()
-            currDate = currDate.strftime("%d/%m/%Y %H:%M:%S")
-            self.StatePrinter.stop()
-            SendReqPrint(currDate, PartNo,Qty,Supplier,Serial,OT)
-            QMessageBox.information(None, "Etiqueta Impresa", "Se ha enviado la etiqueta correctamente")
+            if self.Key ==True:
+                print("Imprime Etiqueta")
+                currDate = datetime.now()
+                currDate = currDate.strftime("%d/%m/%Y %H:%M:%S")
+                self.StatePrinter.stop()
+                SendReqPrint(currDate, PartNo, Qty, Supplier, Serial, OT)
+                QMessageBox.information(None, "Etiqueta Impresa", "Se ha enviado la etiqueta correctamente")
 
-            self.ui_main.btn_PrintLabel.show()
-            self.ui_main.MenuPrincipal.setCurrentIndex(6)
-            self.Key = False
-            self.StatePrinter.start(1000)
+                self.ui_main.btn_PrintLabel.show()
+                self.ui_main.MenuPrincipal.setCurrentIndex(6)
+                self.Key = False
+                self.StatePrinter.start(1000)
 
         else:
             print("Editar informacion")
             self.ui_main.btn_PrintLabel.show()
             self.ui_main.btn_saveDataLabel.hide()
+            self.Key = False
     def ShowLoggin(self):
         loggin = Loggin()
         loggin.setModal(True)

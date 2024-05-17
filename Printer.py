@@ -34,7 +34,7 @@ def ConsultStatePrint(ui_main, printer_state):
         state = check_error(S1, S2)
         mState=state[1]
         printer_state.mState = state[1]
-
+        ser.close()
         match mState:
             case 0:
                 ui_main.lbl_PrinterState.setStyleSheet(u"QLabel {\n"
@@ -81,12 +81,6 @@ def ConsultStatePrint(ui_main, printer_state):
                 ui_main.lbl_PrinterState.setText(QCoreApplication.translate("MainWindow",
                                                                             f"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">Estado de la Impresora: </span><span style=\" font-size:16pt; font-weight:700; color:#ffc400;\">{state[0]}</span></p></body></html>",
                                                                             None))
-
-
-        ser.close()
-
-
-
     except Exception as e:
         print("fatal error", e)
         printer_state.mState=5
@@ -151,7 +145,6 @@ def SendTemplate():
         """
         ser.write(bytes(template.encode('UTF-8')))
         ser.close()
-
     except Exception as e:
         print("fatal error", e)
 
@@ -175,6 +168,5 @@ def SendReqPrint(fecha,partNo,Qty,supplier,serie,OT):
         """
         ser.write(bytes(reqPrint.encode('UTF-8')))
         ser.close()
-
     except Exception as e:
         print("fatal error", e)

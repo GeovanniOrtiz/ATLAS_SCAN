@@ -1150,6 +1150,19 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <number>0</number>
                 </property>
                 <item>
+                 <spacer name="horizontalSpacer_8">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
                  <widget class="QPushButton" name="minimizeAppBtn">
                   <property name="minimumSize">
                    <size>
@@ -1275,7 +1288,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                 <enum>QFrame::NoFrame</enum>
                </property>
                <property name="currentIndex">
-                <number>4</number>
+                <number>1</number>
                </property>
                <widget class="QWidget" name="Home_page">
                 <property name="contextMenuPolicy">

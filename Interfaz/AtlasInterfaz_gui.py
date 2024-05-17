@@ -652,6 +652,10 @@ class Ui_MainWindow(object):
         self.rightButtons.setSpacing(5)
         self.rightButtons.setObjectName(u"rightButtons")
         self.rightButtons.setContentsMargins(9, 0, 8, 0)
+        self.horizontalSpacer_8 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.rightButtons.addItem(self.horizontalSpacer_8)
+
         self.minimizeAppBtn = QPushButton(self.rightButtons_2)
         self.minimizeAppBtn.setObjectName(u"minimizeAppBtn")
         self.minimizeAppBtn.setMinimumSize(QSize(30, 30))
@@ -1643,7 +1647,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.MenuPrincipal.setCurrentIndex(4)
+        self.MenuPrincipal.setCurrentIndex(1)
         self.MenuModel_CK.setCurrentIndex(0)
 
 
