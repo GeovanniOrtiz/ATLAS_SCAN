@@ -268,7 +268,7 @@ class Atlas(QMainWindow):
                     case 0:  # Read TextEdit
                         self.ui_main.txt_input.setFocus()
                         text = self.ui_main.txt_input.toPlainText()
-                        if (len(text) == 33):  # ZAR08052416134613QF121351E-731694
+                        if (len(text) == 33):  # ZAR08052416134613QF121351F-731694
                             print(text)
                             if text[:3]=="ZAR":
                                 if text[16:26]=="3QF121351E":

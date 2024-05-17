@@ -1288,7 +1288,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                 <enum>QFrame::NoFrame</enum>
                </property>
                <property name="currentIndex">
-                <number>1</number>
+                <number>6</number>
                </property>
                <widget class="QWidget" name="Home_page">
                 <property name="contextMenuPolicy">
