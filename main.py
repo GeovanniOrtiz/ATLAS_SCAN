@@ -473,6 +473,9 @@ class Atlas(QMainWindow):
             #self.ui_main.box_OT.clear()
             self.ui_main.box_serial.addItems(dataBase.GetSerialMaster("atlas_master"))
             #self.ui_main.box_OT.addItems(dataBase.GetOTMaster("atlas_master"))
+            dataBase.InsertinTable(2, self.tableMastertaBase, 10)
+            # Después de agregar los datos a la tabla, ajusta el ancho de las columnas al contenido máximo
+            self.tableMastertaBase.resizeColumnsToContents()
             self.ui_main.MenuPrincipal.setCurrentIndex(4)#5
     def HomePressed(self):
         self.Key = False
@@ -609,7 +612,7 @@ class Atlas(QMainWindow):
 
             self.ui_main.MenuPrincipal.setCurrentIndex(6)
             self.Key = False
-            QMessageBox.warning(None, "Informacion Actualizada", "Datos Actualizados Correctamente")
+            QMessageBox.information(None, "Informacion Actualizada", "Datos Actualizados Correctamente")
 
         else:
             QMessageBox.warning(None, "Informacion Incompleta", "Verificar que todos los campos esten correctamente especificados")
