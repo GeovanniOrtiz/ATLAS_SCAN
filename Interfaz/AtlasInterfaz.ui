@@ -1275,7 +1275,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                 <enum>QFrame::NoFrame</enum>
                </property>
                <property name="currentIndex">
-                <number>5</number>
+                <number>4</number>
                </property>
                <widget class="QWidget" name="Home_page">
                 <property name="contextMenuPolicy">
@@ -2162,6 +2162,55 @@ QPushButton:pressed {
 background-color: rgba(255, 196, 0, 150);</string>
                      </property>
                     </widget>
+                   </item>
+                   <item>
+                    <layout class="QHBoxLayout" name="horizontalLayout_6">
+                     <item>
+                      <spacer name="horizontalSpacer_4">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>40</width>
+                         <height>20</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="btn_printCurrIndex">
+                       <property name="styleSheet">
+                        <string notr="true">QPushButton{
+background-color: rgba(0, 85, 127, 150);
+font: 700 18pt &quot;Segoe UI&quot;;
+border-radius: 4px;
+border: 4px solid black;
+border-color: rgb(0, 85, 127);}
+
+QPushButton:pressed {
+	background-color: rgb(0, 85, 127);
+}</string>
+                       </property>
+                       <property name="text">
+                        <string>IMPRIMIR</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <spacer name="horizontalSpacer_7">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>40</width>
+                         <height>20</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                    </layout>
                    </item>
                   </layout>
                  </item>

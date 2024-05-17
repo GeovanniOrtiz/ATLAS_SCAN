@@ -1183,6 +1183,34 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_18.addWidget(self.DatabaseWidget)
 
+        self.horizontalLayout_6 = QHBoxLayout()
+        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
+        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_6.addItem(self.horizontalSpacer_4)
+
+        self.btn_printCurrIndex = QPushButton(self.DataBase_page)
+        self.btn_printCurrIndex.setObjectName(u"btn_printCurrIndex")
+        self.btn_printCurrIndex.setStyleSheet(u"QPushButton{\n"
+"background-color: rgba(0, 85, 127, 150);\n"
+"font: 700 18pt \"Segoe UI\";\n"
+"border-radius: 4px;\n"
+"border: 4px solid black;\n"
+"border-color: rgb(0, 85, 127);}\n"
+"\n"
+"QPushButton:pressed {\n"
+"	background-color: rgb(0, 85, 127);\n"
+"}")
+
+        self.horizontalLayout_6.addWidget(self.btn_printCurrIndex)
+
+        self.horizontalSpacer_7 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_6.addItem(self.horizontalSpacer_7)
+
+
+        self.verticalLayout_18.addLayout(self.horizontalLayout_6)
+
 
         self.verticalLayout_19.addLayout(self.verticalLayout_18)
 
@@ -1615,7 +1643,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.MenuPrincipal.setCurrentIndex(5)
+        self.MenuPrincipal.setCurrentIndex(4)
         self.MenuModel_CK.setCurrentIndex(0)
 
 
@@ -1685,6 +1713,7 @@ class Ui_MainWindow(object):
         self.btn_initSave.setText(QCoreApplication.translate("MainWindow", u"Guardar", None))
         self.btn_initCancel.setText(QCoreApplication.translate("MainWindow", u"Cancelar", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:26pt; font-weight:700; color:#fcc101;\">Historial Modelo Actual</span></p></body></html>", None))
+        self.btn_printCurrIndex.setText(QCoreApplication.translate("MainWindow", u"IMPRIMIR", None))
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:18pt; font-weight:700; color:#ffc400;\">GENERAR ETIQUETA</span></p></body></html>", None))
         self.lbl_labelMasterEdit.setText("")
         self.label_11.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:11pt; font-weight:700;\">Serial:</span></p></body></html>", None))

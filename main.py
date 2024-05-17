@@ -412,6 +412,8 @@ class Atlas(QMainWindow):
         self.tableMastertaBase.setSelectionBehavior(QTableWidget.SelectRows)
         self.tableMastertaBase.setSelectionMode(QTableWidget.SingleSelection)
 
+        self.tableMastertaBase.cellClicked.connect(self.print_selected_row)
+
         if self.ui_main.DatabaseWidget.layout() is not None:
             self.ui_main.DatabaseWidget.layout().addWidget(self.tableMastertaBase)
         else:
@@ -419,6 +421,18 @@ class Atlas(QMainWindow):
             new_layout = QVBoxLayout()
             new_layout.addWidget(self.tableMastertaBase)
             self.ui_main.DatabaseWidget.setLayout(new_layout)
+
+    def print_selected_row(self, row, column):
+        row_data = []
+        for col in range(self.tableMastertaBase.columnCount()):
+            item = self.tableMastertaBase.item(row, col)
+            if item is not None:
+                row_data.append(item.text())
+            else:
+                row_data.append('')
+        print(f"Row {row} data: {row_data}")
+
+
     def HistorialPressed(self):
         self.tableMastertaBase.hide()
         self.tableWidgetdataBase.show()
