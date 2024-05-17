@@ -143,7 +143,7 @@ class Atlas(QMainWindow):
         #Timer para consultar el estado de la impresora
         self.StatePrinter = QTimer()
         self.StatePrinter.timeout.connect(lambda:ConsultStatePrint(self.ui_main, self.printer_state))
-        #self.StatePrinter.start(1000)
+        self.StatePrinter.start(1000)
 
         #timer para correr el proceso de escaneado
         self.TimeProcess = QTimer()
@@ -228,8 +228,8 @@ class Atlas(QMainWindow):
         self.ui_main.initBox_Proveedor.addItems(["6001003941"])
         self.ui_main.initTxt_OT.clear()
 
-
         self.ui_main.btn_printCurrIndex.hide()
+        self.tableMastertaBase.show()
     def CloseMainMenu(self):
         if self.ui_main.toggleButton.isChecked():
             self.ui_main.toggleButton.setChecked(False)
