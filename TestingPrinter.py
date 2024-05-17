@@ -1,47 +1,18 @@
+import time
+from datetime import datetime
 import serial
+from SQL import managerDataBase
+COM = "COM13"
 
-def StoreTemplateInFlash(template_data, template_name):
+database = managerDataBase()
+def SendTemplate():
     try:
-        COM = 'COM12'  # Reemplaza '/dev/ttyUSB0' con el puerto serial correcto de tu impresora
-        ser = serial.Serial(COM, baudrate=9600, bytesize=8, timeout=10, stopbits=serial.STOPBITS_ONE)
-
-        command = f"^DFF{template_name},R:{len(template_data)}," + template_data + "\n"
-        ser.write(bytes(command.encode('UTF-8')))
-        ser.close()
-
-        print(f"Template '{template_name}' almacenado en la memoria flash correctamente.")
-
-    except Exception as e:
-        print("Error al almacenar el template en la memoria flash:", e)
-
-def PrintWithStoredTemplate(fecha, partNo, Qty, supplier, serie, OT, template_name):
-    try:
-        COM = 'COM12'  # Reemplaza '/dev/ttyUSB0' con el puerto serial correcto de tu impresora
-        ser = serial.Serial(COM, baudrate=9600, bytesize=8, timeout=10, stopbits=serial.STOPBITS_ONE)
-
-        print_command = f"""
+        ser = serial.Serial(COM, baudrate=9600, bytesize=8, timeout=10,
+                            stopbits=serial.STOPBITS_ONE)  # Open port
+        #^DFR:SAMPLE.GRF^FS
+        template = f"""
         ^XA
-        ^XFR:{template_name}
-        ^FN1^FD{fecha}^FS	
-        ^FN2^FD>{partNo}^FS
-        ^FN3^FD>{Qty}^FS
-        ^FN4^FD>{supplier}^FS
-        ^FN5^FD>{serie}^FS
-        ^FN6^FD>{OT}^FS
-        ^XZ
-        """
-        ser.write(bytes(print_command.encode('UTF-8')))
-        ser.close()
-
-        print("Impresión realizada correctamente utilizando el template almacenado.")
-
-    except Exception as e:
-        print("Error al imprimir utilizando el template almacenado:", e)
-
-# Ejemplo de uso para almacenar el template en la memoria flash
-template_data = """
-        ^XA
-        ^DFR:SAMPLE.GRF^FS
+        ^DFE:Label_Atlas.ZPL^FS
         ^MMT
         ^PW815
         ^LL1215
@@ -80,18 +51,48 @@ template_data = """
         ^BY3,3,99^FT730,1001^BCB,,Y,N
         ^FH\^FN5^FS                                   
         ^BY3,3,136^FT560,300^BCB,,Y,N
-        ^FH\^FN6^FS                                   
-        ^PQ1,,,Y
+        ^FH\^FN6^FS   
+        ^PQ1,,,Y                                
         ^XZ
-"""
-#StoreTemplateInFlash(template_data, "SAMPLE.ZPL")
-# Ejemplo de uso para imprimir utilizando el template almacenado
-fecha = "2024-05-14"
-partNo = "12345"
-Qty = "10"
-supplier = "SupplierA"
-serie = "ABC123"
-OT = "OT-001"
-template_name = "SAMPLE.ZPL"
+        """
+        ser.write(bytes(template.encode('UTF-8')))
+        ser.close()
+    except Exception as e:
+        print("fatal error", e)
 
-PrintWithStoredTemplate(fecha, partNo, Qty, supplier, serie, OT, template_name)
+def SendReqPrint(fecha,partNo,Qty,supplier,serie,OT):
+    try:
+        ser = serial.Serial(COM, baudrate=9600, bytesize=8, timeout=10,
+                            stopbits=serial.STOPBITS_ONE)  # Open port
+
+        #^XFR:SAMPLE.GRF
+        reqPrint = f"""
+        ^XA
+        ^XFE:Label_Atlas.ZPL^FS
+        ^FN1^FD{fecha}^FS	
+        ^FN2^FD>:{partNo}^FS
+        ^FN3^FD>:{Qty}^FS
+        ^FN4^FD>;{supplier}^FS
+        ^FN5^FD>;{serie}^FS
+        ^FN6^FD>;{OT}^FS
+        ^XZ
+        """
+        ser.write(bytes(reqPrint.encode('UTF-8')))
+        ser.close()
+    except Exception as e:
+        print("fatal error", e)
+#SendTemplate()
+
+data = database.GetDataBackUp()
+print(data)
+PartNo = data[1]
+Supplier = data[2]
+OT = data[3]
+PzsTotales = int(data[4])
+PzsRealizadas = int(data[5])
+SerialNum = data[6]
+CreationDate = data[7]
+
+currDate = datetime.now()
+currDate = currDate.strftime("%d/%m/%Y %H:%M:%S")
+SendReqPrint(currDate, PartNo, PzsTotales, Supplier, SerialNum, OT)

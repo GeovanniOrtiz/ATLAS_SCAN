@@ -1,7 +1,8 @@
 from PySide6.QtCore import QCoreApplication
 import serial
 from main import *
-COM = "COM12"
+
+COM = "COM13"
 
 class PrinterState:
     def __init__(self):
@@ -101,7 +102,7 @@ def SendTemplate():
         #^DFR:SAMPLE.GRF^FS
         template = f"""
         ^XA
-        ^PMR:Label_Atlas.ZPL^FS
+        ^DFE:Label_Atlas.ZPL^FS
         ^MMT
         ^PW815
         ^LL1215
@@ -156,7 +157,7 @@ def SendReqPrint(fecha,partNo,Qty,supplier,serie,OT):
         #^XFR:SAMPLE.GRF
         reqPrint = f"""
         ^XA
-        ^XFR:Label_Atlas.ZPL^FS
+        ^XFE:Label_Atlas.ZPL^FS
         ^FN1^FD{fecha}^FS	
         ^FN2^FD>:{partNo}^FS
         ^FN3^FD>:{Qty}^FS

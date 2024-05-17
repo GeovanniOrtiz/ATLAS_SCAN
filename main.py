@@ -554,7 +554,6 @@ class Atlas(QMainWindow):
             print("Editar informacion")
             self.ui_main.btn_PrintLabel.show()
             self.ui_main.btn_saveDataLabel.hide()
-            self.Key = False
     def ShowLoggin(self):
         loggin = Loggin()
         loggin.setModal(True)
@@ -610,6 +609,8 @@ class Atlas(QMainWindow):
 
             self.ui_main.MenuPrincipal.setCurrentIndex(6)
             self.Key = False
+            QMessageBox.warning(None, "Informacion Actualizada", "Datos Actualizados Correctamente")
+
         else:
             QMessageBox.warning(None, "Informacion Incompleta", "Verificar que todos los campos esten correctamente especificados")
     def CancelChange(self):
