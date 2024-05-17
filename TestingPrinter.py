@@ -2,9 +2,16 @@ import time
 from datetime import datetime
 import serial
 from SQL import managerDataBase
-COM = "COM13"
+COM = "COM12"
 
 database = managerDataBase()
+
+"""
+Para asegurarte de que el template se guarda correctamente en la memoria permanente de la impresora, sigue estos pasos:
+Guardar el Template en la Memoria Permanente: Usa ^DF con la ubicación adecuada para guardar el template en la memoria flash permanente.Verificar que el Template se Guarda Correctamente: 
+Asegúrate de que el template se ha guardado correctamente y persiste después de reiniciar la impresora.
+En el comando ^DFE:Label_Atlas.ZPL^FS, E: indica que el template se guarda en la memoria flash de la impresora, que es permanente.
+"""
 def SendTemplate():
     try:
         ser = serial.Serial(COM, baudrate=9600, bytesize=8, timeout=10,

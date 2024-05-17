@@ -131,8 +131,6 @@ class Atlas(QMainWindow):
         self.ui_main.btn_initCancel.released.connect(self.CancelChange)
         self.ui_main.btn_EditAction.released.connect(lambda:self.ui_main.MenuPrincipal.setCurrentIndex(3))
         self.ui_main.btn_PrintAction.released.connect(self.PrintPressed)
-
-
     def initGui(self):
         #Esconde el label de Alertas de proceso
         HideAlerts(self.ui_main)
@@ -228,7 +226,10 @@ class Atlas(QMainWindow):
         self.ui_main.initBox_Proveedor.addItems(["6001003941"])
         self.ui_main.initTxt_OT.clear()
 
+        #Esconde el boton de imprimir
         self.ui_main.btn_printCurrIndex.hide()
+
+        #Inicializa el widget con la tabla master
         self.tableMastertaBase.show()
     def CloseMainMenu(self):
         if self.ui_main.toggleButton.isChecked():
@@ -267,13 +268,26 @@ class Atlas(QMainWindow):
                     case 0:  # Read TextEdit
                         self.ui_main.txt_input.setFocus()
                         text = self.ui_main.txt_input.toPlainText()
-                        if (len(text) == 33):  # ZAR08057416134613QF121351E-731676
+                        if (len(text) == 33):  # ZAR08052416134613QF121351E-731694
                             print(text)
-                            self.CodeRadd = text
-                            self.DateLabel = text[3:9]
-                            self.DateLabel = self.DateLabel[:2] + "/" + self.DateLabel[2:4] + "/" + self.DateLabel[4:6]
-                            print(self.DateLabel)
-                            self.state = 1
+                            if text[:3]=="ZAR":
+                                if text[16:26]=="3QF121351E":
+                                    self.CodeRadd = text
+                                    self.DateLabel = text[3:9]
+                                    self.DateLabel = self.DateLabel[:2] + "/" + self.DateLabel[2:4] + "/" + self.DateLabel[4:6]
+                                    print(self.DateLabel)
+                                    self.state = 1
+                                else:
+                                    print("Codigo Invalido por PartNo")
+                                    QMessageBox.critical(None, "Numero de Parte Invalido",
+                                                        f"Verificar Numero de Parte: {text[16:26]}")
+                                    self.ui_main.txt_input.clear()
+                            else:
+                                print("Codigo Invalido por ID")
+                                QMessageBox.critical(None, "ID Invalido",
+                                                     f"Verificar Datos en Etiqueta: {text[:3]}")
+                                self.ui_main.txt_input.clear()
+
                         else:
                             self.ui_main.txt_input.clear()
 
@@ -316,7 +330,6 @@ class Atlas(QMainWindow):
                             self.StatePrinter.stop()
 
                             # Envia a Imprimir
-                            # SendTemplate()
                             SendReqPrint(fecha, partNo, Qty, supplier, serial, OT)
 
                             # Guarda los datos en la DB master
@@ -473,7 +486,7 @@ class Atlas(QMainWindow):
             #self.ui_main.box_OT.clear()
             self.ui_main.box_serial.addItems(dataBase.GetSerialMaster("atlas_master"))
             #self.ui_main.box_OT.addItems(dataBase.GetOTMaster("atlas_master"))
-            dataBase.InsertinTable(2, self.tableMastertaBase, 10)
+            dataBase.InsertinTable(2, self.tableMastertaBase, 30)
             # Después de agregar los datos a la tabla, ajusta el ancho de las columnas al contenido máximo
             self.tableMastertaBase.resizeColumnsToContents()
             self.ui_main.MenuPrincipal.setCurrentIndex(4)#5

@@ -2,7 +2,7 @@ from PySide6.QtCore import QCoreApplication
 import serial
 from main import *
 
-COM = "COM13"
+COM = "COM12"
 
 class PrinterState:
     def __init__(self):
