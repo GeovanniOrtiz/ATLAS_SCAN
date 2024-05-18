@@ -332,7 +332,7 @@ class Atlas(QMainWindow):
                     case 0:  # Read TextEdit
                         self.ui_main.txt_input.setFocus()
                         text = self.ui_main.txt_input.toPlainText()
-                        if (len(text) == 33):  # ZAR08052416134613QF121351F-731694
+                        if (len(text) == 33):  # ZAT08052416134613QF121351F-731694
                             print(text)
                             if text[:3]=="ZAR":
                                 if text[16:26]=="3QF121351E":
@@ -524,7 +524,6 @@ class Atlas(QMainWindow):
         cantidad = row_data[2]
         ot= row_data[3]
         self.ConfirmPrint(partno, cantidad, supplier, serial, ot)
-
     def HistorialPressed(self):
         self.ui_main.btn_printCurrIndex.hide()
         self.tableMastertaBase.hide()
@@ -607,7 +606,6 @@ class Atlas(QMainWindow):
         else:
             QMessageBox.warning(None, "Informacion Incompleta",
                                 "Verificar que todos los campos esten correctamente especificados")
-
     def ConfirmPrint(self, PartNo,Qty,Supplier,Serial,OT):
         ConfirmPrint = ConfirmData()
         ConfirmPrint.setModal(True)
