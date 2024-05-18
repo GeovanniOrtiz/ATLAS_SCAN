@@ -151,6 +151,12 @@ class Atlas(QMainWindow):
         #Timer para las alertas vizuales
         self.Alerts = QTimer()
 
+        #Timer para actualizar los label de la impresora
+        self.timeLabelPrinter = QTimer()
+        self.timeLabelPrinter.timeout.connect(self.UpdateLabelStatus_printer)
+        self.timeLabelPrinter.start(500)
+
+
         #obtiene el respaldo de los datos
         data = dataBase.GetDataBackUp()
 
@@ -231,6 +237,65 @@ class Atlas(QMainWindow):
 
         #Inicializa el widget con la tabla master
         self.tableMastertaBase.show()
+
+    def UpdateLabelStatus_printer(self):
+        mState = self.printer_state.mState
+        match mState:
+            case 0:
+                self.ui_main.lbl_PrinterState.setStyleSheet(u"QLabel {\n"
+                                                       "    border: 2px solid #FFFFFF; /* Cambia el color del borde a rojo */\n"
+                                                       "	border-color: #FFFFFF;\n"
+                                                       "	border-radius:5px;\n"
+                                                       "}")
+                self.ui_main.lbl_PrinterState.setText(QCoreApplication.translate("MainWindow",
+                                                                            f"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">Estado de la Impresora: </span><span style=\" font-size:16pt; font-weight:700; color:#7FFF00;\">{state[0]}</span></p></body></html>",
+                                                                            None))
+            case 1:
+                self.ui_main.lbl_PrinterState.setStyleSheet(u"QLabel {\n"
+                                                       "    border: 2px solid #FF0000; /* Cambia el color del borde a rojo */\n"
+                                                       "	border-color: rgb(255, 196, 0);\n"
+                                                       "	border-radius:5px;\n"
+                                                       "}")
+                self.ui_main.lbl_PrinterState.setText(QCoreApplication.translate("MainWindow",
+                                                                            f"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">Estado de la Impresora: </span><span style=\" font-size:16pt; font-weight:700; color:#ffc400;\">{state[0]}</span></p></body></html>",
+                                                                            None))
+            case 2:
+                self.ui_main.lbl_PrinterState.setStyleSheet(u"QLabel {\n"
+                                                       "    border: 2px solid #FF0000; /* Cambia el color del borde a rojo */\n"
+                                                       "	border-color: rgb(255, 196, 0);\n"
+                                                       "	border-radius:5px;\n"
+                                                       "}")
+                self.ui_main.lbl_PrinterState.setText(QCoreApplication.translate("MainWindow",
+                                                                            f"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">Estado de la Impresora: </span><span style=\" font-size:16pt; font-weight:700; color:#ffc400;\">{state[0]}</span></p></body></html>",
+                                                                            None))
+            case 3:
+                self.ui_main.lbl_PrinterState.setStyleSheet(u"QLabel {\n"
+                                                       "    border: 2px solid #FF0000; /* Cambia el color del borde a rojo */\n"
+                                                       "	border-color: rgb(255, 196, 0);\n"
+                                                       "	border-radius:5px;\n"
+                                                       "}")
+                self.ui_main.lbl_PrinterState.setText(QCoreApplication.translate("MainWindow",
+                                                                            f"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">Estado de la Impresora: </span><span style=\" font-size:16pt; font-weight:700; color:#ffc400;\">{state[0]}</span></p></body></html>",
+                                                                            None))
+            case 4:
+                self.ui_main.lbl_PrinterState.setStyleSheet(u"QLabel {\n"
+                                                       "    border: 2px solid #FF0000; /* Cambia el color del borde a rojo */\n"
+                                                       "	border-color: rgb(255, 196, 0);\n"
+                                                       "	border-radius:5px;\n"
+                                                       "}")
+                self.ui_main.lbl_PrinterState.setText(QCoreApplication.translate("MainWindow",
+                                                                            f"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">Estado de la Impresora: </span><span style=\" font-size:16pt; font-weight:700; color:#ffc400;\">{state[0]}</span></p></body></html>",
+                                                                            None))
+            case 5:
+                self.ui_main.lbl_PrinterState.setStyleSheet(u"QLabel {\n"
+                                                       "    border: 2px solid #FF0000; /* Cambia el color del borde a rojo */\n"
+                                                       "	border-color: #FF0000;\n"
+                                                       "	border-radius:5px;\n"
+                                                       "}")
+                self.ui_main.lbl_PrinterState.setText(QCoreApplication.translate("MainWindow",
+                                                                            f"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">Estado de la Impresora: </span><span style=\" font-size:16pt; font-weight:700; color:#FF0000;\">DESCONECTADA</span></p></body></html>",
+                                                                            None))
+
     def CloseMainMenu(self):
         if self.ui_main.toggleButton.isChecked():
             self.ui_main.toggleButton.setChecked(False)
