@@ -238,6 +238,7 @@ class Atlas(QMainWindow):
 
     def UpdateLabelStatus_printer(self):
         mState = self.printer_state.mState
+        mText = self.printer_state.mText
         match mState:
             case 0:
                 self.ui_main.lbl_PrinterState.setStyleSheet(u"QLabel {\n"
@@ -246,7 +247,7 @@ class Atlas(QMainWindow):
                                                        "	border-radius:5px;\n"
                                                        "}")
                 self.ui_main.lbl_PrinterState.setText(QCoreApplication.translate("MainWindow",
-                                                                            f"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">Estado de la Impresora: </span><span style=\" font-size:16pt; font-weight:700; color:#7FFF00;\">{state[0]}</span></p></body></html>",
+                                                                            f"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">Estado de la Impresora: </span><span style=\" font-size:16pt; font-weight:700; color:#7FFF00;\">{mText}</span></p></body></html>",
                                                                             None))
             case 1:
                 self.ui_main.lbl_PrinterState.setStyleSheet(u"QLabel {\n"
@@ -255,7 +256,7 @@ class Atlas(QMainWindow):
                                                        "	border-radius:5px;\n"
                                                        "}")
                 self.ui_main.lbl_PrinterState.setText(QCoreApplication.translate("MainWindow",
-                                                                            f"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">Estado de la Impresora: </span><span style=\" font-size:16pt; font-weight:700; color:#ffc400;\">{state[0]}</span></p></body></html>",
+                                                                            f"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">Estado de la Impresora: </span><span style=\" font-size:16pt; font-weight:700; color:#ffc400;\">{mText}</span></p></body></html>",
                                                                             None))
             case 2:
                 self.ui_main.lbl_PrinterState.setStyleSheet(u"QLabel {\n"
@@ -264,7 +265,7 @@ class Atlas(QMainWindow):
                                                        "	border-radius:5px;\n"
                                                        "}")
                 self.ui_main.lbl_PrinterState.setText(QCoreApplication.translate("MainWindow",
-                                                                            f"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">Estado de la Impresora: </span><span style=\" font-size:16pt; font-weight:700; color:#ffc400;\">{state[0]}</span></p></body></html>",
+                                                                            f"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">Estado de la Impresora: </span><span style=\" font-size:16pt; font-weight:700; color:#ffc400;\">{mText}</span></p></body></html>",
                                                                             None))
             case 3:
                 self.ui_main.lbl_PrinterState.setStyleSheet(u"QLabel {\n"
@@ -273,7 +274,7 @@ class Atlas(QMainWindow):
                                                        "	border-radius:5px;\n"
                                                        "}")
                 self.ui_main.lbl_PrinterState.setText(QCoreApplication.translate("MainWindow",
-                                                                            f"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">Estado de la Impresora: </span><span style=\" font-size:16pt; font-weight:700; color:#ffc400;\">{state[0]}</span></p></body></html>",
+                                                                            f"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">Estado de la Impresora: </span><span style=\" font-size:16pt; font-weight:700; color:#ffc400;\">{mText}</span></p></body></html>",
                                                                             None))
             case 4:
                 self.ui_main.lbl_PrinterState.setStyleSheet(u"QLabel {\n"
@@ -282,7 +283,7 @@ class Atlas(QMainWindow):
                                                        "	border-radius:5px;\n"
                                                        "}")
                 self.ui_main.lbl_PrinterState.setText(QCoreApplication.translate("MainWindow",
-                                                                            f"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">Estado de la Impresora: </span><span style=\" font-size:16pt; font-weight:700; color:#ffc400;\">{state[0]}</span></p></body></html>",
+                                                                            f"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">Estado de la Impresora: </span><span style=\" font-size:16pt; font-weight:700; color:#ffc400;\">{mText}</span></p></body></html>",
                                                                             None))
             case 5:
                 self.ui_main.lbl_PrinterState.setStyleSheet(u"QLabel {\n"

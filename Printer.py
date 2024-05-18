@@ -7,6 +7,7 @@ COM = "COM12"
 class PrinterState:
     def __init__(self):
         self.mState = 0
+        self.mText= ""
 def check_error(m_string1, m_string2):
     error = ()
     if m_string1[1] == "1":
@@ -33,6 +34,7 @@ def ConsultStatePrint(ui_main, printer_state):
             S2 = lines[1].split(",")
             state = check_error(S1, S2)
             printer_state.mState = state[1]
+            printer_state.mText = state[0]
             ser.close()
     except serial.SerialTimeoutException:
         print("Timeout error while communicating with the serial port")
