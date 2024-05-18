@@ -41,27 +41,9 @@ def ConsultStatePrint(ui_main, printer_state):
     except serial.SerialException as e:
         print("Serial communication error:", e)
         printer_state.mState = 5
-
-        ui_main.lbl_PrinterState.setStyleSheet(u"QLabel {\n"
-                                               "    border: 2px solid #FF0000; /* Cambia el color del borde a rojo */\n"
-                                               "	border-color: #FF0000;\n"
-                                               "	border-radius:5px;\n"
-                                               "}")
-        ui_main.lbl_PrinterState.setText(QCoreApplication.translate("MainWindow",
-                                                                    f"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">Estado de la Impresora: </span><span style=\" font-size:16pt; font-weight:700; color:#FF0000;\">DESCONECTADA</span></p></body></html>",
-                                                                    None))
     except Exception as e:
         print("fatal error", e)
         printer_state.mState = 5
-
-        ui_main.lbl_PrinterState.setStyleSheet(u"QLabel {\n"
-                                               "    border: 2px solid #FF0000; /* Cambia el color del borde a rojo */\n"
-                                               "	border-color: #FF0000;\n"
-                                               "	border-radius:5px;\n"
-                                               "}")
-        ui_main.lbl_PrinterState.setText(QCoreApplication.translate("MainWindow",
-                                                                    f"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">Estado de la Impresora: </span><span style=\" font-size:16pt; font-weight:700; color:#FF0000;\">DESCONECTADA</span></p></body></html>",
-                                                                    None))
 
 def SendTemplate():
     try:
