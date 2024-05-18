@@ -22,14 +22,13 @@ def check_error(m_string1, m_string2):
     return error
 def ConsultStatePrint(ui_main, printer_state):
     try:
-        with serial.Serial(COM, baudrate=9600, bytesize=8, timeout=10, stopbits=serial.STOPBITS_ONE) as ser:
+        with serial.Serial(COM, baudrate=9600, bytesize=8, timeout=10, stopbits=serial.STOPBITS_ONE, xonxoff=False,  rtscts=False,  dsrdtr=False) as ser:
             # ser = serial.Serial(COM, baudrate=9600, bytesize=8, timeout=10,stopbits=serial.STOPBITS_ONE)  # Open port
             check_command = b"~HS"
             ser.write(check_command)
             r = ser.read_until('', 80)
             string_text = r.decode('utf-8')  # Decodificar bytes a texto
             lines = string_text.splitlines()  # Dividir en líneas
-
             S1 = lines[0].split(",")
             S2 = lines[1].split(",")
             state = check_error(S1, S2)
@@ -67,7 +66,7 @@ def ConsultStatePrint(ui_main, printer_state):
 def SendTemplate():
     try:
         #ser = serial.Serial(COM, baudrate=9600, bytesize=8, timeout=10,stopbits=serial.STOPBITS_ONE)  # Open port
-        with serial.Serial(COM, baudrate=9600, bytesize=8, timeout=10, stopbits=serial.STOPBITS_ONE) as ser:
+        with serial.Serial(COM, baudrate=9600, bytesize=8, timeout=10, stopbits=serial.STOPBITS_ONE, xonxoff=False,  rtscts=False,  dsrdtr=False) as ser:
             # ^DFR:SAMPLE.GRF^FS
             template = f"""
                     ^XA
@@ -125,7 +124,7 @@ def SendTemplate():
 def SendReqPrint(fecha,partNo,Qty,supplier,serie,OT):
     try:
         #ser = serial.Serial(COM, baudrate=9600, bytesize=8, timeout=10,stopbits=serial.STOPBITS_ONE)  # Open port
-        with serial.Serial(COM, baudrate=9600, bytesize=8, timeout=10, stopbits=serial.STOPBITS_ONE) as ser:
+        with serial.Serial(COM, baudrate=9600, bytesize=8, timeout=10, stopbits=serial.STOPBITS_ONE, xonxoff=False,  rtscts=False,  dsrdtr=False) as ser:
             # ^XFR:SAMPLE.GRF
             reqPrint = f"""
                    ^XA

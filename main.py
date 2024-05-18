@@ -156,7 +156,6 @@ class Atlas(QMainWindow):
         self.timeLabelPrinter.timeout.connect(self.UpdateLabelStatus_printer)
         self.timeLabelPrinter.start(500)
 
-
         #obtiene el respaldo de los datos
         data = dataBase.GetDataBackUp()
 
