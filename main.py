@@ -95,7 +95,6 @@ class Atlas(QMainWindow):
         self.InitAnimations()
         self.initGui()
 
-        #print(dataBase.GetDataMaster("180213052024084458"))
 
     def InitAnimations(self):
         # Configuración de la animación menu principal

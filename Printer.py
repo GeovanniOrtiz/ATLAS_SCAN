@@ -37,7 +37,6 @@ def ConsultStatePrint(ui_main, printer_state):
     except serial.SerialTimeoutException:
         print("Timeout error while communicating with the serial port")
         printer_state.mState = 5
-
     except serial.SerialException as e:
         print("Serial communication error:", e)
         printer_state.mState = 5
