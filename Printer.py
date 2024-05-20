@@ -3,6 +3,7 @@ import serial
 from main import *
 import socket
 COM = "COM12"
+HOST = "192.168.100.85"
 
 class PrinterState:
     def __init__(self):
@@ -131,7 +132,7 @@ def SendReqPrint_Rs232(fecha,partNo,Qty,supplier,serie,OT):
 def ConsultStatePrint(ui_main, printer_state):
     try:
         # Establecer conexión TCP/IP
-        host = "192.168.100.220"  # Dirección IP de la impresora
+        host = HOST # Dirección IP de la impresora
         port = 4100  # Puerto estándar para impresoras Zebra
 
         with socket.create_connection((host, port), timeout=10) as sock:
@@ -140,7 +141,7 @@ def ConsultStatePrint(ui_main, printer_state):
 
             r = b""
             r += sock.recv(82)  # Leer datos hasta recibir la terminación esperada
-            print(r)
+            #print(r)
 
             string_text = r.decode('utf-8')  # Decodificar bytes a texto
             lines = string_text.splitlines()  # Dividir en líneas
@@ -162,7 +163,7 @@ def ConsultStatePrint(ui_main, printer_state):
 def SendReqPrint(fecha, partNo, qty, supplier, serie, ot):
     try:
         # Establecer conexión TCP/IP
-        host = "192.168.100.220"  # Dirección IP de la impresora
+        host = HOST  # Dirección IP de la impresora
         port = 4100  # Puerto estándar para impresoras Zebra
 
         with socket.create_connection((host, port), timeout=10) as sock:
@@ -189,7 +190,7 @@ def SendReqPrint(fecha, partNo, qty, supplier, serie, ot):
 def SendTemplate():
     try:
         # Establecer conexión TCP/IP
-        host = "192.168.100.220"  # Dirección IP de la impresora
+        host = HOST  # Dirección IP de la impresora
         port = 4100  # Puerto estándar para impresoras Zebra
 
         with socket.create_connection((host, port), timeout=10) as sock:
@@ -237,6 +238,23 @@ def SendTemplate():
                     ^XZ            
                     """
             sock.sendall(template.encode('UTF-8'))
+            print("Set Template sent succesfully")
+    except serial.SerialTimeoutException:
+        print("Timeout error while communicating with the serial port")
+    except serial.SerialException as e:
+        print("Serial communication error:", e)
+    except Exception as e:
+        print("Other error:", e)
+
+def SendLabelCalibrate():
+    try:
+        # Establecer conexión TCP/IP
+        host = HOST  # Dirección IP de la impresora
+        port = 4100  # Puerto estándar para impresoras Zebra
+
+        with socket.create_connection((host, port), timeout=10) as sock:
+            Calibrate = b"~JC"
+            sock.sendall(Calibrate)
             print("Set Template sent succesfully")
     except serial.SerialTimeoutException:
         print("Timeout error while communicating with the serial port")

@@ -94,6 +94,7 @@ class Atlas(QMainWindow):
         self.InitSlots()
         self.InitAnimations()
         self.initGui()
+        #SendTemplate()
 
 
     def InitAnimations(self):
@@ -235,7 +236,6 @@ class Atlas(QMainWindow):
 
         #Inicializa el widget con la tabla master
         self.tableMastertaBase.show()
-
     def UpdateLabelStatus_printer(self):
         mState = self.printer_state.mState
         mText = self.printer_state.mText
@@ -294,7 +294,6 @@ class Atlas(QMainWindow):
                 self.ui_main.lbl_PrinterState.setText(QCoreApplication.translate("MainWindow",
                                                                             f"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">Estado de la Impresora: </span><span style=\" font-size:16pt; font-weight:700; color:#FF0000;\">DESCONECTADA</span></p></body></html>",
                                                                             None))
-
     def CloseMainMenu(self):
         if self.ui_main.toggleButton.isChecked():
             self.ui_main.toggleButton.setChecked(False)
@@ -351,7 +350,6 @@ class Atlas(QMainWindow):
                                 QMessageBox.critical(None, "ID Invalido",
                                                      f"Verificar Datos en Etiqueta: {text[:3]}")
                                 self.ui_main.txt_input.clear()
-
                         else:
                             self.ui_main.txt_input.clear()
 
@@ -377,6 +375,7 @@ class Atlas(QMainWindow):
                         dataBase.updateData(self.PartNo, self.Supplier, self.OT, self.PzsTotales, self.PzsRealizadas,
                                             self.SerialNum, self.CreationDate)
 
+                        #Check Current Count to print Master Label
                         if self.PzsFaltantes == 0 and self.PzsRealizadas == self.PzsTotales:
                             # Manda a imprimir
                             currDate = datetime.now()
@@ -504,7 +503,6 @@ class Atlas(QMainWindow):
             new_layout = QVBoxLayout()
             new_layout.addWidget(self.tableMastertaBase)
             self.ui_main.DatabaseWidget.setLayout(new_layout)
-
     def print_selected_row(self, row, column):
         row_data = []
         for col in range(self.tableMastertaBase.columnCount()):
@@ -593,7 +591,6 @@ class Atlas(QMainWindow):
             self.ConfirmPrint(partno, qty, supplier, serial, ot)
         else:
             QMessageBox.warning(None, "Informacion Incompleta", "Verificar que todos los campos esten correctamente especificados")
-
     def GetData_original(self):
         if len(self.ui_main.box_PartNo.currentText()) > 0 and len(self.ui_main.box_Cantidad.currentText()) > 0 and len(self.ui_main.box_proveedor.currentText()) > 0 and len(self.ui_main.box_serial.currentText()) > 0 and len(self.ui_main.box_OT.currentText()) > 0:
             self.ui_main.btn_PrintLabel.hide()
