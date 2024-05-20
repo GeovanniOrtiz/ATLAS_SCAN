@@ -129,13 +129,15 @@ def SendReqPrint_Rs232(fecha,partNo,Qty,supplier,serie,OT):
     except Exception as e:
         print("Other error:", e)
 
+
 def ConsultStatePrint(ui_main, printer_state):
     try:
         # Establecer conexión TCP/IP
         host = HOST # Dirección IP de la impresora
         port = 4100  # Puerto estándar para impresoras Zebra
 
-        with socket.create_connection((host, port), timeout=10) as sock:
+        with socket.create_connection((host, port), timeout=2) as sock:
+
             check_command = b"~HS"
             sock.sendall(check_command)
 
@@ -150,7 +152,6 @@ def ConsultStatePrint(ui_main, printer_state):
             state = check_error(S1, S2)
             printer_state.mState = state[1]
             printer_state.mText = state[0]
-
     except socket.timeout:
         print("Timeout error while communicating with the printer")
         printer_state.mState = 5
@@ -245,17 +246,17 @@ def SendTemplate():
         print("Serial communication error:", e)
     except Exception as e:
         print("Other error:", e)
-
 def SendLabelCalibrate():
     try:
         # Establecer conexión TCP/IP
         host = HOST  # Dirección IP de la impresora
         port = 4100  # Puerto estándar para impresoras Zebra
 
-        with socket.create_connection((host, port), timeout=10) as sock:
+        with socket.create_connection((host, port), timeout=2) as sock:
             Calibrate = b"~JC"
             sock.sendall(Calibrate)
             print("Set Template sent succesfully")
+
     except serial.SerialTimeoutException:
         print("Timeout error while communicating with the serial port")
     except serial.SerialException as e:
