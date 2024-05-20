@@ -255,7 +255,7 @@ def SendLabelCalibrate():
         with socket.create_connection((host, port), timeout=2) as sock:
             Calibrate = b"~JC"
             sock.sendall(Calibrate)
-            print("Set Template sent succesfully")
+            print("Calibrate sent succesfully")
 
     except serial.SerialTimeoutException:
         print("Timeout error while communicating with the serial port")

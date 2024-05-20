@@ -13,6 +13,7 @@ from SQL import managerDataBase
 from Interfaz.Dialogo_ConfirmData_gui import Ui_Dialog as ConfirmData
 from Interfaz.Loggin_gui import Ui_Dialog as Loggin
 from Printer import ConsultStatePrint, PrinterState
+import json
 
 dataBase = managerDataBase()
 class ConfirmData(QDialog, ConfirmData):
@@ -94,7 +95,12 @@ class Atlas(QMainWindow):
         self.InitSlots()
         self.InitAnimations()
         self.initGui()
-        #SendTemplate()
+
+        #lee si se configurara algun parametro
+        self.GetPrinetMode()
+
+
+
 
 
     def InitAnimations(self):
@@ -691,6 +697,20 @@ class Atlas(QMainWindow):
     def CancelChange(self):
         self.Key=False
         self.ui_main.MenuPrincipal.setCurrentIndex(6)
+
+    def GetPrinetMode(self):
+        # Abre y lee el contenido del archivo JSON
+        with open('data.json', 'r') as file:
+            data = json.load(file)
+
+        # Extrae los enteros del JSON
+        template = data.get('template')
+        calibrate = data.get('calibrate')
+
+        if template == 1:
+            SendTemplate()
+        elif calibrate==1:
+            SendLabelCalibrate()
 
 if __name__ == "__main__":
     app = QApplication([])
