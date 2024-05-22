@@ -3,7 +3,7 @@ import serial
 from main import *
 import socket
 COM = "COM12"
-HOST = "192.168.100.85"
+HOST = "192.168.100.28"
 
 class PrinterState:
     def __init__(self):

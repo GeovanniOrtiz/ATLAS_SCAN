@@ -95,13 +95,8 @@ class Atlas(QMainWindow):
         self.InitSlots()
         self.InitAnimations()
         self.initGui()
-
         #lee si se configurara algun parametro
         self.GetPrinetMode()
-
-
-
-
 
     def InitAnimations(self):
         # Configuración de la animación menu principal
@@ -340,7 +335,7 @@ class Atlas(QMainWindow):
                         if (len(text) == 33):  # ZAT08052416134613QF121351F-731694
                             print(text)
                             if text[:3]=="ZAR":
-                                if text[16:26]=="3QF121351E":
+                                if text[16:26]=="3QF121251E":
                                     self.CodeRadd = text
                                     self.DateLabel = text[3:9]
                                     self.DateLabel = self.DateLabel[:2] + "/" + self.DateLabel[2:4] + "/" + self.DateLabel[4:6]
