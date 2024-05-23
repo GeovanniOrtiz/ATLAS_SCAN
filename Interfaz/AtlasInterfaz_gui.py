@@ -27,19 +27,19 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1439, 640)
+        MainWindow.resize(1366, 640)
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
         MainWindow.setSizePolicy(sizePolicy)
-        MainWindow.setMaximumSize(QSize(1850, 1000))
+        MainWindow.setMaximumSize(QSize(1366, 760))
         MainWindow.setStyleSheet(u"")
         self.styleSheet = QWidget(MainWindow)
         self.styleSheet.setObjectName(u"styleSheet")
         sizePolicy.setHeightForWidth(self.styleSheet.sizePolicy().hasHeightForWidth())
         self.styleSheet.setSizePolicy(sizePolicy)
-        self.styleSheet.setMaximumSize(QSize(1850, 1000))
+        self.styleSheet.setMaximumSize(QSize(1366, 760))
         self.styleSheet.setStyleSheet(u"/* /////////////////////////////////////////////////////////////////////////////////////////////////\n"
 "\n"
 "SET APP STYLESHEET - FULL STYLES HERE\n"
@@ -309,7 +309,7 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.bgApp.sizePolicy().hasHeightForWidth())
         self.bgApp.setSizePolicy(sizePolicy)
         self.bgApp.setMinimumSize(QSize(0, 0))
-        self.bgApp.setMaximumSize(QSize(1850, 1000))
+        self.bgApp.setMaximumSize(QSize(1366, 760))
         self.horizontalLayout = QHBoxLayout(self.bgApp)
         self.horizontalLayout.setSpacing(1)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
@@ -562,7 +562,7 @@ class Ui_MainWindow(object):
         self.contentBox.setObjectName(u"contentBox")
         sizePolicy.setHeightForWidth(self.contentBox.sizePolicy().hasHeightForWidth())
         self.contentBox.setSizePolicy(sizePolicy)
-        self.contentBox.setMaximumSize(QSize(1400, 16777215))
+        self.contentBox.setMaximumSize(QSize(1366, 760))
         self.contentBox.setAutoFillBackground(False)
         self.verticalLayout = QVBoxLayout(self.contentBox)
         self.verticalLayout.setSpacing(2)
@@ -1647,7 +1647,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.MenuPrincipal.setCurrentIndex(1)
+        self.MenuPrincipal.setCurrentIndex(6)
         self.MenuModel_CK.setCurrentIndex(0)
 
 
