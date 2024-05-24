@@ -562,6 +562,7 @@ class Atlas(QMainWindow):
             #self.ui_main.box_OT.clear()
             #self.ui_main.box_serial.addItems(dataBase.GetSerialMaster("atlas_master"))
             #self.ui_main.box_OT.addItems(dataBase.GetOTMaster("atlas_master"))
+            self.tableWidgetdataBase.hide()
             dataBase.InsertinTable(2, self.tableMastertaBase, 5)
             # Después de agregar los datos a la tabla, ajusta el ancho de las columnas al contenido máximo
             self.tableMastertaBase.resizeColumnsToContents()
@@ -677,7 +678,7 @@ class Atlas(QMainWindow):
             self.Supplier = Proveedor
             self.OT = OT
             self.PzsTotales = Cantidad
-            self.PzsRealizadas = 0
+            self.PzsReali
             self.PzsFaltantes = int(self.PzsTotales)
 
             # Actualiza la base de datos del backUp
