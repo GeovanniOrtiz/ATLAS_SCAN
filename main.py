@@ -678,7 +678,7 @@ class Atlas(QMainWindow):
             self.OT = OT
             self.PzsTotales = Cantidad
             self.PzsRealizadas = 0
-            self.PzsFaltantes = int(self.PzsTotales) - int(self.PzsRealizadas)
+            self.PzsFaltantes = int(self.PzsTotales)
 
             # Actualiza la base de datos del backUp
             dataBase.updateData(self.PartNo, self.Supplier, self.OT, self.PzsTotales, self.PzsRealizadas,
