@@ -371,10 +371,10 @@ class Atlas(QMainWindow):
                         self.PzsRealizadas = int(self.PzsRealizadas) + 1
                         self.PzsFaltantes = int(self.PzsTotales) - int(self.PzsRealizadas)
 
-                        if int(self.PzsRealizadas) > int(self.PzsTotales):
+                        if int(self.PzsRealizadas) >= int(self.PzsTotales):
                             self.PzsRealizadas = int(self.PzsTotales)
 
-                        if int(self.PzsFaltantes) < 0:
+                        if int(self.PzsFaltantes) <= 0:
                             self.PzsFaltantes = 0
 
                         self.ui_main.lcdNumber_Realizado.display(self.PzsRealizadas)
