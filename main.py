@@ -332,7 +332,7 @@ class Atlas(QMainWindow):
                     case 0:  # Read TextEdit
                         self.ui_main.txt_input.setFocus()
                         text = self.ui_main.txt_input.toPlainText()
-                        if (len(text) == 33):  # ZAT08052416134613QF121351F-731694
+                        if (len(text) == 34):  # ZAR08052416134613QF121351F-731694
                             print(text)
                             if text[:3]=="ZAR":
                                 if text[16:26]=="3QF121251E":
@@ -371,13 +371,20 @@ class Atlas(QMainWindow):
                         self.PzsRealizadas = int(self.PzsRealizadas) + 1
                         self.PzsFaltantes = int(self.PzsTotales) - int(self.PzsRealizadas)
 
+                        if int(self.PzsRealizadas) > int(self.PzsTotales):
+                            self.PzsRealizadas = int(self.PzsTotales)
+
+                        if int(self.PzsFaltantes) < 0:
+                            self.PzsFaltantes = 0
+
                         self.ui_main.lcdNumber_Realizado.display(self.PzsRealizadas)
                         self.ui_main.lcdNumber_Faltantes.display(self.PzsFaltantes)
+
                         dataBase.updateData(self.PartNo, self.Supplier, self.OT, self.PzsTotales, self.PzsRealizadas,
                                             self.SerialNum, self.CreationDate)
 
                         #Check Current Count to print Master Label
-                        if self.PzsFaltantes == 0 and self.PzsRealizadas == self.PzsTotales:
+                        if int(self.PzsFaltantes) == 0 and int(self.PzsRealizadas) == int(self.PzsTotales):
                             # Manda a imprimir
                             currDate = datetime.now()
                             # Formatear la fecha y hora en el formato deseado
@@ -402,7 +409,8 @@ class Atlas(QMainWindow):
 
                             # Actualiza los datos de los display
                             self.PzsRealizadas = 0
-                            self.PzsFaltantes = self.PzsTotales - self.PzsRealizadas
+                            self.PzsFaltantes = int(self.PzsTotales)
+
                             self.ui_main.lcdNumber_Realizado.display(self.PzsRealizadas)
                             self.ui_main.lcdNumber_Faltantes.display(self.PzsFaltantes)
                             QApplication.processEvents()
@@ -429,6 +437,9 @@ class Atlas(QMainWindow):
                                                            f"<html><head/><body><p>{self.PartNo}</p></body></html>",
                                                            None))
 
+                            QMessageBox.information(None, "COMPLETADO",
+                                                 f"Contenedor Completado con exito!")
+
                             # Reinicia la consulta del estado de la impresora
                             self.StatePrinter.start(1000)
 
@@ -445,7 +456,7 @@ class Atlas(QMainWindow):
                         print(self.state)
                         Repeat(self.ui_main)
                         self.Alerts.singleShot(1000, lambda: HideAlerts(self.ui_main))
-                        # QApplication.processEvents()
+                        #QApplication.processEvents()
                         self.ui_main.txt_input.clear()
                         self.state = 0
             else:
