@@ -94,9 +94,10 @@ class Atlas(QMainWindow):
         self.showFullScreen()
         self.InitSlots()
         self.InitAnimations()
-        self.initGui()
-        #lee si se configurara algun parametro
+        # lee si se configurara algun parametro
         self.GetPrinetMode()
+        self.initGui()
+
 
     def InitAnimations(self):
         # Configuración de la animación menu principal
@@ -142,7 +143,8 @@ class Atlas(QMainWindow):
         #Timer para consultar el estado de la impresora
         self.StatePrinter = QTimer()
         self.StatePrinter.timeout.connect(lambda:ConsultStatePrint(self.ui_main, self.printer_state))
-        self.StatePrinter.start(1000)
+        self.StatePrinter.start(self.printertime)
+        ConsultStatePrint(self.ui_main, self.printer_state)
 
         #timer para correr el proceso de escaneado
         self.TimeProcess = QTimer()
@@ -441,7 +443,7 @@ class Atlas(QMainWindow):
                                                  f"Contenedor Completado con exito!")
 
                             # Reinicia la consulta del estado de la impresora
-                            self.StatePrinter.start(1000)
+                            self.StatePrinter.start(self.printertime)
 
                             # Elimina el contenido del text edit y reinicia el escaneo
                             self.ui_main.txt_input.clear()
@@ -538,7 +540,7 @@ class Atlas(QMainWindow):
         self.ui_main.btn_printCurrIndex.hide()
         self.tableMastertaBase.hide()
         self.tableWidgetdataBase.show()
-        dataBase.InsertinTable(1,self.tableWidgetdataBase, 10)
+        dataBase.InsertinTable(1,self.tableWidgetdataBase, 30)
         # Después de agregar los datos a la tabla, ajusta el ancho de las columnas al contenido máximo
         self.tableWidgetdataBase.resizeColumnsToContents()
         self.ui_main.MenuPrincipal.setCurrentIndex(4)
@@ -547,7 +549,7 @@ class Atlas(QMainWindow):
         self.ui_main.btn_printCurrIndex.hide()
         self.tableWidgetdataBase.hide()
         self.tableMastertaBase.show()
-        dataBase.InsertinTable(2, self.tableMastertaBase, 10)
+        dataBase.InsertinTable(2, self.tableMastertaBase, 30)
         # Después de agregar los datos a la tabla, ajusta el ancho de las columnas al contenido máximo
         self.tableMastertaBase.resizeColumnsToContents()
         self.ui_main.MenuPrincipal.setCurrentIndex(4)
@@ -555,14 +557,16 @@ class Atlas(QMainWindow):
     def PrintPressed(self):
         self.ui_main.btn_printCurrIndex.hide()
         if self.Key == True:
-            self.ui_main.box_serial.clear()
+            #self.ui_main.box_serial.clear()
             #self.ui_main.box_OT.clear()
-            self.ui_main.box_serial.addItems(dataBase.GetSerialMaster("atlas_master"))
+            #self.ui_main.box_serial.addItems(dataBase.GetSerialMaster("atlas_master"))
             #self.ui_main.box_OT.addItems(dataBase.GetOTMaster("atlas_master"))
-            dataBase.InsertinTable(2, self.tableMastertaBase, 30)
+            dataBase.InsertinTable(2, self.tableMastertaBase, 5)
             # Después de agregar los datos a la tabla, ajusta el ancho de las columnas al contenido máximo
             self.tableMastertaBase.resizeColumnsToContents()
+            self.tableMastertaBase.show()
             self.ui_main.MenuPrincipal.setCurrentIndex(4)#5
+
     def HomePressed(self):
         self.Key = False
         self.ui_main.btn_printCurrIndex.hide()
@@ -635,7 +639,7 @@ class Atlas(QMainWindow):
                 self.ui_main.btn_PrintLabel.show()
                 self.ui_main.MenuPrincipal.setCurrentIndex(6)
                 self.Key = False
-                self.StatePrinter.start(1000)
+                self.StatePrinter.start(self.printertime)
 
         else:
             print("Editar informacion")
@@ -712,10 +716,13 @@ class Atlas(QMainWindow):
         # Extrae los enteros del JSON
         template = data.get('template')
         calibrate = data.get('calibrate')
+        time = data.get('time')
+        self.printertime = int(time)
+        print(self.printertime)
 
         if template == 1:
             SendTemplate()
-        elif calibrate==1:
+        elif calibrate == 1:
             SendLabelCalibrate()
 
 if __name__ == "__main__":
