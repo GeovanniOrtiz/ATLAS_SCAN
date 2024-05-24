@@ -677,8 +677,8 @@ class Atlas(QMainWindow):
             self.PartNo = PartNo
             self.Supplier = Proveedor
             self.OT = OT
-            self.PzsTotales = Cantidad
-            self.PzsReali
+            self.PzsTotales = int(Cantidad)
+            self.PzsRealizadas= 0
             self.PzsFaltantes = int(self.PzsTotales)
 
             # Actualiza la base de datos del backUp
