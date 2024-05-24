@@ -94,9 +94,10 @@ class Atlas(QMainWindow):
         self.showFullScreen()
         self.InitSlots()
         self.InitAnimations()
+        self.initGui()
+
         # lee si se configurara algun parametro
         self.GetPrinetMode()
-        self.initGui()
 
 
     def InitAnimations(self):
@@ -143,7 +144,7 @@ class Atlas(QMainWindow):
         #Timer para consultar el estado de la impresora
         self.StatePrinter = QTimer()
         self.StatePrinter.timeout.connect(lambda:ConsultStatePrint(self.ui_main, self.printer_state))
-        self.StatePrinter.start(self.printertime)
+        self.StatePrinter.start(2000)
         ConsultStatePrint(self.ui_main, self.printer_state)
 
         #timer para correr el proceso de escaneado
@@ -443,7 +444,7 @@ class Atlas(QMainWindow):
                                                  f"Contenedor Completado con exito!")
 
                             # Reinicia la consulta del estado de la impresora
-                            self.StatePrinter.start(self.printertime)
+                            self.StatePrinter.start(2000)
 
                             # Elimina el contenido del text edit y reinicia el escaneo
                             self.ui_main.txt_input.clear()
@@ -639,7 +640,7 @@ class Atlas(QMainWindow):
                 self.ui_main.btn_PrintLabel.show()
                 self.ui_main.MenuPrincipal.setCurrentIndex(6)
                 self.Key = False
-                self.StatePrinter.start(self.printertime)
+                self.StatePrinter.start(2000)
 
         else:
             print("Editar informacion")
@@ -716,9 +717,6 @@ class Atlas(QMainWindow):
         # Extrae los enteros del JSON
         template = data.get('template')
         calibrate = data.get('calibrate')
-        time = data.get('time')
-        self.printertime = int(time)
-        print(self.printertime)
 
         if template == 1:
             SendTemplate()
