@@ -1,8 +1,6 @@
 import mysql.connector as MySQLdb
 from PySide6.QtWidgets import QTableWidgetItem
-
 import MySQLdb
-
 
 class managerDataBase:
     def __init__(self):
