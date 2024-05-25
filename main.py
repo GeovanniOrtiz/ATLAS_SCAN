@@ -541,7 +541,7 @@ class Atlas(QMainWindow):
         self.ui_main.btn_printCurrIndex.hide()
         self.tableMastertaBase.hide()
         self.tableWidgetdataBase.show()
-        dataBase.InsertinTable(1,self.tableWidgetdataBase, 30)
+        dataBase.InsertinTable(1, self.tableWidgetdataBase, 30)
         # Después de agregar los datos a la tabla, ajusta el ancho de las columnas al contenido máximo
         self.tableWidgetdataBase.resizeColumnsToContents()
         self.ui_main.MenuPrincipal.setCurrentIndex(4)
