@@ -8,7 +8,8 @@ HOST = "192.168.100.85"
 class PrinterState:
     def __init__(self):
         self.mState = 0
-        self.mText= ""
+        self.mText = ""
+
 def check_error(m_string1, m_string2):
     error = ()
     if m_string1[1] == "1":

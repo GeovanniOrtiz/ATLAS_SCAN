@@ -335,7 +335,7 @@ class Atlas(QMainWindow):
                     case 0:  # Read TextEdit
                         self.ui_main.txt_input.setFocus()
                         text = self.ui_main.txt_input.toPlainText()
-                        if (len(text) == 34):  # ZAR08052416134613QF121351F-731694
+                        if (len(text) == 34):  # ZAR27052409020013QF121251E-0795644
                             print(text)
                             if text[:3]=="ZAR":
                                 if text[16:26]=="3QF121251E":
@@ -369,7 +369,7 @@ class Atlas(QMainWindow):
                         print(self.state)
                         dataBase.addModule(self.SerialNum, self.CodeRadd, self.DateLabel)
                         Approve(self.ui_main)
-                        self.Alerts.singleShot(1000, lambda: HideAlerts(self.ui_main))
+                        self.Alerts.singleShot(60000, lambda: HideAlerts(self.ui_main))
 
                         self.PzsRealizadas = int(self.PzsRealizadas) + 1
                         self.PzsFaltantes = int(self.PzsTotales) - int(self.PzsRealizadas)
@@ -458,7 +458,7 @@ class Atlas(QMainWindow):
                     case 3:  # Repeat Data
                         print(self.state)
                         Repeat(self.ui_main)
-                        self.Alerts.singleShot(1000, lambda: HideAlerts(self.ui_main))
+                        self.Alerts.singleShot(60000, lambda: HideAlerts(self.ui_main))
                         #QApplication.processEvents()
                         self.ui_main.txt_input.clear()
                         self.state = 0
