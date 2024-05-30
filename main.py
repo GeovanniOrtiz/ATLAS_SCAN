@@ -369,7 +369,7 @@ class Atlas(QMainWindow):
                         print(self.state)
                         dataBase.addModule(self.SerialNum, self.CodeRadd, self.DateLabel)
                         Approve(self.ui_main)
-                        self.Alerts.singleShot(60000, lambda: HideAlerts(self.ui_main))
+                        self.Alerts.singleShot(2000, lambda: HideAlerts(self.ui_main))
 
                         self.PzsRealizadas = int(self.PzsRealizadas) + 1
                         self.PzsFaltantes = int(self.PzsTotales) - int(self.PzsRealizadas)
@@ -458,7 +458,7 @@ class Atlas(QMainWindow):
                     case 3:  # Repeat Data
                         print(self.state)
                         Repeat(self.ui_main)
-                        self.Alerts.singleShot(60000, lambda: HideAlerts(self.ui_main))
+                        self.Alerts.singleShot(2000, lambda: HideAlerts(self.ui_main))
                         #QApplication.processEvents()
                         self.ui_main.txt_input.clear()
                         self.state = 0
