@@ -171,6 +171,7 @@ class Atlas(QMainWindow):
         self.PzsRealizadas = int(data[5])
         self.SerialNum = data[6]
         self.CreationDate = data[7]
+        self.timeAlarma=0
 
         currDate = datetime.now()
         currDate = currDate.strftime("%d/%m/%Y %H:%M:%S")
@@ -369,7 +370,7 @@ class Atlas(QMainWindow):
                         print(self.state)
                         dataBase.addModule(self.SerialNum, self.CodeRadd, self.DateLabel)
                         Approve(self.ui_main)
-                        self.Alerts.singleShot(2000, lambda: HideAlerts(self.ui_main))
+                        self.Alerts.singleShot(self.timeAlarma, lambda: HideAlerts(self.ui_main))
 
                         self.PzsRealizadas = int(self.PzsRealizadas) + 1
                         self.PzsFaltantes = int(self.PzsTotales) - int(self.PzsRealizadas)
@@ -458,7 +459,7 @@ class Atlas(QMainWindow):
                     case 3:  # Repeat Data
                         print(self.state)
                         Repeat(self.ui_main)
-                        self.Alerts.singleShot(2000, lambda: HideAlerts(self.ui_main))
+                        self.Alerts.singleShot(self.timeAlarma, lambda: HideAlerts(self.ui_main))
                         #QApplication.processEvents()
                         self.ui_main.txt_input.clear()
                         self.state = 0
@@ -718,6 +719,9 @@ class Atlas(QMainWindow):
         # Extrae los enteros del JSON
         template = data.get('template')
         calibrate = data.get('calibrate')
+        timeAlarm = data.get('time')
+        self.timeAlarma=int(timeAlarm)
+        #print(self.timeAlarma)
 
         if template == 1:
             SendTemplate()
