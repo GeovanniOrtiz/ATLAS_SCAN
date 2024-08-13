@@ -99,7 +99,6 @@ class Atlas(QMainWindow):
         # lee si se configurara algun parametro
         self.GetPrinetMode()
 
-
     def InitAnimations(self):
         # Configuración de la animación menu principal
         self.ui_main.animation = QPropertyAnimation(self.ui_main.leftMenuBg, b'minimumWidth')
@@ -229,7 +228,9 @@ class Atlas(QMainWindow):
 
         #Inivializa los combox de configuracion inicial
         self.ui_main.initBox_PartNo.addItems(["3QF121251E"])
-        self.ui_main.initBox_Cantidad.addItems(["5", "6", "7", "8", "9", "10"])
+        #self.ui_main.initBox_Cantidad.addItems(["5", "6", "7", "8", "9", "10"])
+        # Cargar los valores desde el JSON
+        self.load_items_from_json()
         mData = dataBase.GetDataBackUp()
         PzsTotales = mData[4]
         self.ui_main.initBox_Cantidad.setCurrentText(PzsTotales)
@@ -241,6 +242,17 @@ class Atlas(QMainWindow):
 
         #Inicializa el widget con la tabla master
         self.tableMastertaBase.show()
+
+    def load_items_from_json(self):
+        # Leer el archivo JSON
+        with open('data.json', 'r') as file:
+            config_data = json.load(file)
+
+        # Obtener el valor máximo
+        max_value = config_data.get("cantidad", 10)  # 10 es un valor por defecto
+
+        # Llenar el ComboBox con los valores desde 1 hasta max_value
+        self.ui_main.initBox_Cantidad.addItems([str(i) for i in range(1, max_value + 1)])
     def UpdateLabelStatus_printer(self):
         mState = self.printer_state.mState
         mText = self.printer_state.mText
