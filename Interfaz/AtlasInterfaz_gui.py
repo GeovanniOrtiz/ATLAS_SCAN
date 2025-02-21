@@ -113,9 +113,10 @@ class Ui_MainWindow(object):
 "\n"
 "/*Modelo del HVAC*/\n"
 "#mSerial{ font:16pt \"Segoe UI Semibold\"; }\n"
-"#lbl_Serial1 { font: 16pt \"Segoe UI Semibold\"; color: rgb(255, 233, 51 ); }\n"
+"#lbl_Serial1 { font: 16pt \"Segoe UI Semibold\"; color: rgb(225, 40, 7);; }\n"
 "\n"
-"#lbl_nPiezas { font: 16pt \"Segoe UI Semibold\"; color: rgb(255, 233, 51 ); }\n"
+"#lbl_nPiezas { font: 16pt \"Segoe UI Semibold\"; color: rgb(225, 40, 7); }\n"
+"\n"
 "\n"
 "\n"
 "\n"
@@ -130,19 +131,21 @@ class Ui_MainWindow(object):
 "	padding-left: 44px;\n"
 "}\n"
 "#leftMenuFramee .QPushButton:hover {\n"
-"	background-color: rgb(40, 44, 52);\n"
+"	/*background-color: rgb(40, 44, 52);*/\n"
+"	background-color: rgb(225, 40, 7);\n"
 "}\n"
 "#leftMenuFramee .QPushButton:pressed {	\n"
-"	background-color: rgb(255, 233, 51 );\n"
+"	/*background-color: rgb(255, 233, 51 );*/\n"
+"	background-color: rgb(225, 40, 7);\n"
 "	color: rgb(255, 255, 255);\n"
 "}\n"
 "#bottomMenu .QPushButton {	\n"
 "	background-position: left center;\n"
-"    background-repeat: no-repeat;\n"
+"    background"
+                        "-repeat: no-repeat;\n"
 "	border: none;\n"
 "	border-left: 20px solid transparent;\n"
-"	ba"
-                        "ckground-color:transparent;\n"
+"	background-color:transparent;\n"
 "	text-align: left;\n"
 "	padding-left: 44px;\n"
 "}\n"
@@ -175,12 +178,12 @@ class Ui_MainWindow(object):
 "	border-left: 20px solid transparent;\n"
 "	background-color: rgb(37, 41, 48);\n"
 "	text-align: left;\n"
-"	padding-left: 44px;\n"
+"	padd"
+                        "ing-left: 44px;\n"
 "	color: rgb(113, 126, 149);\n"
 "}\n"
 "#toggleButton:hover {\n"
-"	bac"
-                        "kground-color: rgb(40, 44, 52);\n"
+"	background-color: rgb(40, 44, 52);\n"
 "}\n"
 "#toggleButton:pressed {\n"
 "	background-color: rgb(189, 147, 249);\n"
@@ -188,7 +191,8 @@ class Ui_MainWindow(object):
 "\n"
 "/* Estilos para el bot\u00f3n cuando est\u00e1 checkeado */\n"
 "#toggleButton.QPushButton:checked {\n"
-"    background-color: rgb(255,196,0);\n"
+"    /*background-color: rgb(255,196,0);*/\n"
+"	background-color: rgb(225, 40, 7);\n"
 "}\n"
 "\n"
 "/* Estilos para el bot\u00f3n cuando no est\u00e1 checkeado */\n"
@@ -206,21 +210,22 @@ class Ui_MainWindow(object):
 "	background-color: rgb(44, 49, 58);\n"
 "}\n"
 "#extraTopBg{	\n"
-"	background-color: rgb(255,196,0)\n"
+"	/*background-color: rgb(255,196,0)*/\n"
+"	background-color: rgb(225, 40, 7);\n"
 "}\n"
 "\n"
 "/* Icon */\n"
 "#extraIcon {\n"
 "	background-position: center;\n"
-"	background-repeat: no-repeat;\n"
+"	backgroun"
+                        "d-repeat: no-repeat;\n"
 "	background-image: url(:/icons/images/icons/icon_settings.png);\n"
 "}\n"
 "\n"
 "/* Label */\n"
 "#extraLabel { color: rgb(255, 255, 255); }\n"
 "\n"
-"/* B"
-                        "tn Close */\n"
+"/* Btn Close */\n"
 "#extraCloseColumnBtn { background-color: rgba(255, 255, 255, 0); border: none;  border-radius: 5px; }\n"
 "/*#extraCloseColumnBtn:hover { background-color: rgb(196, 161, 249); border-style: solid; border-radius: 4px; }*/\n"
 "#extraCloseColumnBtn:pressed {background-color: rgb(255, 233, 51 ); border-style: solid; border-radius: 4px; }\n"
@@ -243,13 +248,13 @@ class Ui_MainWindow(object):
 "#extraTopMenu .QPushButton:hover {\n"
 "	background-color: rgb(40, 44, 52);\n"
 "}\n"
-"#extraTopMenu .QPushButton:pressed {	\n"
+"#extraTopMenu .QPushB"
+                        "utton:pressed {	\n"
 "	background-color: rgb(255, 233, 51 );\n"
 "	color: rgb(255, 255, 255);\n"
 "}\n"
 "\n"
-"/* //////////////////////////////////////////////////////////////////"
-                        "///////////////////////////////\n"
+"/* /////////////////////////////////////////////////////////////////////////////////////////////////\n"
 "Content App */\n"
 "#contentTopBg{	\n"
 "	background-color: rgb(33, 37, 43);\n"
@@ -269,12 +274,12 @@ class Ui_MainWindow(object):
 "\n"
 "/* Bottom Bar */\n"
 "#bottomBar { background-color: rgb(44, 49, 58); }\n"
-"#bottomBar QLabel { font-size: 11px; color: rgb(113, 126, 149); padding-left: 10px; padding-right: 10px; padding-bottom: 2px; }\n"
+"#bottomBar QLabel { font-si"
+                        "ze: 11px; color: rgb(113, 126, 149); padding-left: 10px; padding-right: 10px; padding-bottom: 2px; }\n"
 "\n"
 "/* CONTENT SETTINGS */\n"
 "/* MENUS */\n"
-"#contentSettings .QPush"
-                        "Button {	\n"
+"#contentSettings .QPushButton {	\n"
 "	background-position: left center;\n"
 "    background-repeat: no-repeat;\n"
 "	border: none;\n"
@@ -320,12 +325,12 @@ class Ui_MainWindow(object):
         self.leftMenuBg.setSizePolicy(sizePolicy)
         self.leftMenuBg.setMinimumSize(QSize(185, 0))
         self.leftMenuBg.setMaximumSize(QSize(84, 16777215))
-        self.leftMenuBg.setFrameShape(QFrame.HLine)
-        self.leftMenuBg.setFrameShadow(QFrame.Raised)
+        self.leftMenuBg.setFrameShape(QFrame.Shape.HLine)
+        self.leftMenuBg.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout_3 = QVBoxLayout(self.leftMenuBg)
         self.verticalLayout_3.setSpacing(0)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
-        self.verticalLayout_3.setSizeConstraint(QLayout.SetDefaultConstraint)
+        self.verticalLayout_3.setSizeConstraint(QLayout.SizeConstraint.SetDefaultConstraint)
         self.verticalLayout_3.setContentsMargins(9, 0, 0, 0)
         self.leftMenuFramee = QFrame(self.leftMenuBg)
         self.leftMenuFramee.setObjectName(u"leftMenuFramee")
@@ -339,8 +344,8 @@ class Ui_MainWindow(object):
         self.topLogoInfo.setObjectName(u"topLogoInfo")
         self.topLogoInfo.setMinimumSize(QSize(50, 40))
         self.topLogoInfo.setMaximumSize(QSize(16777215, 40))
-        self.topLogoInfo.setFrameShape(QFrame.NoFrame)
-        self.topLogoInfo.setFrameShadow(QFrame.Raised)
+        self.topLogoInfo.setFrameShape(QFrame.Shape.NoFrame)
+        self.topLogoInfo.setFrameShadow(QFrame.Shadow.Raised)
         self.titleLeftApp = QLabel(self.topLogoInfo)
         self.titleLeftApp.setObjectName(u"titleLeftApp")
         self.titleLeftApp.setGeometry(QRect(60, 10, 71, 35))
@@ -352,13 +357,13 @@ class Ui_MainWindow(object):
         font.setStrikeOut(False)
         font.setKerning(True)
         self.titleLeftApp.setFont(font)
-        self.titleLeftApp.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
+        self.titleLeftApp.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignTop)
         self.titleLeftApp.setWordWrap(False)
         self.label_4 = QLabel(self.topLogoInfo)
         self.label_4.setObjectName(u"label_4")
         self.label_4.setGeometry(QRect(3, 0, 51, 41))
         self.label_4.setStyleSheet(u"")
-        self.label_4.setTextFormat(Qt.PlainText)
+        self.label_4.setTextFormat(Qt.TextFormat.PlainText)
         self.label_4.setPixmap(QPixmap(u":/images/images/logovw.png"))
         self.label_4.setScaledContents(True)
         self.titleLeftApp_2 = QLabel(self.topLogoInfo)
@@ -372,7 +377,7 @@ class Ui_MainWindow(object):
         font1.setStrikeOut(False)
         font1.setKerning(True)
         self.titleLeftApp_2.setFont(font1)
-        self.titleLeftApp_2.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
+        self.titleLeftApp_2.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignTop)
         self.titleLeftApp_2.setWordWrap(False)
 
         self.leftMenuFrame.addWidget(self.topLogoInfo)
@@ -380,7 +385,7 @@ class Ui_MainWindow(object):
         self.toggleButton = QPushButton(self.leftMenuFramee)
         self.toggleButton.setObjectName(u"toggleButton")
         self.toggleButton.setMinimumSize(QSize(0, 45))
-        self.toggleButton.setLayoutDirection(Qt.LeftToRight)
+        self.toggleButton.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         self.toggleButton.setAutoFillBackground(False)
         self.toggleButton.setStyleSheet(u"background-image: url(:/icons/images/icons/icon_menu.png);")
         self.toggleButton.setCheckable(True)
@@ -464,8 +469,8 @@ class Ui_MainWindow(object):
         self.extraTopBg.setObjectName(u"extraTopBg")
         self.extraTopBg.setMinimumSize(QSize(0, 50))
         self.extraTopBg.setMaximumSize(QSize(16777215, 50))
-        self.extraTopBg.setFrameShape(QFrame.NoFrame)
-        self.extraTopBg.setFrameShadow(QFrame.Raised)
+        self.extraTopBg.setFrameShape(QFrame.Shape.NoFrame)
+        self.extraTopBg.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout_5 = QVBoxLayout(self.extraTopBg)
         self.verticalLayout_5.setSpacing(0)
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
@@ -480,16 +485,17 @@ class Ui_MainWindow(object):
         self.extraIcon.setMinimumSize(QSize(20, 0))
         self.extraIcon.setMaximumSize(QSize(20, 20))
         self.extraIcon.setStyleSheet(u"background-color: gb(255,196,0);")
-        self.extraIcon.setFrameShape(QFrame.NoFrame)
-        self.extraIcon.setFrameShadow(QFrame.Raised)
+        self.extraIcon.setFrameShape(QFrame.Shape.NoFrame)
+        self.extraIcon.setFrameShadow(QFrame.Shadow.Raised)
 
         self.extraTopLayout.addWidget(self.extraIcon, 0, 0, 1, 1)
 
         self.extraLabel = QLabel(self.extraTopBg)
         self.extraLabel.setObjectName(u"extraLabel")
         self.extraLabel.setMinimumSize(QSize(150, 0))
-        self.extraLabel.setStyleSheet(u"background-color: gb(255,196,0)")
-        self.extraLabel.setFrameShape(QFrame.NoFrame)
+        self.extraLabel.setStyleSheet(u"background-color: none\n"
+"")
+        self.extraLabel.setFrameShape(QFrame.Shape.NoFrame)
 
         self.extraTopLayout.addWidget(self.extraLabel, 0, 1, 1, 1)
 
@@ -507,8 +513,8 @@ class Ui_MainWindow(object):
         sizePolicy3.setHeightForWidth(self.extraContent.sizePolicy().hasHeightForWidth())
         self.extraContent.setSizePolicy(sizePolicy3)
         self.extraContent.setMinimumSize(QSize(0, 0))
-        self.extraContent.setFrameShape(QFrame.NoFrame)
-        self.extraContent.setFrameShadow(QFrame.Raised)
+        self.extraContent.setFrameShape(QFrame.Shape.NoFrame)
+        self.extraContent.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout_12 = QVBoxLayout(self.extraContent)
         self.verticalLayout_12.setSpacing(0)
         self.verticalLayout_12.setObjectName(u"verticalLayout_12")
@@ -518,26 +524,26 @@ class Ui_MainWindow(object):
         sizePolicy3.setHeightForWidth(self.extraTopMenu.sizePolicy().hasHeightForWidth())
         self.extraTopMenu.setSizePolicy(sizePolicy3)
         self.extraTopMenu.setMinimumSize(QSize(0, 0))
-        self.extraTopMenu.setFrameShape(QFrame.NoFrame)
-        self.extraTopMenu.setFrameShadow(QFrame.Raised)
+        self.extraTopMenu.setFrameShape(QFrame.Shape.NoFrame)
+        self.extraTopMenu.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout_11 = QVBoxLayout(self.extraTopMenu)
         self.verticalLayout_11.setSpacing(0)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
         self.verticalLayout_11.setContentsMargins(0, 0, 0, 0)
 
-        self.verticalLayout_12.addWidget(self.extraTopMenu, 0, Qt.AlignTop)
+        self.verticalLayout_12.addWidget(self.extraTopMenu, 0, Qt.AlignmentFlag.AlignTop)
 
         self.extraCenter = QFrame(self.extraContent)
         self.extraCenter.setObjectName(u"extraCenter")
-        self.extraCenter.setFrameShape(QFrame.NoFrame)
-        self.extraCenter.setFrameShadow(QFrame.Raised)
+        self.extraCenter.setFrameShape(QFrame.Shape.NoFrame)
+        self.extraCenter.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout_10 = QVBoxLayout(self.extraCenter)
         self.verticalLayout_10.setObjectName(u"verticalLayout_10")
         self.textEdit = QTextEdit(self.extraCenter)
         self.textEdit.setObjectName(u"textEdit")
         self.textEdit.setMinimumSize(QSize(222, 0))
         self.textEdit.setStyleSheet(u"background: transparent;")
-        self.textEdit.setFrameShape(QFrame.NoFrame)
+        self.textEdit.setFrameShape(QFrame.Shape.NoFrame)
         self.textEdit.setReadOnly(True)
 
         self.verticalLayout_10.addWidget(self.textEdit)
@@ -547,8 +553,8 @@ class Ui_MainWindow(object):
 
         self.extraBottom = QFrame(self.extraContent)
         self.extraBottom.setObjectName(u"extraBottom")
-        self.extraBottom.setFrameShape(QFrame.NoFrame)
-        self.extraBottom.setFrameShadow(QFrame.Raised)
+        self.extraBottom.setFrameShape(QFrame.Shape.NoFrame)
+        self.extraBottom.setFrameShadow(QFrame.Shadow.Raised)
 
         self.verticalLayout_12.addWidget(self.extraBottom)
 
@@ -573,7 +579,7 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.contentTopBg.sizePolicy().hasHeightForWidth())
         self.contentTopBg.setSizePolicy(sizePolicy)
         self.contentTopBg.setMaximumSize(QSize(1100, 16777215))
-        self.contentTopBg.setFrameShape(QFrame.NoFrame)
+        self.contentTopBg.setFrameShape(QFrame.Shape.NoFrame)
         self.horizontalLayout_2 = QHBoxLayout(self.contentTopBg)
         self.horizontalLayout_2.setSpacing(6)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
@@ -585,7 +591,7 @@ class Ui_MainWindow(object):
 
         self.lbl_Nparte = QLabel(self.contentTopBg)
         self.lbl_Nparte.setObjectName(u"lbl_Nparte")
-        self.lbl_Nparte.setStyleSheet(u"font: 16pt \"Segoe UI Semibold\"; color: rgb(255, 233, 51 );")
+        self.lbl_Nparte.setStyleSheet(u"font: 16pt \"Segoe UI Semibold\"; color: #e12807;")
 
         self.horizontalLayout_2.addWidget(self.lbl_Nparte)
 
@@ -600,7 +606,7 @@ class Ui_MainWindow(object):
 
         self.lbl_nPiezas = QLabel(self.contentTopBg)
         self.lbl_nPiezas.setObjectName(u"lbl_nPiezas")
-        self.lbl_nPiezas.setStyleSheet(u"font: 16pt \"Segoe UI Semibold\"; color: rgb(255, 233, 51 );")
+        self.lbl_nPiezas.setStyleSheet(u"font: 16pt \"Segoe UI Semibold\"; color: #e12807;")
 
         self.horizontalLayout_2.addWidget(self.lbl_nPiezas)
 
@@ -639,7 +645,7 @@ class Ui_MainWindow(object):
 
         self.lbl_OT = QLabel(self.contentTopBg)
         self.lbl_OT.setObjectName(u"lbl_OT")
-        self.lbl_OT.setStyleSheet(u"font: 16pt \"Segoe UI Semibold\"; color: rgb(255, 233, 51 );")
+        self.lbl_OT.setStyleSheet(u"font: 16pt \"Segoe UI Semibold\"; color: #e12807;")
 
         self.horizontalLayout_12.addWidget(self.lbl_OT)
 
@@ -707,23 +713,23 @@ class Ui_MainWindow(object):
         self.MenuPrincipal.setSizePolicy(sizePolicy3)
         self.MenuPrincipal.setMaximumSize(QSize(16777215, 16777215))
         self.MenuPrincipal.setStyleSheet(u"background-color: rgb(33, 37, 43);")
-        self.MenuPrincipal.setFrameShape(QFrame.NoFrame)
+        self.MenuPrincipal.setFrameShape(QFrame.Shape.NoFrame)
         self.Home_page = QWidget()
         self.Home_page.setObjectName(u"Home_page")
-        self.Home_page.setContextMenuPolicy(Qt.DefaultContextMenu)
+        self.Home_page.setContextMenuPolicy(Qt.ContextMenuPolicy.DefaultContextMenu)
         self.Home_page.setAutoFillBackground(False)
         self.Home_page.setStyleSheet(u"")
         self.verticalLayout_21 = QVBoxLayout(self.Home_page)
         self.verticalLayout_21.setObjectName(u"verticalLayout_21")
-        self.verticalLayout_21.setSizeConstraint(QLayout.SetMinAndMaxSize)
+        self.verticalLayout_21.setSizeConstraint(QLayout.SizeConstraint.SetMinAndMaxSize)
         self.verticalLayout_20 = QVBoxLayout()
         self.verticalLayout_20.setObjectName(u"verticalLayout_20")
         self.Home_frame = QFrame(self.Home_page)
         self.Home_frame.setObjectName(u"Home_frame")
         self.Home_frame.setAutoFillBackground(False)
         self.Home_frame.setStyleSheet(u"")
-        self.Home_frame.setFrameShape(QFrame.StyledPanel)
-        self.Home_frame.setFrameShadow(QFrame.Raised)
+        self.Home_frame.setFrameShape(QFrame.Shape.StyledPanel)
+        self.Home_frame.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout_23 = QVBoxLayout(self.Home_frame)
         self.verticalLayout_23.setObjectName(u"verticalLayout_23")
         self.verticalLayout_home = QVBoxLayout()
@@ -745,14 +751,16 @@ class Ui_MainWindow(object):
         self.btn_Start.setObjectName(u"btn_Start")
         self.btn_Start.setStyleSheet(u"QPushButton{\n"
 "color: rgba(234, 234, 234,180);\n"
-"background-color: rgba(255, 196, 0,150);\n"
+"/*background-color: rgba(255, 196, 0,150);*/\n"
+"background-color: rgba(225, 40, 7, 150);\n"
 "font: 700 36pt \"Segoe UI\";\n"
 "border-radius: 10px;\n"
 "border: 4px solid black;\n"
-"border-color: rgb(207, 162, 9);}\n"
+"border-color: rgb(225, 40, 7);}\n"
 "\n"
 "QPushButton:pressed {\n"
-"	background-color: rgb(255, 233, 51 );\n"
+"	background-color:#e12807;\n"
+"\n"
 "}")
 
         self.horizontalLayout_7.addWidget(self.btn_Start)
@@ -800,14 +808,15 @@ class Ui_MainWindow(object):
         self.btn_EditAction.setMinimumSize(QSize(0, 100))
         self.btn_EditAction.setMaximumSize(QSize(250, 16777215))
         self.btn_EditAction.setStyleSheet(u"QPushButton{\n"
-"background-color: rgba(255, 196, 0,150);\n"
+"/*background-color: rgba(255, 196, 0,150);*/\n"
+"background-color: rgba(225, 40, 7,150);\n"
 "font: 700 36pt \"Segoe UI\";\n"
 "border-radius: 10px;\n"
 "border: 4px solid black;\n"
-"border-color: rgb(207, 162, 9);}\n"
+"border-color: rgb(225, 40, 7);}\n"
 "\n"
 "QPushButton:pressed {\n"
-"	background-color: rgb(255, 233, 51 );\n"
+"	background-color: rgb(225, 40, 7);\n"
 "}")
         self.btn_EditAction.setIconSize(QSize(25, 25))
 
@@ -827,14 +836,15 @@ class Ui_MainWindow(object):
         font2.setItalic(False)
         self.btn_PrintAction.setFont(font2)
         self.btn_PrintAction.setStyleSheet(u"QPushButton{\n"
-"background-color: rgba(255, 196, 0,150);\n"
+"/*background-color: rgba(255, 196, 0,150);*/\n"
+"background-color: rgba(225, 40, 7,150);\n"
 "font: 700 36pt \"Segoe UI\";\n"
 "border-radius: 10px;\n"
 "border: 4px solid black;\n"
-"border-color: rgb(207, 162, 9);}\n"
+"border-color: rgb(225, 40, 7);}\n"
 "\n"
 "QPushButton:pressed {\n"
-"	background-color: rgb(255, 233, 51 );\n"
+"	background-color: rgb(225, 40, 7);\n"
 "}")
 
         self.horizontal_model.addWidget(self.btn_PrintAction)
@@ -936,9 +946,9 @@ class Ui_MainWindow(object):
 "            }\n"
 "\n"
 "")
-        self.progressBar.setInputMethodHints(Qt.ImhNone)
+        self.progressBar.setInputMethodHints(Qt.InputMethodHint.ImhNone)
         self.progressBar.setValue(85)
-        self.progressBar.setAlignment(Qt.AlignCenter)
+        self.progressBar.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.progressBar.setInvertedAppearance(False)
 
         self.ControlSli.addWidget(self.progressBar)
@@ -1088,7 +1098,7 @@ class Ui_MainWindow(object):
         self.initTxt_OT.setStyleSheet(u"color: rgb(255, 255, 255);\n"
 "font: 12pt \"Segoe UI\";\n"
 "background-color: rgb(44, 49, 58);")
-        self.initTxt_OT.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.initTxt_OT.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
 
         self.verticalLayout_15.addWidget(self.initTxt_OT)
 
@@ -1125,14 +1135,16 @@ class Ui_MainWindow(object):
 
         self.btn_initCancel = QPushButton(self.Login_page)
         self.btn_initCancel.setObjectName(u"btn_initCancel")
-        self.btn_initCancel.setStyleSheet(u"QPushButton{background-color: rgba(207, 162, 9,150);\n"
+        self.btn_initCancel.setStyleSheet(u"QPushButton{\n"
+"/*background-color: rgba(207, 162, 9,150);*/\n"
+"background-color: rgba(225, 40, 7, 150);\n"
 "font:18pt \"Segoe UI\";\n"
 "border-radius: 4px;\n"
 "border: 2px solid black;\n"
-"border-color: rgb(207, 162, 9);}\n"
+"border-color: rgb(225, 40, 7);}\n"
 "\n"
 "QPushButton:pressed {\n"
-"	background-color: rgb(255, 233, 51 );\n"
+"	background-color: rgb(225, 40, 7);\n"
 "}")
 
         self.horizontalLayout_5.addWidget(self.btn_initCancel)
@@ -1182,8 +1194,7 @@ class Ui_MainWindow(object):
         sizePolicy4.setVerticalStretch(0)
         sizePolicy4.setHeightForWidth(self.DatabaseWidget.sizePolicy().hasHeightForWidth())
         self.DatabaseWidget.setSizePolicy(sizePolicy4)
-        self.DatabaseWidget.setStyleSheet(u"background-color: rgba(33, 37, 43, 190);\n"
-"background-color: rgba(255, 196, 0, 150);")
+        self.DatabaseWidget.setStyleSheet(u"background-color: rgba(225, 40, 7, 150);")
 
         self.verticalLayout_18.addWidget(self.DatabaseWidget)
 
@@ -1420,9 +1431,9 @@ class Ui_MainWindow(object):
         self.txt_input.setStyleSheet(u"background-color: rgba(113, 127, 147, 150);\n"
 " font-size:18pt; \n"
 "font-weight:700;\n"
-" color:#fcc101;\n"
+"color:#e12807;\n"
 "border-radius:7px;")
-        self.txt_input.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.txt_input.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
         self.txt_input.setUndoRedoEnabled(True)
 
         self.verticalLayout_29.addWidget(self.txt_input)
@@ -1458,7 +1469,7 @@ class Ui_MainWindow(object):
         self.lbl_PrinterState.setObjectName(u"lbl_PrinterState")
         self.lbl_PrinterState.setStyleSheet(u"QLabel {\n"
 "    border: 2px solid #FF0000; /* Cambia el color del borde a rojo */\n"
-"	border-color: rgb(255, 196, 0);\n"
+"	border-color: rgb(255, 85, 0);\n"
 "	border-radius:5px;\n"
 "}")
 
@@ -1523,12 +1534,13 @@ class Ui_MainWindow(object):
         self.label_3.setStyleSheet(u"QLabel {\n"
 "    border: 3px solid #FF0000; /* Cambia el color del borde a rojo */\n"
 "	border-color: rgb(255, 196, 0);\n"
+"	border-color: rgb(255, 0, 0);\n"
 "	border-radius:1px;\n"
 "}")
-        self.label_3.setTextFormat(Qt.AutoText)
+        self.label_3.setTextFormat(Qt.TextFormat.AutoText)
         self.label_3.setPixmap(QPixmap(u":/images/images/Label_Spec.PNG"))
         self.label_3.setScaledContents(True)
-        self.label_3.setAlignment(Qt.AlignCenter)
+        self.label_3.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label_3.setMargin(5)
 
         self.verticalLayout_32.addWidget(self.label_3)
@@ -1557,8 +1569,8 @@ class Ui_MainWindow(object):
         sizePolicy3.setHeightForWidth(self.themeSettingsTopDetail.sizePolicy().hasHeightForWidth())
         self.themeSettingsTopDetail.setSizePolicy(sizePolicy3)
         self.themeSettingsTopDetail.setMaximumSize(QSize(16777215, 3))
-        self.themeSettingsTopDetail.setFrameShape(QFrame.NoFrame)
-        self.themeSettingsTopDetail.setFrameShadow(QFrame.Raised)
+        self.themeSettingsTopDetail.setFrameShape(QFrame.Shape.NoFrame)
+        self.themeSettingsTopDetail.setFrameShadow(QFrame.Shadow.Raised)
 
         self.verticalLayout_4.addWidget(self.themeSettingsTopDetail)
 
@@ -1567,8 +1579,8 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.contentSettings.sizePolicy().hasHeightForWidth())
         self.contentSettings.setSizePolicy(sizePolicy)
         self.contentSettings.setMinimumSize(QSize(0, 0))
-        self.contentSettings.setFrameShape(QFrame.NoFrame)
-        self.contentSettings.setFrameShadow(QFrame.Raised)
+        self.contentSettings.setFrameShape(QFrame.Shape.NoFrame)
+        self.contentSettings.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout_13 = QVBoxLayout(self.contentSettings)
         self.verticalLayout_13.setSpacing(0)
         self.verticalLayout_13.setObjectName(u"verticalLayout_13")
@@ -1578,8 +1590,8 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.topMenus.sizePolicy().hasHeightForWidth())
         self.topMenus.setSizePolicy(sizePolicy)
         self.topMenus.setMinimumSize(QSize(0, 0))
-        self.topMenus.setFrameShape(QFrame.NoFrame)
-        self.topMenus.setFrameShadow(QFrame.Raised)
+        self.topMenus.setFrameShape(QFrame.Shape.NoFrame)
+        self.topMenus.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout_14 = QVBoxLayout(self.topMenus)
         self.verticalLayout_14.setSpacing(0)
         self.verticalLayout_14.setObjectName(u"verticalLayout_14")
@@ -1595,7 +1607,7 @@ class Ui_MainWindow(object):
         self.btn_message.setMinimumSize(QSize(0, 45))
         self.btn_message.setFont(font3)
         self.btn_message.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_message.setLayoutDirection(Qt.LeftToRight)
+        self.btn_message.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         self.btn_message.setStyleSheet(u"background-image: url(:/icons/images/icons/cil-envelope-open.png);")
 
         self.verticalLayout_14.addWidget(self.btn_message)
@@ -1608,7 +1620,7 @@ class Ui_MainWindow(object):
         self.btn_print.setMinimumSize(QSize(0, 45))
         self.btn_print.setFont(font3)
         self.btn_print.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_print.setLayoutDirection(Qt.LeftToRight)
+        self.btn_print.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         self.btn_print.setStyleSheet(u"background-image: url(:/icons/images/icons/cil-print.png);")
 
         self.verticalLayout_14.addWidget(self.btn_print)
@@ -1620,13 +1632,13 @@ class Ui_MainWindow(object):
         self.btn_logout.setMinimumSize(QSize(0, 45))
         self.btn_logout.setFont(font3)
         self.btn_logout.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_logout.setLayoutDirection(Qt.LeftToRight)
+        self.btn_logout.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         self.btn_logout.setStyleSheet(u"background-image: url(:/icons/images/icons/cil-account-logout.png);")
 
         self.verticalLayout_14.addWidget(self.btn_logout)
 
 
-        self.verticalLayout_13.addWidget(self.topMenus, 0, Qt.AlignTop)
+        self.verticalLayout_13.addWidget(self.topMenus, 0, Qt.AlignmentFlag.AlignTop)
 
 
         self.verticalLayout_4.addWidget(self.contentSettings)
@@ -1658,7 +1670,7 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.titleLeftApp.setText(QCoreApplication.translate("MainWindow", u"Atlas", None))
         self.label_4.setText("")
-        self.titleLeftApp_2.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:11pt; font-weight:700; color:#ffc400;\">RADIADOR</span></p></body></html>", None))
+        self.titleLeftApp_2.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:11pt; font-weight:700; color:#e12807;\">RADIADOR</span></p></body></html>", None))
         self.toggleButton.setText("")
         self.btn_home.setText(QCoreApplication.translate("MainWindow", u"Inicio", None))
         self.btn_Report.setText(QCoreApplication.translate("MainWindow", u"Historial Piezas", None))
@@ -1675,25 +1687,25 @@ class Ui_MainWindow(object):
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Segoe UI'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:700; color:#ffffff;\">RADIADOR ATLAS</span></p>\n"
-"<p align=\"center\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt; font-weight:600; color:#ffc400;\">HISTORIAL PIEZAS</span></p>\n"
+"<p align=\"center\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt; font-weight:600; color:#e12807;\">HISTORIAL PIEZAS</span></p>\n"
 "<p align=\"center\" style=\" margin-top:12px; margin-b"
                         "ottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#9c9c9c;\">En la pesta\u00f1a de Historial de Piezas<br />podra encontrar el resumen de los ultimos 30 modulos guardados en este dispositivo.</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt; font-weight:600; color:#ffc400;\">HISTORIAL MASTER</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt; font-weight:600; color:#e12807;\">HISTORIAL MASTER</span></p>\n"
 "<p align=\"center\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#9c9c9c;\">En la pesta\u00f1a de Historial Master<br />podra encontrar el resumen de los ultimos 30 Contenedores creados.</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
 "<p align=\"center\" style=\" margin-t"
-                        "op:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt; font-weight:600; color:#ffc400;\">DATA MATRIX</span></p>\n"
+                        "op:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt; font-weight:600; color:#e12807;\">DATA MATRIX</span></p>\n"
 "<p align=\"center\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#9c9c9c;\">En la pesta\u00f1a de DataMatrix<br />podra encontrar una representacion detallada de los elementos a evaluar de la etiqueta para este radiador.</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt; color:#9c9c9c;\"><br /></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:"
-                        "0px;\"><span style=\" font-size:12pt; font-weight:700; color:#ffc400;\">Creado por: Aldo Geovanni Ortiz</span></p></body></html>", None))
+                        "0px;\"><span style=\" font-size:12pt; font-weight:700; color:#e12807;\">Creado por: Aldo Geovanni Ortiz</span></p></body></html>", None))
         self.user.setText(QCoreApplication.translate("MainWindow", u"N.Parte:", None))
         self.lbl_Nparte.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>3QF 121 251 E</p></body></html>", None))
         self.model.setText(QCoreApplication.translate("MainWindow", u"N.Piezas:", None))
-        self.lbl_nPiezas.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#ffc400;\">10</span></p></body></html>", None))
+        self.lbl_nPiezas.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#e12807;\">10</span></p></body></html>", None))
         self.mSerial.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>N.Serie:</p></body></html>", None))
-        self.lbl_Serial1.setText(QCoreApplication.translate("MainWindow", u"1802120524155855", None))
+        self.lbl_Serial1.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#e12807;\">1802120524155855</span></p></body></html>", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"OT:", None))
         self.lbl_OT.setText(QCoreApplication.translate("MainWindow", u"192589", None))
         self.minimizeAppBtn.setText("")
@@ -1701,7 +1713,7 @@ class Ui_MainWindow(object):
         self.closeAppBtn.setText("")
         self.btn_Start.setText(QCoreApplication.translate("MainWindow", u"COMENZAR", None))
         self.lbl_infoCurrentUser.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:18pt; font-weight:700; color:rgba(255,255,255,100);\">Iniciar sesion para comenzar la verificacion de Modulo</span></p></body></html>", None))
-        self.titulo_modelo.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:26pt; font-weight:700; color:#fcc101;\">Seleccionar Accion</span></p></body></html>", None))
+        self.titulo_modelo.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:26pt; font-weight:700; color:#e12807;\">Seleccionar Accion</span></p></body></html>", None))
         self.btn_EditAction.setText(QCoreApplication.translate("MainWindow", u"EDITAR", None))
         self.btn_PrintAction.setText(QCoreApplication.translate("MainWindow", u"IMPRIMIR", None))
         self.btn_backSlide.setText("")
@@ -1709,16 +1721,16 @@ class Ui_MainWindow(object):
         self.btn_nextSlide.setText("")
         self.btn_screenShoot.setText("")
         self.btn_saveModule.setText("")
-        self.label_7.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:18pt; font-weight:700; color:#ffc400;\">ACTUALIZAR DATOS</span></p></body></html>", None))
+        self.label_7.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:18pt; font-weight:700; color:#e12807;\">ACTUALIZAR DATOS</span></p></body></html>", None))
         self.laabel.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:14pt; font-weight:700;\">Numero de Parte:</span></p></body></html>", None))
         self.label_14.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:14pt; font-weight:700;\">Cantidad:</span></p></body></html>", None))
         self.label_16.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:14pt; font-weight:700;\">Orden de Trabajo:</span></p></body></html>", None))
         self.label_15.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:14pt; font-weight:700;\">Proveedor:</span></p></body></html>", None))
         self.btn_initSave.setText(QCoreApplication.translate("MainWindow", u"Guardar", None))
         self.btn_initCancel.setText(QCoreApplication.translate("MainWindow", u"Cancelar", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:26pt; font-weight:700; color:#fcc101;\">Historial Modelo Actual</span></p></body></html>", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:26pt; font-weight:700; color:#e12807;\">Historial Modelo Actual</span></p></body></html>", None))
         self.btn_printCurrIndex.setText(QCoreApplication.translate("MainWindow", u"IMPRIMIR", None))
-        self.label_6.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:18pt; font-weight:700; color:#ffc400;\">GENERAR ETIQUETA</span></p></body></html>", None))
+        self.label_6.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:18pt; font-weight:700; color:#e12807;\">GENERAR ETIQUETA</span></p></body></html>", None))
         self.lbl_labelMasterEdit.setText("")
         self.label_11.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:11pt; font-weight:700;\">Serial:</span></p></body></html>", None))
         self.box_serial.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Serial", None))
@@ -1735,9 +1747,9 @@ class Ui_MainWindow(object):
         self.label_CodigoActual.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; font-weight:700;\">Codigo Actual:</span></p></body></html>", None))
         self.lbl_StateLabel.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:700; color:#00ff00;\">PIEZA APROBADA</span></p></body></html>", None))
         self.lbl_PrinterState.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">Estado de la Impresora: </span><span style=\" font-size:16pt; font-weight:700; color:#ffc400;\">Impresora Abierta</span></p></body></html>", None))
-        self.label_PzsRealizadas.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700; color:#ffc400;\">Piezas Realizadas:</span></p></body></html>", None))
-        self.label_PzsFaltantes.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700; color:#ffc400;\">Piezas Faltantes:</span></p></body></html>", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:26pt; font-weight:700; color:#fcc101;\">Data Matrix</span></p></body></html>", None))
+        self.label_PzsRealizadas.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700; color:#e12807;\">Piezas Realizadas:</span></p></body></html>", None))
+        self.label_PzsFaltantes.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700; color:#e12807;\">Piezas Faltantes:</span></p></body></html>", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:26pt; font-weight:700; color:#e12807;\">Data Matrix</span></p></body></html>", None))
         self.label_3.setText("")
         self.btn_message.setText(QCoreApplication.translate("MainWindow", u"Message", None))
         self.btn_print.setText(QCoreApplication.translate("MainWindow", u"Print", None))

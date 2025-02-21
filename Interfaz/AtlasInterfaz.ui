@@ -113,9 +113,10 @@ Left Menu */
 
 /*Modelo del HVAC*/
 #mSerial{ font:16pt &quot;Segoe UI Semibold&quot;; }
-#lbl_Serial1 { font: 16pt &quot;Segoe UI Semibold&quot;; color: rgb(255, 233, 51 ); }
+#lbl_Serial1 { font: 16pt &quot;Segoe UI Semibold&quot;; color: rgb(225, 40, 7);; }
 
-#lbl_nPiezas { font: 16pt &quot;Segoe UI Semibold&quot;; color: rgb(255, 233, 51 ); }
+#lbl_nPiezas { font: 16pt &quot;Segoe UI Semibold&quot;; color: rgb(225, 40, 7); }
+
 
 
 
@@ -130,10 +131,12 @@ Left Menu */
 	padding-left: 44px;
 }
 #leftMenuFramee .QPushButton:hover {
-	background-color: rgb(40, 44, 52);
+	/*background-color: rgb(40, 44, 52);*/
+	background-color: rgb(225, 40, 7);
 }
 #leftMenuFramee .QPushButton:pressed {	
-	background-color: rgb(255, 233, 51 );
+	/*background-color: rgb(255, 233, 51 );*/
+	background-color: rgb(225, 40, 7);
 	color: rgb(255, 255, 255);
 }
 #bottomMenu .QPushButton {	
@@ -186,7 +189,8 @@ Left Menu */
 
 /* Estilos para el botón cuando está checkeado */
 #toggleButton.QPushButton:checked {
-    background-color: rgb(255,196,0);
+    /*background-color: rgb(255,196,0);*/
+	background-color: rgb(225, 40, 7);
 }
 
 /* Estilos para el botón cuando no está checkeado */
@@ -204,7 +208,8 @@ Extra Tab */
 	background-color: rgb(44, 49, 58);
 }
 #extraTopBg{	
-	background-color: rgb(255,196,0)
+	/*background-color: rgb(255,196,0)*/
+	background-color: rgb(225, 40, 7);
 }
 
 /* Icon */
@@ -358,17 +363,17 @@ Content App */
           </size>
          </property>
          <property name="frameShape">
-          <enum>QFrame::HLine</enum>
+          <enum>QFrame::Shape::HLine</enum>
          </property>
          <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
+          <enum>QFrame::Shadow::Raised</enum>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_3">
           <property name="spacing">
            <number>0</number>
           </property>
           <property name="sizeConstraint">
-           <enum>QLayout::SetDefaultConstraint</enum>
+           <enum>QLayout::SizeConstraint::SetDefaultConstraint</enum>
           </property>
           <property name="leftMargin">
            <number>9</number>
@@ -415,10 +420,10 @@ Content App */
                 </size>
                </property>
                <property name="frameShape">
-                <enum>QFrame::NoFrame</enum>
+                <enum>QFrame::Shape::NoFrame</enum>
                </property>
                <property name="frameShadow">
-                <enum>QFrame::Raised</enum>
+                <enum>QFrame::Shadow::Raised</enum>
                </property>
                <widget class="QLabel" name="titleLeftApp">
                 <property name="geometry">
@@ -443,7 +448,7 @@ Content App */
                  <string>Atlas</string>
                 </property>
                 <property name="alignment">
-                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                 <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
                 </property>
                 <property name="wordWrap">
                  <bool>false</bool>
@@ -465,7 +470,7 @@ Content App */
                  <string/>
                 </property>
                 <property name="textFormat">
-                 <enum>Qt::PlainText</enum>
+                 <enum>Qt::TextFormat::PlainText</enum>
                 </property>
                 <property name="pixmap">
                  <pixmap resource="../resources.qrc">:/images/images/logovw.png</pixmap>
@@ -494,10 +499,10 @@ Content App */
                  </font>
                 </property>
                 <property name="text">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#ffc400;&quot;&gt;RADIADOR&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:700; color:#e12807;&quot;&gt;RADIADOR&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                 <property name="alignment">
-                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                 <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
                 </property>
                 <property name="wordWrap">
                  <bool>false</bool>
@@ -514,7 +519,7 @@ Content App */
                 </size>
                </property>
                <property name="layoutDirection">
-                <enum>Qt::LeftToRight</enum>
+                <enum>Qt::LayoutDirection::LeftToRight</enum>
                </property>
                <property name="autoFillBackground">
                 <bool>false</bool>
@@ -619,7 +624,7 @@ Content App */
              <item>
               <spacer name="espaciador_settings">
                <property name="orientation">
-                <enum>Qt::Vertical</enum>
+                <enum>Qt::Orientation::Vertical</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
@@ -711,10 +716,10 @@ Content App */
              </size>
             </property>
             <property name="frameShape">
-             <enum>QFrame::NoFrame</enum>
+             <enum>QFrame::Shape::NoFrame</enum>
             </property>
             <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
+             <enum>QFrame::Shadow::Raised</enum>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_5">
              <property name="spacing">
@@ -764,10 +769,10 @@ Content App */
                   <string notr="true">background-color: gb(255,196,0);</string>
                  </property>
                  <property name="frameShape">
-                  <enum>QFrame::NoFrame</enum>
+                  <enum>QFrame::Shape::NoFrame</enum>
                  </property>
                  <property name="frameShadow">
-                  <enum>QFrame::Raised</enum>
+                  <enum>QFrame::Shadow::Raised</enum>
                  </property>
                 </widget>
                </item>
@@ -780,10 +785,11 @@ Content App */
                   </size>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">background-color: gb(255,196,0)</string>
+                  <string notr="true">background-color: none
+</string>
                  </property>
                  <property name="frameShape">
-                  <enum>QFrame::NoFrame</enum>
+                  <enum>QFrame::Shape::NoFrame</enum>
                  </property>
                  <property name="text">
                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:700;&quot;&gt;INFORMACION&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -810,10 +816,10 @@ Content App */
              </size>
             </property>
             <property name="frameShape">
-             <enum>QFrame::NoFrame</enum>
+             <enum>QFrame::Shape::NoFrame</enum>
             </property>
             <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
+             <enum>QFrame::Shadow::Raised</enum>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_12">
              <property name="spacing">
@@ -831,7 +837,7 @@ Content App */
              <property name="bottomMargin">
               <number>0</number>
              </property>
-             <item alignment="Qt::AlignTop">
+             <item alignment="Qt::AlignmentFlag::AlignTop">
               <widget class="QFrame" name="extraTopMenu">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -846,10 +852,10 @@ Content App */
                 </size>
                </property>
                <property name="frameShape">
-                <enum>QFrame::NoFrame</enum>
+                <enum>QFrame::Shape::NoFrame</enum>
                </property>
                <property name="frameShadow">
-                <enum>QFrame::Raised</enum>
+                <enum>QFrame::Shadow::Raised</enum>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_11">
                 <property name="spacing">
@@ -873,10 +879,10 @@ Content App */
              <item>
               <widget class="QFrame" name="extraCenter">
                <property name="frameShape">
-                <enum>QFrame::NoFrame</enum>
+                <enum>QFrame::Shape::NoFrame</enum>
                </property>
                <property name="frameShadow">
-                <enum>QFrame::Raised</enum>
+                <enum>QFrame::Shadow::Raised</enum>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_10">
                 <item>
@@ -891,7 +897,7 @@ Content App */
                    <string notr="true">background: transparent;</string>
                   </property>
                   <property name="frameShape">
-                   <enum>QFrame::NoFrame</enum>
+                   <enum>QFrame::Shape::NoFrame</enum>
                   </property>
                   <property name="readOnly">
                    <bool>true</bool>
@@ -905,16 +911,16 @@ li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:700; color:#ffffff;&quot;&gt;RADIADOR ATLAS&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#ffc400;&quot;&gt;HISTORIAL PIEZAS&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#e12807;&quot;&gt;HISTORIAL PIEZAS&lt;/span&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#9c9c9c;&quot;&gt;En la pestaña de Historial de Piezas&lt;br /&gt;podra encontrar el resumen de los ultimos 30 modulos guardados en este dispositivo.&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#ffc400;&quot;&gt;HISTORIAL MASTER&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#e12807;&quot;&gt;HISTORIAL MASTER&lt;/span&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#9c9c9c;&quot;&gt;En la pestaña de Historial Master&lt;br /&gt;podra encontrar el resumen de los ultimos 30 Contenedores creados.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#ffc400;&quot;&gt;DATA MATRIX&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#e12807;&quot;&gt;DATA MATRIX&lt;/span&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#9c9c9c;&quot;&gt;En la pestaña de DataMatrix&lt;br /&gt;podra encontrar una representacion detallada de los elementos a evaluar de la etiqueta para este radiador.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt; color:#9c9c9c;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:700; color:#ffc400;&quot;&gt;Creado por: Aldo Geovanni Ortiz&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:700; color:#e12807;&quot;&gt;Creado por: Aldo Geovanni Ortiz&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                   </property>
                  </widget>
                 </item>
@@ -924,10 +930,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <item>
               <widget class="QFrame" name="extraBottom">
                <property name="frameShape">
-                <enum>QFrame::NoFrame</enum>
+                <enum>QFrame::Shape::NoFrame</enum>
                </property>
                <property name="frameShadow">
-                <enum>QFrame::Raised</enum>
+                <enum>QFrame::Shadow::Raised</enum>
                </property>
               </widget>
              </item>
@@ -985,7 +991,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
              </size>
             </property>
             <property name="frameShape">
-             <enum>QFrame::NoFrame</enum>
+             <enum>QFrame::Shape::NoFrame</enum>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_2">
              <property name="spacing">
@@ -1013,7 +1019,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <item>
               <widget class="QLabel" name="lbl_Nparte">
                <property name="styleSheet">
-                <string notr="true">font: 16pt &quot;Segoe UI Semibold&quot;; color: rgb(255, 233, 51 );</string>
+                <string notr="true">font: 16pt &quot;Segoe UI Semibold&quot;; color: #e12807;</string>
                </property>
                <property name="text">
                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;3QF 121 251 E&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1023,7 +1029,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <item>
               <spacer name="espaciador_user">
                <property name="orientation">
-                <enum>Qt::Horizontal</enum>
+                <enum>Qt::Orientation::Horizontal</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
@@ -1043,20 +1049,20 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <item>
               <widget class="QLabel" name="lbl_nPiezas">
                <property name="styleSheet">
-                <string notr="true">font: 16pt &quot;Segoe UI Semibold&quot;; color: rgb(255, 233, 51 );</string>
+                <string notr="true">font: 16pt &quot;Segoe UI Semibold&quot;; color: #e12807;</string>
                </property>
                <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffc400;&quot;&gt;10&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#e12807;&quot;&gt;10&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
               </widget>
              </item>
              <item>
               <spacer name="espaciador_model">
                <property name="orientation">
-                <enum>Qt::Horizontal</enum>
+                <enum>Qt::Orientation::Horizontal</enum>
                </property>
                <property name="sizeType">
-                <enum>QSizePolicy::Expanding</enum>
+                <enum>QSizePolicy::Policy::Expanding</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
@@ -1078,7 +1084,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                <item>
                 <widget class="QLabel" name="lbl_Serial1">
                  <property name="text">
-                  <string>1802120524155855</string>
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#e12807;&quot;&gt;1802120524155855&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                 </widget>
                </item>
@@ -1089,10 +1095,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
                <item>
                 <spacer name="horizontalSpacer_20">
                  <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
+                  <enum>Qt::Orientation::Horizontal</enum>
                  </property>
                  <property name="sizeType">
-                  <enum>QSizePolicy::Fixed</enum>
+                  <enum>QSizePolicy::Policy::Fixed</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
@@ -1122,7 +1128,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                <item>
                 <widget class="QLabel" name="lbl_OT">
                  <property name="styleSheet">
-                  <string notr="true">font: 16pt &quot;Segoe UI Semibold&quot;; color: rgb(255, 233, 51 );</string>
+                  <string notr="true">font: 16pt &quot;Segoe UI Semibold&quot;; color: #e12807;</string>
                  </property>
                  <property name="text">
                   <string>192589</string>
@@ -1152,7 +1158,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                 <item>
                  <spacer name="horizontalSpacer_8">
                   <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
+                   <enum>Qt::Orientation::Horizontal</enum>
                   </property>
                   <property name="sizeHint" stdset="0">
                    <size>
@@ -1285,14 +1291,14 @@ li.checked::marker { content: &quot;\2612&quot;; }
                 <string notr="true">background-color: rgb(33, 37, 43);</string>
                </property>
                <property name="frameShape">
-                <enum>QFrame::NoFrame</enum>
+                <enum>QFrame::Shape::NoFrame</enum>
                </property>
                <property name="currentIndex">
-                <number>1</number>
+                <number>6</number>
                </property>
                <widget class="QWidget" name="Home_page">
                 <property name="contextMenuPolicy">
-                 <enum>Qt::DefaultContextMenu</enum>
+                 <enum>Qt::ContextMenuPolicy::DefaultContextMenu</enum>
                 </property>
                 <property name="autoFillBackground">
                  <bool>false</bool>
@@ -1302,7 +1308,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_21">
                  <property name="sizeConstraint">
-                  <enum>QLayout::SetMinAndMaxSize</enum>
+                  <enum>QLayout::SizeConstraint::SetMinAndMaxSize</enum>
                  </property>
                  <item>
                   <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1315,10 +1321,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
                       <string notr="true"/>
                      </property>
                      <property name="frameShape">
-                      <enum>QFrame::StyledPanel</enum>
+                      <enum>QFrame::Shape::StyledPanel</enum>
                      </property>
                      <property name="frameShadow">
-                      <enum>QFrame::Raised</enum>
+                      <enum>QFrame::Shadow::Raised</enum>
                      </property>
                      <layout class="QVBoxLayout" name="verticalLayout_23">
                       <item>
@@ -1327,7 +1333,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                       <item>
                        <spacer name="verticalSpacer_6">
                         <property name="orientation">
-                         <enum>Qt::Vertical</enum>
+                         <enum>Qt::Orientation::Vertical</enum>
                         </property>
                         <property name="sizeHint" stdset="0">
                          <size>
@@ -1342,10 +1348,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
                         <item>
                          <spacer name="horizontalSpacer_5">
                           <property name="orientation">
-                           <enum>Qt::Horizontal</enum>
+                           <enum>Qt::Orientation::Horizontal</enum>
                           </property>
                           <property name="sizeType">
-                           <enum>QSizePolicy::Expanding</enum>
+                           <enum>QSizePolicy::Policy::Expanding</enum>
                           </property>
                           <property name="sizeHint" stdset="0">
                            <size>
@@ -1360,14 +1366,16 @@ li.checked::marker { content: &quot;\2612&quot;; }
                           <property name="styleSheet">
                            <string notr="true">QPushButton{
 color: rgba(234, 234, 234,180);
-background-color: rgba(255, 196, 0,150);
+/*background-color: rgba(255, 196, 0,150);*/
+background-color: rgba(225, 40, 7, 150);
 font: 700 36pt &quot;Segoe UI&quot;;
 border-radius: 10px;
 border: 4px solid black;
-border-color: rgb(207, 162, 9);}
+border-color: rgb(225, 40, 7);}
 
 QPushButton:pressed {
-	background-color: rgb(255, 233, 51 );
+	background-color:#e12807;
+
 }</string>
                           </property>
                           <property name="text">
@@ -1378,7 +1386,7 @@ QPushButton:pressed {
                         <item>
                          <spacer name="horizontalSpacer_6">
                           <property name="orientation">
-                           <enum>Qt::Horizontal</enum>
+                           <enum>Qt::Orientation::Horizontal</enum>
                           </property>
                           <property name="sizeHint" stdset="0">
                            <size>
@@ -1411,14 +1419,14 @@ QPushButton:pressed {
                    <item>
                     <widget class="QLabel" name="titulo_modelo">
                      <property name="text">
-                      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:26pt; font-weight:700; color:#fcc101;&quot;&gt;Seleccionar Accion&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:26pt; font-weight:700; color:#e12807;&quot;&gt;Seleccionar Accion&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                      </property>
                     </widget>
                    </item>
                    <item>
                     <spacer name="verticalSpacer">
                      <property name="orientation">
-                      <enum>Qt::Vertical</enum>
+                      <enum>Qt::Orientation::Vertical</enum>
                      </property>
                      <property name="sizeHint" stdset="0">
                       <size>
@@ -1452,14 +1460,15 @@ QPushButton:pressed {
                        </property>
                        <property name="styleSheet">
                         <string notr="true">QPushButton{
-background-color: rgba(255, 196, 0,150);
+/*background-color: rgba(255, 196, 0,150);*/
+background-color: rgba(225, 40, 7,150);
 font: 700 36pt &quot;Segoe UI&quot;;
 border-radius: 10px;
 border: 4px solid black;
-border-color: rgb(207, 162, 9);}
+border-color: rgb(225, 40, 7);}
 
 QPushButton:pressed {
-	background-color: rgb(255, 233, 51 );
+	background-color: rgb(225, 40, 7);
 }</string>
                        </property>
                        <property name="text">
@@ -1509,14 +1518,15 @@ QPushButton:pressed {
                        </property>
                        <property name="styleSheet">
                         <string notr="true">QPushButton{
-background-color: rgba(255, 196, 0,150);
+/*background-color: rgba(255, 196, 0,150);*/
+background-color: rgba(225, 40, 7,150);
 font: 700 36pt &quot;Segoe UI&quot;;
 border-radius: 10px;
 border: 4px solid black;
-border-color: rgb(207, 162, 9);}
+border-color: rgb(225, 40, 7);}
 
 QPushButton:pressed {
-	background-color: rgb(255, 233, 51 );
+	background-color: rgb(225, 40, 7);
 }</string>
                        </property>
                        <property name="text">
@@ -1531,7 +1541,7 @@ QPushButton:pressed {
                  <item>
                   <spacer name="spacer_model">
                    <property name="orientation">
-                    <enum>Qt::Vertical</enum>
+                    <enum>Qt::Orientation::Vertical</enum>
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
@@ -1727,13 +1737,13 @@ QPushButton:pressed {
 </string>
                       </property>
                       <property name="inputMethodHints">
-                       <set>Qt::ImhNone</set>
+                       <set>Qt::InputMethodHint::ImhNone</set>
                       </property>
                       <property name="value">
                        <number>85</number>
                       </property>
                       <property name="alignment">
-                       <set>Qt::AlignCenter</set>
+                       <set>Qt::AlignmentFlag::AlignCenter</set>
                       </property>
                       <property name="invertedAppearance">
                        <bool>false</bool>
@@ -1921,14 +1931,14 @@ QPushButton:pressed {
                    <item>
                     <widget class="QLabel" name="label_7">
                      <property name="text">
-                      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:18pt; font-weight:700; color:#ffc400;&quot;&gt;ACTUALIZAR DATOS&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:18pt; font-weight:700; color:#e12807;&quot;&gt;ACTUALIZAR DATOS&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                      </property>
                     </widget>
                    </item>
                    <item>
                     <spacer name="verticalSpacer_2">
                      <property name="orientation">
-                      <enum>Qt::Vertical</enum>
+                      <enum>Qt::Orientation::Vertical</enum>
                      </property>
                      <property name="sizeHint" stdset="0">
                       <size>
@@ -1943,7 +1953,7 @@ QPushButton:pressed {
                      <item>
                       <spacer name="horizontalSpacer_2">
                        <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
+                        <enum>Qt::Orientation::Horizontal</enum>
                        </property>
                        <property name="sizeHint" stdset="0">
                         <size>
@@ -1958,7 +1968,7 @@ QPushButton:pressed {
                        <item>
                         <spacer name="horizontalSpacer_3">
                          <property name="orientation">
-                          <enum>Qt::Horizontal</enum>
+                          <enum>Qt::Orientation::Horizontal</enum>
                          </property>
                          <property name="sizeHint" stdset="0">
                           <size>
@@ -2021,7 +2031,7 @@ font: 12pt &quot;Segoe UI&quot;;
 background-color: rgb(44, 49, 58);</string>
                          </property>
                          <property name="verticalScrollBarPolicy">
-                          <enum>Qt::ScrollBarAlwaysOff</enum>
+                          <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
                          </property>
                         </widget>
                        </item>
@@ -2066,14 +2076,16 @@ QPushButton:pressed {
                          <item>
                           <widget class="QPushButton" name="btn_initCancel">
                            <property name="styleSheet">
-                            <string notr="true">QPushButton{background-color: rgba(207, 162, 9,150);
+                            <string notr="true">QPushButton{
+/*background-color: rgba(207, 162, 9,150);*/
+background-color: rgba(225, 40, 7, 150);
 font:18pt &quot;Segoe UI&quot;;
 border-radius: 4px;
 border: 2px solid black;
-border-color: rgb(207, 162, 9);}
+border-color: rgb(225, 40, 7);}
 
 QPushButton:pressed {
-	background-color: rgb(255, 233, 51 );
+	background-color: rgb(225, 40, 7);
 }</string>
                            </property>
                            <property name="text">
@@ -2088,10 +2100,10 @@ QPushButton:pressed {
                      <item>
                       <spacer name="horizontalSpacer">
                        <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
+                        <enum>Qt::Orientation::Horizontal</enum>
                        </property>
                        <property name="sizeType">
-                        <enum>QSizePolicy::Expanding</enum>
+                        <enum>QSizePolicy::Policy::Expanding</enum>
                        </property>
                        <property name="sizeHint" stdset="0">
                         <size>
@@ -2108,7 +2120,7 @@ QPushButton:pressed {
                  <item>
                   <spacer name="verticalSpacer_3">
                    <property name="orientation">
-                    <enum>Qt::Vertical</enum>
+                    <enum>Qt::Orientation::Vertical</enum>
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
@@ -2142,17 +2154,17 @@ QPushButton:pressed {
                    <item>
                     <widget class="QLabel" name="label">
                      <property name="text">
-                      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:26pt; font-weight:700; color:#fcc101;&quot;&gt;Historial Modelo Actual&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:26pt; font-weight:700; color:#e12807;&quot;&gt;Historial Modelo Actual&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                      </property>
                     </widget>
                    </item>
                    <item>
                     <spacer name="verticalSpacer_12">
                      <property name="orientation">
-                      <enum>Qt::Vertical</enum>
+                      <enum>Qt::Orientation::Vertical</enum>
                      </property>
                      <property name="sizeType">
-                      <enum>QSizePolicy::Fixed</enum>
+                      <enum>QSizePolicy::Policy::Fixed</enum>
                      </property>
                      <property name="sizeHint" stdset="0">
                       <size>
@@ -2171,8 +2183,7 @@ QPushButton:pressed {
                       </sizepolicy>
                      </property>
                      <property name="styleSheet">
-                      <string notr="true">background-color: rgba(33, 37, 43, 190);
-background-color: rgba(255, 196, 0, 150);</string>
+                      <string notr="true">background-color: rgba(225, 40, 7, 150);</string>
                      </property>
                     </widget>
                    </item>
@@ -2181,7 +2192,7 @@ background-color: rgba(255, 196, 0, 150);</string>
                      <item>
                       <spacer name="horizontalSpacer_4">
                        <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
+                        <enum>Qt::Orientation::Horizontal</enum>
                        </property>
                        <property name="sizeHint" stdset="0">
                         <size>
@@ -2213,7 +2224,7 @@ QPushButton:pressed {
                      <item>
                       <spacer name="horizontalSpacer_7">
                        <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
+                        <enum>Qt::Orientation::Horizontal</enum>
                        </property>
                        <property name="sizeHint" stdset="0">
                         <size>
@@ -2242,7 +2253,7 @@ QPushButton:pressed {
                       </sizepolicy>
                      </property>
                      <property name="text">
-                      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:18pt; font-weight:700; color:#ffc400;&quot;&gt;GENERAR ETIQUETA&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:18pt; font-weight:700; color:#e12807;&quot;&gt;GENERAR ETIQUETA&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                      </property>
                     </widget>
                    </item>
@@ -2287,10 +2298,10 @@ QPushButton:pressed {
                        <item>
                         <spacer name="verticalSpacer_7">
                          <property name="orientation">
-                          <enum>Qt::Vertical</enum>
+                          <enum>Qt::Orientation::Vertical</enum>
                          </property>
                          <property name="sizeType">
-                          <enum>QSizePolicy::Minimum</enum>
+                          <enum>QSizePolicy::Policy::Minimum</enum>
                          </property>
                          <property name="sizeHint" stdset="0">
                           <size>
@@ -2480,10 +2491,10 @@ background-color: rgba(161, 161, 161,90);</string>
                         <item>
                          <spacer name="verticalSpacer_9">
                           <property name="orientation">
-                           <enum>Qt::Vertical</enum>
+                           <enum>Qt::Orientation::Vertical</enum>
                           </property>
                           <property name="sizeType">
-                           <enum>QSizePolicy::Fixed</enum>
+                           <enum>QSizePolicy::Policy::Fixed</enum>
                           </property>
                           <property name="sizeHint" stdset="0">
                            <size>
@@ -2534,7 +2545,7 @@ QPushButton:pressed {
                         <item>
                          <spacer name="verticalSpacer_5">
                           <property name="orientation">
-                           <enum>Qt::Vertical</enum>
+                           <enum>Qt::Orientation::Vertical</enum>
                           </property>
                           <property name="sizeHint" stdset="0">
                            <size>
@@ -2582,11 +2593,11 @@ QPushButton:pressed {
                          <string notr="true">background-color: rgba(113, 127, 147, 150);
  font-size:18pt; 
 font-weight:700;
- color:#fcc101;
+color:#e12807;
 border-radius:7px;</string>
                         </property>
                         <property name="verticalScrollBarPolicy">
-                         <enum>Qt::ScrollBarAlwaysOff</enum>
+                         <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
                         </property>
                         <property name="undoRedoEnabled">
                          <bool>true</bool>
@@ -2610,7 +2621,7 @@ border-radius:7px;</string>
                       <item>
                        <spacer name="verticalSpacer_13">
                         <property name="orientation">
-                         <enum>Qt::Vertical</enum>
+                         <enum>Qt::Orientation::Vertical</enum>
                         </property>
                         <property name="sizeHint" stdset="0">
                          <size>
@@ -2638,7 +2649,7 @@ border-radius:7px;</string>
                         <property name="styleSheet">
                          <string notr="true">QLabel {
     border: 2px solid #FF0000; /* Cambia el color del borde a rojo */
-	border-color: rgb(255, 196, 0);
+	border-color: rgb(255, 85, 0);
 	border-radius:5px;
 }</string>
                         </property>
@@ -2663,7 +2674,7 @@ border-radius:7px;</string>
                       <item>
                        <widget class="QLabel" name="label_PzsRealizadas">
                         <property name="text">
-                         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:700; color:#ffc400;&quot;&gt;Piezas Realizadas:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:700; color:#e12807;&quot;&gt;Piezas Realizadas:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                         </property>
                        </widget>
                       </item>
@@ -2673,7 +2684,7 @@ border-radius:7px;</string>
                       <item>
                        <widget class="QLabel" name="label_PzsFaltantes">
                         <property name="text">
-                         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:700; color:#ffc400;&quot;&gt;Piezas Faltantes:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:700; color:#e12807;&quot;&gt;Piezas Faltantes:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                         </property>
                        </widget>
                       </item>
@@ -2694,7 +2705,7 @@ border-radius:7px;</string>
                    <item>
                     <widget class="QLabel" name="label_2">
                      <property name="text">
-                      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:26pt; font-weight:700; color:#fcc101;&quot;&gt;Data Matrix&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:26pt; font-weight:700; color:#e12807;&quot;&gt;Data Matrix&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                      </property>
                     </widget>
                    </item>
@@ -2716,6 +2727,7 @@ border-radius:7px;</string>
                       <string notr="true">QLabel {
     border: 3px solid #FF0000; /* Cambia el color del borde a rojo */
 	border-color: rgb(255, 196, 0);
+	border-color: rgb(255, 0, 0);
 	border-radius:1px;
 }</string>
                      </property>
@@ -2723,7 +2735,7 @@ border-radius:7px;</string>
                       <string/>
                      </property>
                      <property name="textFormat">
-                      <enum>Qt::AutoText</enum>
+                      <enum>Qt::TextFormat::AutoText</enum>
                      </property>
                      <property name="pixmap">
                       <pixmap resource="../resources.qrc">:/images/images/Label_Spec.PNG</pixmap>
@@ -2732,7 +2744,7 @@ border-radius:7px;</string>
                       <bool>true</bool>
                      </property>
                      <property name="alignment">
-                      <set>Qt::AlignCenter</set>
+                      <set>Qt::AlignmentFlag::AlignCenter</set>
                      </property>
                      <property name="margin">
                       <number>5</number>
@@ -2744,7 +2756,7 @@ border-radius:7px;</string>
                  <item>
                   <spacer name="verticalSpacer_8">
                    <property name="orientation">
-                    <enum>Qt::Vertical</enum>
+                    <enum>Qt::Orientation::Vertical</enum>
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
@@ -2794,10 +2806,10 @@ border-radius:7px;</string>
                    </size>
                   </property>
                   <property name="frameShape">
-                   <enum>QFrame::NoFrame</enum>
+                   <enum>QFrame::Shape::NoFrame</enum>
                   </property>
                   <property name="frameShadow">
-                   <enum>QFrame::Raised</enum>
+                   <enum>QFrame::Shadow::Raised</enum>
                   </property>
                  </widget>
                 </item>
@@ -2816,10 +2828,10 @@ border-radius:7px;</string>
                    </size>
                   </property>
                   <property name="frameShape">
-                   <enum>QFrame::NoFrame</enum>
+                   <enum>QFrame::Shape::NoFrame</enum>
                   </property>
                   <property name="frameShadow">
-                   <enum>QFrame::Raised</enum>
+                   <enum>QFrame::Shadow::Raised</enum>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_13">
                    <property name="spacing">
@@ -2837,7 +2849,7 @@ border-radius:7px;</string>
                    <property name="bottomMargin">
                     <number>0</number>
                    </property>
-                   <item alignment="Qt::AlignTop">
+                   <item alignment="Qt::AlignmentFlag::AlignTop">
                     <widget class="QFrame" name="topMenus">
                      <property name="sizePolicy">
                       <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
@@ -2852,10 +2864,10 @@ border-radius:7px;</string>
                       </size>
                      </property>
                      <property name="frameShape">
-                      <enum>QFrame::NoFrame</enum>
+                      <enum>QFrame::Shape::NoFrame</enum>
                      </property>
                      <property name="frameShadow">
-                      <enum>QFrame::Raised</enum>
+                      <enum>QFrame::Shadow::Raised</enum>
                      </property>
                      <layout class="QVBoxLayout" name="verticalLayout_14">
                       <property name="spacing">
@@ -2902,7 +2914,7 @@ border-radius:7px;</string>
                          <cursorShape>PointingHandCursor</cursorShape>
                         </property>
                         <property name="layoutDirection">
-                         <enum>Qt::LeftToRight</enum>
+                         <enum>Qt::LayoutDirection::LeftToRight</enum>
                         </property>
                         <property name="styleSheet">
                          <string notr="true">background-image: url(:/icons/images/icons/cil-envelope-open.png);</string>
@@ -2941,7 +2953,7 @@ border-radius:7px;</string>
                          <cursorShape>PointingHandCursor</cursorShape>
                         </property>
                         <property name="layoutDirection">
-                         <enum>Qt::LeftToRight</enum>
+                         <enum>Qt::LayoutDirection::LeftToRight</enum>
                         </property>
                         <property name="styleSheet">
                          <string notr="true">background-image: url(:/icons/images/icons/cil-print.png);</string>
@@ -2977,7 +2989,7 @@ border-radius:7px;</string>
                          <cursorShape>PointingHandCursor</cursorShape>
                         </property>
                         <property name="layoutDirection">
-                         <enum>Qt::LeftToRight</enum>
+                         <enum>Qt::LayoutDirection::LeftToRight</enum>
                         </property>
                         <property name="styleSheet">
                          <string notr="true">background-image: url(:/icons/images/icons/cil-account-logout.png);</string>

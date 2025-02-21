@@ -34,7 +34,7 @@ class Ui_Dialog(object):
         self.verticalWidget.setObjectName(u"verticalWidget")
         self.verticalWidget.setStyleSheet(u"border-radius: 4px;\n"
 "border: 4px solid black;\n"
-"border-color: rgb(207, 162, 9);\n"
+"border-color: #e12807;\n"
 "")
         self.verticalLayout = QVBoxLayout(self.verticalWidget)
         self.verticalLayout.setObjectName(u"verticalLayout")
@@ -62,7 +62,7 @@ class Ui_Dialog(object):
 "border:None;\n"
 " font-size:18pt; \n"
 "font-weight:700;\n"
-" color:#fcc101;")
+" color:#e12807;")
 
         self.verticalLayout.addWidget(self.box_Admin)
 
@@ -84,8 +84,8 @@ class Ui_Dialog(object):
 "background-color: rgba(162, 162, 162,80);\n"
 " font-size:18pt; \n"
 "font-weight:700;\n"
-" color:#fcc101;")
-        self.txt_User.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+" color:#e12807;")
+        self.txt_User.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
 
         self.verticalLayout.addWidget(self.txt_User)
 
@@ -102,7 +102,7 @@ class Ui_Dialog(object):
 "border:None;\n"
 " font-size:18pt; \n"
 "font-weight:700;\n"
-" color:#fcc101;")
+" color:#e12807;")
 
         self.verticalLayout.addWidget(self.line_contra)
 
@@ -162,7 +162,7 @@ class Ui_Dialog(object):
 
     def retranslateUi(self, Dialog):
         Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Dialog", None))
-        self.label.setText(QCoreApplication.translate("Dialog", u"<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:700; color:#ffc400;\">Iniciar Sesion</span></p></body></html>", None))
+        self.label.setText(QCoreApplication.translate("Dialog", u"<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:700; color:#e12807;\">Iniciar Sesion</span></p></body></html>", None))
         self.label_4.setText(QCoreApplication.translate("Dialog", u"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700; color:#ffffff;\">Modo:</span></p></body></html>", None))
         self.label_2.setText(QCoreApplication.translate("Dialog", u"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700; color:#ffffff;\">Usuario:</span></p></body></html>", None))
         self.label_3.setText(QCoreApplication.translate("Dialog", u"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700; color:#ffffff;\">Contrase\u00f1a:</span></p></body></html>", None))

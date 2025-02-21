@@ -24,8 +24,9 @@ class Ui_Dialog(object):
             Dialog.setObjectName(u"Dialog")
         Dialog.resize(474, 351)
         Dialog.setStyleSheet(u"background-color: rgb(40, 44, 52);\n"
-"border: 4px solid rgb(44, 49, 58);\n"
-"border-color: rgb(207, 162, 9);\n"
+"border: 6px solid;\n"
+"border-color: #e12807;\n"
+"border-color: rgb(0, 0, 0);\n"
 "padding-left: 0px;\n"
 "\n"
 "\n"

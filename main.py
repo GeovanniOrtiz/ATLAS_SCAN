@@ -143,8 +143,8 @@ class Atlas(QMainWindow):
         #Timer para consultar el estado de la impresora
         self.StatePrinter = QTimer()
         self.StatePrinter.timeout.connect(lambda:ConsultStatePrint(self.ui_main, self.printer_state))
-        self.StatePrinter.start(2000)
-        ConsultStatePrint(self.ui_main, self.printer_state)
+        #self.StatePrinter.start(2000)
+        #ConsultStatePrint(self.ui_main, self.printer_state)
 
         #timer para correr el proceso de escaneado
         self.TimeProcess = QTimer()
@@ -172,10 +172,6 @@ class Atlas(QMainWindow):
         self.CreationDate = data[7]
         self.timeAlarma=0
 
-        currDate = datetime.now()
-        currDate = currDate.strftime("%d/%m/%Y %H:%M:%S")
-        #SendReqPrint(currDate, self.PartNo, self.PzsTotales, self.Supplier, self.SerialNum, self.OT)
-
         #Calcula las piezas faltantes a escanear
         self.PzsFaltantes = int(self.PzsTotales - self.PzsRealizadas)
         self.PrinterMode = 0
@@ -188,7 +184,7 @@ class Atlas(QMainWindow):
         self.ui_main.lbl_Serial1.setText(QCoreApplication.translate("MainWindow", f"{self.SerialNum}", None))
         self.ui_main.lbl_OT.setText(QCoreApplication.translate("MainWindow", f"{self.OT}", None))
         self.ui_main.lbl_nPiezas.setText(QCoreApplication.translate("MainWindow",
-                                                                    f"<html><head/><body><p><span style=\" color:#ffc400;\">{self.PzsTotales}</span></p></body></html>",
+                                                                    f"<html><head/><body><p><span style=\" color:#e12807;\">{self.PzsTotales}</span></p></body></html>",
                                                                     None))
         self.ui_main.lbl_Nparte.setText(
             QCoreApplication.translate("MainWindow", f"<html><head/><body><p>{self.PartNo}</p></body></html>", None))
@@ -242,6 +238,8 @@ class Atlas(QMainWindow):
 
         #Inicializa el widget con la tabla master
         self.tableMastertaBase.show()
+
+        #Approve(self.ui_main)180223052024152017
 
     def load_items_from_json(self):
         # Leer el archivo JSON
@@ -446,7 +444,7 @@ class Atlas(QMainWindow):
                                 QCoreApplication.translate("MainWindow", f"{self.SerialNum}", None))
                             self.ui_main.lbl_OT.setText(QCoreApplication.translate("MainWindow", f"{self.OT}", None))
                             self.ui_main.lbl_nPiezas.setText(QCoreApplication.translate("MainWindow",
-                                                                                        f"<html><head/><body><p><span style=\" color:#ffc400;\">{self.PzsTotales}</span></p></body></html>",
+                                                                                        f"<html><head/><body><p><span style=\" color:#e12807;\">{self.PzsTotales}</span></p></body></html>",
                                                                                         None))
                             self.ui_main.lbl_Nparte.setText(
                                 QCoreApplication.translate("MainWindow",
@@ -702,7 +700,7 @@ class Atlas(QMainWindow):
             self.ui_main.lbl_Serial1.setText(QCoreApplication.translate("MainWindow", f"{self.SerialNum}", None))
             self.ui_main.lbl_OT.setText(QCoreApplication.translate("MainWindow", f"{self.OT}", None))
             self.ui_main.lbl_nPiezas.setText(QCoreApplication.translate("MainWindow",
-                                                                        f"<html><head/><body><p><span style=\" color:#ffc400;\">{self.PzsTotales}</span></p></body></html>",
+                                                                        f"<html><head/><body><p><span style=\" color:#e12807;\">{self.PzsTotales}</span></p></body></html>",
                                                                         None))
             self.ui_main.lbl_Nparte.setText(
                 QCoreApplication.translate("MainWindow", f"<html><head/><body><p>{self.PartNo}</p></body></html>",
