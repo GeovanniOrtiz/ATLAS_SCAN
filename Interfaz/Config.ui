@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>486</width>
+    <height>371</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"> QMessageBox {
+            background: white;  /* Fondo blanco */
+            border: 2px solid #CCCCCC;  /* Borde gris claro */
+            border-radius: 10px;  /* Esquinas redondeadas */
+            padding: 10px;
+        }
+
+        QMessageBox QLabel {
+            background: transparent;
+            color: #333333;  /* Texto oscuro elegante */
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        QMessageBox QLabel[objectName=&quot;qt_msgbox_label&quot;] {
+            background: transparent;
+        }
+
+        /* Botones con diseño moderno */
+        QMessageBox QPushButton {
+            background-color: #0078D7;  /* Azul profesional (similar a Windows) */
+            color: white;
+            border: 1px solid #005A9E;
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: bold;
+            border-radius: 5px;
+            min-width: 80px;
+        }
+
+        QMessageBox QPushButton:hover {
+            background-color: #005A9E;
+        }
+
+        QMessageBox QPushButton:pressed {
+            background-color: #004680;
+        }</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>2</number>
+    </property>
+    <property name="topMargin">
+     <number>2</number>
+    </property>
+    <property name="rightMargin">
+     <number>2</number>
+    </property>
+    <property name="bottomMargin">
+     <number>2</number>
+    </property>
+    <item>
+     <widget class="QWidget" name="widget" native="true">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(0, 0, 0, 180);</string>
+      </property>
+      <widget class="QLabel" name="lbl_video">
+       <property name="geometry">
+        <rect>
+         <x>-4</x>
+         <y>-6</y>
+         <width>485</width>
+         <height>375</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QWidget" name="verticalWidget" native="true">
+       <property name="geometry">
+        <rect>
+         <x>22</x>
+         <y>24</y>
+         <width>423</width>
+         <height>315</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(0, 0, 0, 130);</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QLabel" name="lbl_titulo">
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; font-weight:700; color:#c8c8c8;&quot;&gt;CONFIGURACION&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_3">
+            <item>
+             <widget class="QLabel" name="lbl_Station">
+              <property name="styleSheet">
+               <string notr="true">background-color: none;</string>
+              </property>
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:700; color:#b4b4b4;&quot;&gt;ESTACION&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="box_station">
+              <property name="styleSheet">
+               <string notr="true">background-color: rgba(52, 152, 219, 180); /* Color semi-transparente */
+            color: white;
+            font-size: 16px;
+            padding: 5px;
+            border-radius: 5px;</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>Estacion 3</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Estacion 4</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Estacion 5</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer">
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>0</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_4">
+            <item>
+             <widget class="QLabel" name="lbl_COM">
+              <property name="styleSheet">
+               <string notr="true">background-color: none;</string>
+              </property>
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:700; color:#b4b4b4;&quot;&gt;COM&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="box_com">
+              <property name="styleSheet">
+               <string notr="true">background-color: rgba(52, 152, 219, 180); /* Color semi-transparente */
+            color: white;
+            font-size: 16px;
+            padding: 5px;
+            border-radius: 5px;</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_2">
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>0</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_5">
+            <item>
+             <widget class="QLabel" name="lbl_Label">
+              <property name="styleSheet">
+               <string notr="true">background-color: none;</string>
+              </property>
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:700; color:#b4b4b4;&quot;&gt;ETIQUETA&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="box_label">
+              <property name="styleSheet">
+               <string notr="true">background-color: rgba(52, 152, 219, 180); /* Color semi-transparente */
+            color: white;
+            font-size: 16px;
+            padding: 5px;
+            border-radius: 5px;</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>DMC</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>CODIGO BARRAS</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_3">
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>0</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Orientation::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QPushButton" name="btn_aceptar">
+            <property name="styleSheet">
+             <string notr="true">
+            
+
+QPushButton {
+    background-color: rgba(39, 174, 96, 0.7); /* Verde con transparencia */
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+QPushButton::pressed {
+    background-color: rgba(39, 174, 96, 1); /* verde opaco */
+}</string>
+            </property>
+            <property name="text">
+             <string>ACEPTAR</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btn_cancelar">
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    background-color: rgba(231, 76, 60, 0.7); /* Rojo con transparencia */
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+QPushButton::pressed {
+    background-color: rgba(231, 76, 60, 1); /* Rojo opaco */
+}</string>
+            </property>
+            <property name="text">
+             <string>CANCELAR</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

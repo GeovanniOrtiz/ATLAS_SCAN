@@ -849,6 +849,26 @@ class Ui_MainWindow(object):
 
         self.horizontal_model.addWidget(self.btn_PrintAction)
 
+        self.btn_deleteRegister = QPushButton(self.Model_page)
+        self.btn_deleteRegister.setObjectName(u"btn_deleteRegister")
+        sizePolicy.setHeightForWidth(self.btn_deleteRegister.sizePolicy().hasHeightForWidth())
+        self.btn_deleteRegister.setSizePolicy(sizePolicy)
+        self.btn_deleteRegister.setMinimumSize(QSize(0, 100))
+        self.btn_deleteRegister.setMaximumSize(QSize(250, 16777215))
+        self.btn_deleteRegister.setStyleSheet(u"QPushButton{\n"
+"/*background-color: rgba(255, 196, 0,150);*/\n"
+"background-color: rgba(225, 40, 7,150);\n"
+"font: 700 36pt \"Segoe UI\";\n"
+"border-radius: 10px;\n"
+"border: 4px solid black;\n"
+"border-color: rgb(225, 40, 7);}\n"
+"\n"
+"QPushButton:pressed {\n"
+"	background-color: rgb(225, 40, 7);\n"
+"}")
+
+        self.horizontal_model.addWidget(self.btn_deleteRegister)
+
 
         self.vertical_model.addLayout(self.horizontal_model)
 
@@ -1463,20 +1483,40 @@ class Ui_MainWindow(object):
         self.widget_3.setStyleSheet(u"")
         self.verticalLayout_31 = QVBoxLayout(self.widget_3)
         self.verticalLayout_31.setObjectName(u"verticalLayout_31")
-        self.verticalLayout_28 = QVBoxLayout()
-        self.verticalLayout_28.setObjectName(u"verticalLayout_28")
+        self.horizontalLayout_9 = QHBoxLayout()
+        self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
+        self.lbl_ServerState = QLabel(self.widget_3)
+        self.lbl_ServerState.setObjectName(u"lbl_ServerState")
+        self.lbl_ServerState.setStyleSheet(u"QLabel {\n"
+"    border: 2px solid #FF0000; /* Cambia el color del borde a rojo */\n"
+"	border-color: rgb(0, 85, 255);\n"
+"	border-radius:5px;\n"
+"}")
+
+        self.horizontalLayout_9.addWidget(self.lbl_ServerState)
+
         self.lbl_PrinterState = QLabel(self.widget_3)
         self.lbl_PrinterState.setObjectName(u"lbl_PrinterState")
         self.lbl_PrinterState.setStyleSheet(u"QLabel {\n"
 "    border: 2px solid #FF0000; /* Cambia el color del borde a rojo */\n"
-"	border-color: rgb(255, 85, 0);\n"
+"	border-color: rgb(0, 85, 255);\n"
 "	border-radius:5px;\n"
 "}")
 
-        self.verticalLayout_28.addWidget(self.lbl_PrinterState)
+        self.horizontalLayout_9.addWidget(self.lbl_PrinterState)
+
+        self.lbl_wifiState = QLabel(self.widget_3)
+        self.lbl_wifiState.setObjectName(u"lbl_wifiState")
+        self.lbl_wifiState.setStyleSheet(u"QLabel {\n"
+"    border: 2px solid #FF0000; /* Cambia el color del borde a rojo */\n"
+"	border-color: rgb(0, 85, 255);\n"
+"	border-radius:5px;\n"
+"}")
+
+        self.horizontalLayout_9.addWidget(self.lbl_wifiState)
 
 
-        self.verticalLayout_31.addLayout(self.verticalLayout_28)
+        self.verticalLayout_31.addLayout(self.horizontalLayout_9)
 
 
         self.gridLayout.addWidget(self.widget_3, 2, 0, 1, 1)
@@ -1659,7 +1699,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.MenuPrincipal.setCurrentIndex(6)
+        self.MenuPrincipal.setCurrentIndex(1)
         self.MenuModel_CK.setCurrentIndex(0)
 
 
@@ -1699,7 +1739,7 @@ class Ui_MainWindow(object):
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt; color:#9c9c9c;\"><br /></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:"
-                        "0px;\"><span style=\" font-size:12pt; font-weight:700; color:#e12807;\">Creado por: Aldo Geovanni Ortiz</span></p></body></html>", None))
+                        "0px;\"><span style=\" font-size:12pt; font-weight:700; color:#e12807;\">By: Geovanni Ortiz</span></p></body></html>", None))
         self.user.setText(QCoreApplication.translate("MainWindow", u"N.Parte:", None))
         self.lbl_Nparte.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>3QF 121 251 E</p></body></html>", None))
         self.model.setText(QCoreApplication.translate("MainWindow", u"N.Piezas:", None))
@@ -1716,6 +1756,7 @@ class Ui_MainWindow(object):
         self.titulo_modelo.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:26pt; font-weight:700; color:#e12807;\">Seleccionar Accion</span></p></body></html>", None))
         self.btn_EditAction.setText(QCoreApplication.translate("MainWindow", u"EDITAR", None))
         self.btn_PrintAction.setText(QCoreApplication.translate("MainWindow", u"IMPRIMIR", None))
+        self.btn_deleteRegister.setText(QCoreApplication.translate("MainWindow", u"DELETE", None))
         self.btn_backSlide.setText("")
         self.progressBar.setFormat(QCoreApplication.translate("MainWindow", u"%p%", None))
         self.btn_nextSlide.setText("")
@@ -1746,7 +1787,9 @@ class Ui_MainWindow(object):
         self.btn_PrintLabel.setText(QCoreApplication.translate("MainWindow", u"IMPRIMIR", None))
         self.label_CodigoActual.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; font-weight:700;\">Codigo Actual:</span></p></body></html>", None))
         self.lbl_StateLabel.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:700; color:#00ff00;\">PIEZA APROBADA</span></p></body></html>", None))
-        self.lbl_PrinterState.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">Estado de la Impresora: </span><span style=\" font-size:16pt; font-weight:700; color:#ffc400;\">Impresora Abierta</span></p></body></html>", None))
+        self.lbl_ServerState.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; font-weight:700;\">SERVIDOR:<br/></span><span style=\" font-size:16pt; font-weight:700; color:#00aa00;\">CONECTADO</span></p></body></html>", None))
+        self.lbl_PrinterState.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; font-weight:700;\">IMPRESORA:<br/></span><span style=\" font-size:16pt; font-weight:700; color:#00aa00;\">CONECTADA</span></p></body></html>", None))
+        self.lbl_wifiState.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; font-weight:700;\">WIFI: <br/></span><span style=\" font-size:16pt; font-weight:700; color:#00aa00;\">CONECTADO</span></p></body></html>", None))
         self.label_PzsRealizadas.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700; color:#e12807;\">Piezas Realizadas:</span></p></body></html>", None))
         self.label_PzsFaltantes.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700; color:#e12807;\">Piezas Faltantes:</span></p></body></html>", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:26pt; font-weight:700; color:#e12807;\">Data Matrix</span></p></body></html>", None))

@@ -920,7 +920,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#9c9c9c;&quot;&gt;En la pestaña de DataMatrix&lt;br /&gt;podra encontrar una representacion detallada de los elementos a evaluar de la etiqueta para este radiador.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt; color:#9c9c9c;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:700; color:#e12807;&quot;&gt;Creado por: Aldo Geovanni Ortiz&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:700; color:#e12807;&quot;&gt;By: Geovanni Ortiz&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                   </property>
                  </widget>
                 </item>
@@ -1531,6 +1531,44 @@ QPushButton:pressed {
                        </property>
                        <property name="text">
                         <string>IMPRIMIR</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="btn_deleteRegister">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>100</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>250</width>
+                         <height>16777215</height>
+                        </size>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">QPushButton{
+/*background-color: rgba(255, 196, 0,150);*/
+background-color: rgba(225, 40, 7,150);
+font: 700 36pt &quot;Segoe UI&quot;;
+border-radius: 10px;
+border: 4px solid black;
+border-color: rgb(225, 40, 7);}
+
+QPushButton:pressed {
+	background-color: rgb(225, 40, 7);
+}</string>
+                       </property>
+                       <property name="text">
+                        <string>DELETE</string>
                        </property>
                       </widget>
                      </item>
@@ -2643,18 +2681,46 @@ border-radius:7px;</string>
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_31">
                     <item>
-                     <layout class="QVBoxLayout" name="verticalLayout_28">
+                     <layout class="QHBoxLayout" name="horizontalLayout_9">
+                      <item>
+                       <widget class="QLabel" name="lbl_ServerState">
+                        <property name="styleSheet">
+                         <string notr="true">QLabel {
+    border: 2px solid #FF0000; /* Cambia el color del borde a rojo */
+	border-color: rgb(0, 85, 255);
+	border-radius:5px;
+}</string>
+                        </property>
+                        <property name="text">
+                         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; font-weight:700;&quot;&gt;SERVIDOR:&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-size:16pt; font-weight:700; color:#00aa00;&quot;&gt;CONECTADO&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
                       <item>
                        <widget class="QLabel" name="lbl_PrinterState">
                         <property name="styleSheet">
                          <string notr="true">QLabel {
     border: 2px solid #FF0000; /* Cambia el color del borde a rojo */
-	border-color: rgb(255, 85, 0);
+	border-color: rgb(0, 85, 255);
 	border-radius:5px;
 }</string>
                         </property>
                         <property name="text">
-                         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:700;&quot;&gt;Estado de la Impresora: &lt;/span&gt;&lt;span style=&quot; font-size:16pt; font-weight:700; color:#ffc400;&quot;&gt;Impresora Abierta&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; font-weight:700;&quot;&gt;IMPRESORA:&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-size:16pt; font-weight:700; color:#00aa00;&quot;&gt;CONECTADA&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="lbl_wifiState">
+                        <property name="styleSheet">
+                         <string notr="true">QLabel {
+    border: 2px solid #FF0000; /* Cambia el color del borde a rojo */
+	border-color: rgb(0, 85, 255);
+	border-radius:5px;
+}</string>
+                        </property>
+                        <property name="text">
+                         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; font-weight:700;&quot;&gt;WIFI: &lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-size:16pt; font-weight:700; color:#00aa00;&quot;&gt;CONECTADO&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                         </property>
                        </widget>
                       </item>

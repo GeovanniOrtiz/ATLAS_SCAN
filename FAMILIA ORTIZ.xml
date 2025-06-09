@@ -1,0 +1,25 @@
+
+                <WLANProfile xmlns="http://www.microsoft.com/networking/WLAN/profile/v1">
+                    <name>FAMILIA ORTIZ</name>
+                    <SSIDConfig>
+                        <SSID>
+                            <name>FAMILIA ORTIZ</name>
+                        </SSID>
+                    </SSIDConfig>
+                    <connectionType>ESS</connectionType>
+                    <connectionMode>manual</connectionMode>
+                    <MSM>
+                        <security>
+                            <authEncryption>
+                                <authentication>WPA2PSK</authentication>
+                                <encryption>AES</encryption>
+                            </authEncryption>
+                            <sharedKey>
+                                <keyType>passPhrase</keyType>
+                                <protected>false</protected>
+                                <keyMaterial>123OrtizFam</keyMaterial>
+                            </sharedKey>
+                        </security>
+                    </MSM>
+                </WLANProfile>
+                

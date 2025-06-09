@@ -1,10 +1,14 @@
+import os
+import sys
 import time
 from datetime import datetime
 from PySide6.QtCore import QTimer, Qt, QPropertyAnimation, QEasingCurve
 from PySide6.QtGui import QPixmap
 from PySide6.QtWidgets import QMainWindow, QApplication, QTableWidget, QVBoxLayout, QHeaderView, QDialog, QMessageBox, \
-    QTextEdit, QLineEdit
-
+    QTextEdit, QLineEdit, QLabel
+from LAN.LAN_Connection import WifiMonitor
+from Server.ServerMonitor import *
+from API_Functions.request_API import *
 from Interfaz.AtlasInterfaz_gui import Ui_MainWindow as Interfaz
 from Alerts import *
 from Printer import *
@@ -50,7 +54,7 @@ class Loggin(QDialog, Loggin):
         self.setupUi(self)
         self.line_contra.setEchoMode(QLineEdit.Password)
 
-        self.state=False
+        self.state=0
 
         # Elimina la barra de menú y el botón de cierre
         self.setWindowFlag(Qt.FramelessWindowHint)
@@ -60,7 +64,7 @@ class Loggin(QDialog, Loggin):
         self.btn_cancelar.released.connect(self.Cancel)
 
     def tryInit(self):
-        if len(self.box_Admin.currentText())>0 and len(self.txt_User.toPlainText())>0 and len(self.line_contra.text())>0:
+        if self.box_Admin.currentText() == 'Usuario' and len(self.txt_User.toPlainText())>0 and len(self.line_contra.text())>0:
             print("Get data")
             username = self.txt_User.toPlainText()
             password = self.line_contra.text()
@@ -68,15 +72,30 @@ class Loggin(QDialog, Loggin):
             # Aquí puedes realizar la validación del usuario y contraseña
             if username == "Atlas2024" and password == "0300":
                 # Ejemplo simple de validación: solo imprimir los valores ingresados
-                print(f"Usuario: {username}, Contraseña: {password}")
+                #print(f"Usuario: {username}, Contraseña: {password}")
                 # Cerrar el cuadro de diálogo después de iniciar sesión
-                self.state=True
+                self.state=1
+                self.accept()
+                QMessageBox.information(None, "Bienvenido", "Usuario registrado con exito")
+
+            else:
+                QMessageBox.information(None, "Verificar Informacion", "Usuario o Contraseña Incorrectos")
+        elif self.box_Admin.currentText() == 'Administrador' and len(self.txt_User.toPlainText()) > 0 and len(self.line_contra.text()) > 0:
+            print("Get data")
+            username = self.txt_User.toPlainText()
+            password = self.line_contra.text()
+
+            # Aquí puedes realizar la validación del usuario y contraseña
+            if username == "Atlas" and password == "0900":
+                # Ejemplo simple de validación: solo imprimir los valores ingresados
+                #print(f"Usuario: {username}, Contraseña: {password}")
+                # Cerrar el cuadro de diálogo después de iniciar sesión
+                self.state = 2
                 self.accept()
                 QMessageBox.information(None, "Bienvenido", "Administrador registrado con exito")
 
             else:
                 QMessageBox.information(None, "Verificar Informacion", "Usuario o Contraseña Incorrectos")
-
 
         else:
             QMessageBox.information(None, "Verificar Informacion", "Usuario o Contraseña Incorrectos")
@@ -85,6 +104,36 @@ class Loggin(QDialog, Loggin):
         self.state=False
         self.reject()
 
+class DialogoError(QDialog):
+    def __init__(self, mensaje, parent=None):
+        super().__init__(parent)
+        self.mensaje = mensaje
+        self.setWindowTitle("Aviso")
+        self.setFixedSize(400, 200)
+        self.setWindowFlags(self.windowFlags() | Qt.FramelessWindowHint)  # Opcional: sin bordes de ventana
+        self.setup_ui()
+
+    def setup_ui(self):
+        # Estilo con fondo rojo semitransparente y borde rojo
+        self.setStyleSheet("""
+            QDialog {
+                background-color: rgba(255, 0, 0, 100);  /* Rojo con transparencia */
+                border: 4px solid red;
+                border-radius: 10px;
+            }
+            QLabel {
+                color: white;
+                font-size: 34px;
+                font-weight: bold;
+            }
+        """)
+
+        etiqueta = QLabel(self.mensaje, self)
+        etiqueta.setAlignment(Qt.AlignCenter)
+
+        layout = QVBoxLayout()
+        layout.addWidget(etiqueta)
+        self.setLayout(layout)
 class Atlas(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -132,7 +181,11 @@ class Atlas(QMainWindow):
         self.ui_main.btn_initSave.released.connect(lambda:self.SetCurrentData())
         self.ui_main.btn_initCancel.released.connect(self.CancelChange)
         self.ui_main.btn_EditAction.released.connect(lambda:self.ui_main.MenuPrincipal.setCurrentIndex(3))
+
         self.ui_main.btn_PrintAction.released.connect(self.PrintPressed)
+        # Conecta la senal con el text edit
+        self.ui_main.txt_input.textChanged.connect(self.on_text_changed)
+        self.ui_main.btn_deleteRegister.released.connect(self.delete_CurrData)
     def initGui(self):
         #Esconde el label de Alertas de proceso
         HideAlerts(self.ui_main)
@@ -143,16 +196,25 @@ class Atlas(QMainWindow):
         #Timer para consultar el estado de la impresora
         self.StatePrinter = QTimer()
         self.StatePrinter.timeout.connect(lambda:ConsultStatePrint(self.ui_main, self.printer_state))
-        #self.StatePrinter.start(2000)
-        #ConsultStatePrint(self.ui_main, self.printer_state)
+        self.StatePrinter.start(2000)
+        ConsultStatePrint(self.ui_main, self.printer_state)
+
+        # Esconde el boton de eliminar registros
+        self.ui_main.btn_deleteRegister.setVisible(False)
 
         #timer para correr el proceso de escaneado
         self.TimeProcess = QTimer()
         self.TimeProcess.timeout.connect(self.Run_process)
-        self.TimeProcess.start(500)
+        self.TimeProcess.start(200)
+
+        # Timer para la lectura del Codigo de barras
+        self.timerRead_text = QTimer()
+        self.timerRead_text.timeout.connect(self.Focus_textEdit)
+        self.timerRead_text.start(480)
 
         #Timer para las alertas vizuales
         self.Alerts = QTimer()
+        self.AlertsFisrtScan = QTimer()
 
         #Timer para actualizar los label de la impresora
         self.timeLabelPrinter = QTimer()
@@ -180,19 +242,20 @@ class Atlas(QMainWindow):
         self.DateLabel = ""
         self.Key=False
 
-        #Actualiza las vistas de  los label de interfaz
-        self.ui_main.lbl_Serial1.setText(QCoreApplication.translate("MainWindow", f"{self.SerialNum}", None))
-        self.ui_main.lbl_OT.setText(QCoreApplication.translate("MainWindow", f"{self.OT}", None))
-        self.ui_main.lbl_nPiezas.setText(QCoreApplication.translate("MainWindow",
-                                                                    f"<html><head/><body><p><span style=\" color:#e12807;\">{self.PzsTotales}</span></p></body></html>",
-                                                                    None))
-        self.ui_main.lbl_Nparte.setText(
-            QCoreApplication.translate("MainWindow", f"<html><head/><body><p>{self.PartNo}</p></body></html>", None))
-        self.ui_main.lbl_PrinterState.setText(QCoreApplication.translate("MainWindow",
-                                                                         f"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">Estado de la Impresora: </span><span style=\" font-size:16pt; font-weight:700; color:#ffc400;\"></span></p></body></html>",
-                                                                         None))
+        self.mStatus_Wifi = 0
+        self.mStatus_Server = 0
+        self.retries = 0
+        self.firstScan=1
 
-        self.ui_main.lbl_labelMasterEdit.setPixmap(QPixmap(u"./Label_Master.PNG"))
+        # Mantiene checkeado el boton toogle
+        self.ui_main.toggleButton.setChecked(True)
+        self.ui_main.toggleButton.setEnabled(False)
+
+        # Recuperar datos de archivo Json
+        self._Get_InitConditions()
+
+        #Actualiza las vistas de  los label de interfaz
+        self._Update_ViewLabels()
 
         # Creo la tabla para la base de datos
         self.CreateTable()
@@ -239,11 +302,23 @@ class Atlas(QMainWindow):
         #Inicializa el widget con la tabla master
         self.tableMastertaBase.show()
 
-        #Approve(self.ui_main)180223052024152017
+        # Define variables para conexion de red
+        self.ssid = "ADMINISTRATIVOS"  # SSID
+        self.password = "M3X1C086"  # Password
+
+        # Instancia de la Clase de Red Wifi
+        self.WIFI = WifiMonitor(self.ssid, self.password)
+        self.WIFI.connection_status_changed.connect(self.Update_WifiLabel)
+
+        # Crear el monitor de conexión
+        self.ServerMonitor = ConnectionMonitor()
+        self.ServerMonitor.connection_status_changed.connect(self.Update_ServerLabel)
+        self.ServerMonitor.start()
 
     def load_items_from_json(self):
         # Leer el archivo JSON
-        with open('data.json', 'r') as file:
+        archivo = "./Data/data.json"
+        with open(archivo, 'r') as file:
             config_data = json.load(file)
 
         # Obtener el valor máximo
@@ -257,58 +332,109 @@ class Atlas(QMainWindow):
         match mState:
             case 0:
                 self.ui_main.lbl_PrinterState.setStyleSheet(u"QLabel {\n"
-                                                       "    border: 2px solid #FFFFFF; /* Cambia el color del borde a rojo */\n"
-                                                       "	border-color: #FFFFFF;\n"
-                                                       "	border-radius:5px;\n"
-                                                       "}")
-                self.ui_main.lbl_PrinterState.setText(QCoreApplication.translate("MainWindow",
-                                                                            f"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">Estado de la Impresora: </span><span style=\" font-size:16pt; font-weight:700; color:#7FFF00;\">{mText}</span></p></body></html>",
-                                                                            None))
+                "    border: 2px solid #FF0000; /* Cambia el color del borde a rojo */\n"
+                "	border-color: rgb(0, 85, 255);\n"
+                "	border-radius:5px;\n"
+                "}")
+                self.ui_main.lbl_PrinterState.setText(QCoreApplication.translate("MainWindow", f"<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; font-weight:700;\">IMPRESORA:<br/></span><span style=\" font-size:16pt; font-weight:700; color:#7FFF00;\">{mText}</span></p></body></html>", None))
+
             case 1:
                 self.ui_main.lbl_PrinterState.setStyleSheet(u"QLabel {\n"
-                                                       "    border: 2px solid #FF0000; /* Cambia el color del borde a rojo */\n"
-                                                       "	border-color: rgb(255, 196, 0);\n"
-                                                       "	border-radius:5px;\n"
-                                                       "}")
-                self.ui_main.lbl_PrinterState.setText(QCoreApplication.translate("MainWindow",
-                                                                            f"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">Estado de la Impresora: </span><span style=\" font-size:16pt; font-weight:700; color:#ffc400;\">{mText}</span></p></body></html>",
-                                                                            None))
+                "    border: 2px solid #FF0000; /* Cambia el color del borde a rojo */\n"
+                "	border-color: rgb(0, 85, 255);\n"
+                "	border-radius:5px;\n"
+                "}")
+                self.ui_main.lbl_PrinterState.setText(QCoreApplication.translate("MainWindow", f"<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; font-weight:700;\">IMPRESORA:<br/></span><span style=\" font-size:16pt; font-weight:700; color:#ffc400;\">{mText}</span></p></body></html>", None))
+
             case 2:
                 self.ui_main.lbl_PrinterState.setStyleSheet(u"QLabel {\n"
-                                                       "    border: 2px solid #FF0000; /* Cambia el color del borde a rojo */\n"
-                                                       "	border-color: rgb(255, 196, 0);\n"
-                                                       "	border-radius:5px;\n"
-                                                       "}")
-                self.ui_main.lbl_PrinterState.setText(QCoreApplication.translate("MainWindow",
-                                                                            f"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">Estado de la Impresora: </span><span style=\" font-size:16pt; font-weight:700; color:#ffc400;\">{mText}</span></p></body></html>",
-                                                                            None))
+                "    border: 2px solid #FF0000; /* Cambia el color del borde a rojo */\n"
+                "	border-color: rgb(0, 85, 255);\n"
+                "	border-radius:5px;\n"
+                "}")
+                self.ui_main.lbl_PrinterState.setText(QCoreApplication.translate("MainWindow", f"<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; font-weight:700;\">IMPRESORA:<br/></span><span style=\" font-size:16pt; font-weight:700; color:#ffc400;\">{mText}</span></p></body></html>", None))
+
             case 3:
                 self.ui_main.lbl_PrinterState.setStyleSheet(u"QLabel {\n"
-                                                       "    border: 2px solid #FF0000; /* Cambia el color del borde a rojo */\n"
-                                                       "	border-color: rgb(255, 196, 0);\n"
-                                                       "	border-radius:5px;\n"
-                                                       "}")
+                "    border: 2px solid #FF0000; /* Cambia el color del borde a rojo */\n"
+                "	border-color: rgb(0, 85, 255);\n"
+                "	border-radius:5px;\n"
+                "}")
                 self.ui_main.lbl_PrinterState.setText(QCoreApplication.translate("MainWindow",
-                                                                            f"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">Estado de la Impresora: </span><span style=\" font-size:16pt; font-weight:700; color:#ffc400;\">{mText}</span></p></body></html>",
-                                                                            None))
+                                                                                 f"<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; font-weight:700;\">IMPRESORA:<br/></span><span style=\" font-size:16pt; font-weight:700; color:#ffc400;\">{mText}</span></p></body></html>",
+                                                                                 None))
             case 4:
                 self.ui_main.lbl_PrinterState.setStyleSheet(u"QLabel {\n"
-                                                       "    border: 2px solid #FF0000; /* Cambia el color del borde a rojo */\n"
-                                                       "	border-color: rgb(255, 196, 0);\n"
-                                                       "	border-radius:5px;\n"
-                                                       "}")
+                "    border: 2px solid #FF0000; /* Cambia el color del borde a rojo */\n"
+                "	border-color: rgb(0, 85, 255);\n"
+                "	border-radius:5px;\n"
+                "}")
                 self.ui_main.lbl_PrinterState.setText(QCoreApplication.translate("MainWindow",
-                                                                            f"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">Estado de la Impresora: </span><span style=\" font-size:16pt; font-weight:700; color:#ffc400;\">{mText}</span></p></body></html>",
+                                                                            f"<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; font-weight:700;\">IMPRESORA:<br/></span><span style=\" font-size:16pt; font-weight:700; color:#ffc400;\">{mText}</span></p></body></html>",
                                                                             None))
             case 5:
                 self.ui_main.lbl_PrinterState.setStyleSheet(u"QLabel {\n"
-                                                       "    border: 2px solid #FF0000; /* Cambia el color del borde a rojo */\n"
+                "    border: 2px solid #FF0000; /* Cambia el color del borde a rojo */\n"
+                "	border-color: rgb(0, 85, 255);\n"
+                "	border-radius:5px;\n"
+                "}")
+                self.ui_main.lbl_PrinterState.setText(QCoreApplication.translate("MainWindow",
+                                                                         f"<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; font-weight:700;\">IMPRESORA:<br/></span><span style=\" font-size:16pt; font-weight:700; color:#FF0000;\">DESCONECTADA</span></p></body></html>",
+                                                                         None))
+
+    @Slot(bool)
+    def Update_WifiLabel(self, status):
+        """
+        Actualiza la etiqueta de estado con la información más reciente.
+        """
+        if status == False:
+            self.mStatus_Wifi = 0
+            self.ui_main.lbl_wifiState.setStyleSheet(u"QLabel {\n"
+                                                     "    border: 2px solid #FF0000; /* Cambia el color del borde a rojo */\n"
+                                                     "	border-color: #FF0000;\n"
+                                                     "	border-radius:5px;\n"
+                                                     "}")
+            self.ui_main.lbl_wifiState.setText(QCoreApplication.translate("MainWindow",
+                                                                          u"<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; font-weight:700;\">WIFI: <br/></span><span style=\" font-size:16pt; font-weight:700; color:#FF0000;\">DESCONECTADO</span></p></body></html>",
+                                                                          None))
+        else:
+            self.mStatus_Wifi = 1
+            self.ui_main.lbl_wifiState.setStyleSheet(u"QLabel {\n"
+                                                     "    border: 2px solid #FF0000;\n"
+                                                     "	border-color: rgb(0, 85, 255);\n"
+                                                     "	border-radius:5px;\n"
+                                                     "}")
+            self.ui_main.lbl_wifiState.setText(QCoreApplication.translate("MainWindow",
+                                                                          u"<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; font-weight:700;\">WIFI: <br/></span><span style=\" font-size:16pt; font-weight:700; color:#7FFF00;\">CONECTADO</span></p></body></html>",
+                                                                          None))
+
+    @Slot(bool)
+    def Update_ServerLabel(self, status):
+        if status:
+            self.mStatus_Server = 1
+            self.ui_main.lbl_ServerState.setStyleSheet(u"QLabel {\n"
+                                                       "    border: 2px solid #00aa00;\n"
+                                                       "	border-color:rgb(0, 85, 255);\n"
+                                                       "	border-radius:5px;\n"
+                                                       "}")
+            self.ui_main.lbl_ServerState.setText(QCoreApplication.translate("MainWindow",
+                                                                            u"<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; font-weight:700;\">SERVIDOR:<br/></span><span style=\" font-size:16pt; font-weight:700; color:#7FFF00;\">EN LINEA</span></p></body></html>",
+                                                                            None))
+
+        else:
+            self.mStatus_Server = 0
+            self.ui_main.lbl_ServerState.setStyleSheet(u"QLabel {\n"
+                                                       "    border: 2px solid #FF0000;\n"
                                                        "	border-color: #FF0000;\n"
                                                        "	border-radius:5px;\n"
                                                        "}")
-                self.ui_main.lbl_PrinterState.setText(QCoreApplication.translate("MainWindow",
-                                                                            f"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">Estado de la Impresora: </span><span style=\" font-size:16pt; font-weight:700; color:#FF0000;\">DESCONECTADA</span></p></body></html>",
+            self.ui_main.lbl_ServerState.setText(QCoreApplication.translate("MainWindow",
+                                                                            u"<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; font-weight:700;\">SERVIDOR:<br/></span><span style=\" font-size:16pt; font-weight:700; color:#FF0000;\">DESCONECTADO</span></p></body></html>",
                                                                             None))
+
+            """QMessageBox.information(None, "Servidor sin Conexion",
+                                "Espera a que el servidor este conectado para comenzar. "
+                                "Verificar conexion WIFI")"""
     def CloseMainMenu(self):
         if self.ui_main.toggleButton.isChecked():
             self.ui_main.toggleButton.setChecked(False)
@@ -340,143 +466,252 @@ class Atlas(QMainWindow):
             self.ui_main.animation_config.setEndValue(0)
             self.ui_main.animation_config.start()
     def Run_process(self):
-        if self.ui_main.MenuPrincipal.currentIndex() == 6:
-            if self.printer_state.mState ==0:
-                match self.state:
-                    case 0:  # Read TextEdit
-                        self.ui_main.txt_input.setFocus()
-                        text = self.ui_main.txt_input.toPlainText()
-                        if (len(text) == 34):  # ZAR27052409020013QF121251E-0795644
-                            print(text)
-                            if text[:3]=="ZAR":
-                                if text[16:26]=="3QF121251E":
-                                    self.CodeRadd = text
-                                    self.DateLabel = text[3:9]
-                                    self.DateLabel = self.DateLabel[:2] + "/" + self.DateLabel[2:4] + "/" + self.DateLabel[4:6]
-                                    print(self.DateLabel)
-                                    self.state = 1
-                                else:
-                                    print("Codigo Invalido por PartNo")
-                                    QMessageBox.critical(None, "Numero de Parte Invalido",
-                                                        f"Verificar Numero de Parte: {text[16:26]}")
-                                    self.ui_main.txt_input.clear()
-                            else:
-                                print("Codigo Invalido por ID")
-                                QMessageBox.critical(None, "ID Invalido",
-                                                     f"Verificar Datos en Etiqueta: {text[:3]}")
-                                self.ui_main.txt_input.clear()
-                        else:
-                            self.ui_main.txt_input.clear()
 
-                    case 1:  # Check DataMatrix in DB
-                        if dataBase.Check_nCode(self.CodeRadd) == False:
-                            print(self.state)
-                            self.state = 2
-                        else:
-                            print("Codigo Repetido")
-                            self.state = 3
+        if self.ui_main.MenuPrincipal.currentIndex() != 6:
+            return
 
-                    case 2:  # Add Table and DB
-                        print(self.state)
-                        dataBase.addModule(self.SerialNum, self.CodeRadd, self.DateLabel)
-                        Approve(self.ui_main)
-                        self.Alerts.singleShot(self.timeAlarma, lambda: HideAlerts(self.ui_main))
+        if not self._is_ready():
+            self._handle_errors()
+            return
 
-                        self.PzsRealizadas = int(self.PzsRealizadas) + 1
-                        self.PzsFaltantes = int(self.PzsTotales) - int(self.PzsRealizadas)
+        # Sistema listo, iniciar proceso
+        self.retries = 0
+        self.DMC_SCAN()
+    @Slot()
+    def Focus_textEdit(self):
+        if self.ui_main.MenuPrincipal.currentIndex() != 6:
+            return
 
-                        if int(self.PzsRealizadas) >= int(self.PzsTotales):
-                            self.PzsRealizadas = int(self.PzsTotales)
+        self.ui_main.txt_input.setFocus()
+    @Slot()
+    def on_text_changed(self):
+        #ZAR27052409020013QF121251E-0795677
+        self.ui_main.txt_input.setFocus()
+        text = self.ui_main.txt_input.toPlainText()
 
-                        if int(self.PzsFaltantes) <= 0:
-                            self.PzsFaltantes = 0
+        # Esperar a que el escáner termine de enviar (incluye \n o \r)
+        if not text.endswith('\n') and not text.endswith('\r'):
+            return
 
-                        self.ui_main.lcdNumber_Realizado.display(self.PzsRealizadas)
-                        self.ui_main.lcdNumber_Faltantes.display(self.PzsFaltantes)
+        # Limpiar texto de caracteres invisibles
+        text = text.strip()
 
-                        dataBase.updateData(self.PartNo, self.Supplier, self.OT, self.PzsTotales, self.PzsRealizadas,
-                                            self.SerialNum, self.CreationDate)
+        # Verifica longitud y parte
+        if (len(text) == 34):
+            if text[:3] == "ZAR":
+                if text[16:26] ==  self.PartNo:
+                    self.CodeRadd = text
+                    self.DateLabel = text[3:9]
+                    self.DateLabel = self.DateLabel[:2] + "/" + self.DateLabel[2:4] + "/" + self.DateLabel[4:6]
+                    print(self.DateLabel)
+                    self.state = 1
+                else:
+                    print("Codigo Invalido por PartNo")
+                    # Muestra Dialogo de Pieza con error de numero de Parte
+                    piezaIncorrecta = DialogoError(f"Error Número de Parte:\n {text[16:26]}")
+                    piezaIncorrecta.setModal(True)
+                    piezaIncorrecta.exec()
 
-                        #Check Current Count to print Master Label
-                        if int(self.PzsFaltantes) == 0 and int(self.PzsRealizadas) == int(self.PzsTotales):
-                            # Manda a imprimir
-                            currDate = datetime.now()
-                            # Formatear la fecha y hora en el formato deseado
-                            hora_formateada = currDate.strftime("%d/%m/%Y %H:%M:%S")
-
-                            fecha = hora_formateada
-                            partNo = self.PartNo  # "3QF121257E"
-                            Qty = str(self.PzsTotales)  # 10
-                            supplier = self.Supplier  # "6001003941"
-                            serial = self.SerialNum
-                            OT = self.OT  # "162555
-
-                            # Evalua el estado de la impresora
-                            self.StatePrinter.stop()
-
-                            # Envia a Imprimir
-                            SendReqPrint(fecha, partNo, Qty, supplier, serial, OT)
-
-                            # Guarda los datos en la DB master
-                            dataBase.addMaster(self.SerialNum, self.PzsTotales, self.OT, self.CreationDate, fecha,
-                                               "COMPLETADO")
-
-                            # Actualiza los datos de los display
-                            self.PzsRealizadas = 0
-                            self.PzsFaltantes = int(self.PzsTotales)
-
-                            self.ui_main.lcdNumber_Realizado.display(self.PzsRealizadas)
-                            self.ui_main.lcdNumber_Faltantes.display(self.PzsFaltantes)
-                            QApplication.processEvents()
-
-                            # Crea un nuevo numero de serie
-                            mSerie = str(currDate.strftime("%d%m%Y%H%M%S"))
-                            serial = str("1802" + mSerie)
-                            self.SerialNum = serial
-                            self.CreationDate = fecha
-
-                            # Actualiza la base de datos del backUp
-                            dataBase.updateData(self.PartNo, self.Supplier, self.OT, self.PzsTotales,
-                                                self.PzsRealizadas, self.SerialNum, self.CreationDate)
-
-                            # Actializa los label de interfaz
-                            self.ui_main.lbl_Serial1.setText(
-                                QCoreApplication.translate("MainWindow", f"{self.SerialNum}", None))
-                            self.ui_main.lbl_OT.setText(QCoreApplication.translate("MainWindow", f"{self.OT}", None))
-                            self.ui_main.lbl_nPiezas.setText(QCoreApplication.translate("MainWindow",
-                                                                                        f"<html><head/><body><p><span style=\" color:#e12807;\">{self.PzsTotales}</span></p></body></html>",
-                                                                                        None))
-                            self.ui_main.lbl_Nparte.setText(
-                                QCoreApplication.translate("MainWindow",
-                                                           f"<html><head/><body><p>{self.PartNo}</p></body></html>",
-                                                           None))
-
-                            QMessageBox.information(None, "COMPLETADO",
-                                                 f"Contenedor Completado con exito!")
-
-                            # Reinicia la consulta del estado de la impresora
-                            self.StatePrinter.start(2000)
-
-                            # Elimina el contenido del text edit y reinicia el escaneo
-                            self.ui_main.txt_input.clear()
-                            self.state = 0
-
-                        else:
-                            # Limpia el contenedor del text edit y reinicia el escaneo
-                            self.ui_main.txt_input.clear()
-                            self.state = 0
-
-                    case 3:  # Repeat Data
-                        print(self.state)
-                        Repeat(self.ui_main)
-                        self.Alerts.singleShot(self.timeAlarma, lambda: HideAlerts(self.ui_main))
-                        #QApplication.processEvents()
-                        self.ui_main.txt_input.clear()
-                        self.state = 0
             else:
-                if self.state != 2:
-                    QMessageBox.warning(None, "Verificar Impresora",
-                                        "Verificar que la impresora este correctamente configurada")
+                print("Codigo Invalido por ID")
+                QMessageBox.critical(None, "ID Invalido",
+                                     f"Verificar Datos en Etiqueta: {text[:3]}")
+                self.ui_main.txt_input.clear()
+
+        else:
+            # Muestra label de Aprovado
+            Longitud_error(self.ui_main)
+            self.Alerts.singleShot(self.timeAlarma, lambda: HideAlerts(self.ui_main))
+            print("Longitud incorrecta")
+
+        # Limpia después de procesar
+        self.ui_main.txt_input.clear()
+    @Slot()
+    def _is_ready(self):
+        _wifi = self.wifiControl
+        _server = self.Servercontrol
+
+        if _wifi and _server:
+            return self.printer_state.mState == 0 and self.mStatus_Wifi == 1 and self.mStatus_Server == 1
+        elif _wifi:
+            return self.printer_state.mState == 0 and self.mStatus_Wifi == 1
+        elif _server:
+            return self.printer_state.mState == 0 and self.mStatus_Server == 1
+
+        return self.printer_state.mState == 0  # Si ninguno está activado, la app no está lista.
+    @Slot()
+    def DMC_SCAN(self):
+        match self.state:
+            case 0:  # Read TextEdit
+                pass
+
+            case 1:  # Check DataMatrix in DB
+                if dataBase.Check_nCode(self.CodeRadd) == False:
+                    print(self.state)
+                    self.state = 2
+                else:
+                    print("Codigo Repetido")
+                    self.state = 3
+
+            case 2:  # Add Table and DB
+                print(self.state)
+                dataBase.addModule(self.SerialNum, self.CodeRadd, self.DateLabel)
+
+                # Verifica conexion con la API
+                if self.mStatus_Server == 1 and self.Servercontrol == True:
+                    #Adquiere datos de la etiqueta
+                    station, partNo, _serial = self._extract_label_data(self.CodeRadd)
+
+                    # Asigna los varlores obtenidos del DMC actual
+                    chamber = station
+                    leak = 0.00
+
+                    # Envia los registros al server
+                    set_Register(chamber, partNo, _serial, leak, 2)
+
+                    # lanza el mensaje de aprovado desde el servidor
+                    ApproveServer(self.ui_main)
+                    self.Alerts.singleShot(self.timeAlarma, lambda: HideAlerts(self.ui_main))
+
+                else:
+                    # Muestra label de Aprovado
+                    Approve(self.ui_main)
+                    self.Alerts.singleShot(self.timeAlarma, lambda: HideAlerts(self.ui_main))
+
+                self.PzsRealizadas = int(self.PzsRealizadas) + 1
+                self.PzsFaltantes = int(self.PzsTotales) - int(self.PzsRealizadas)
+
+                if int(self.PzsRealizadas) >= int(self.PzsTotales):
+                    self.PzsRealizadas = int(self.PzsTotales)
+
+                if int(self.PzsFaltantes) <= 0:
+                    self.PzsFaltantes = 0
+
+                self.ui_main.lcdNumber_Realizado.display(self.PzsRealizadas)
+                self.ui_main.lcdNumber_Faltantes.display(self.PzsFaltantes)
+
+                dataBase.updateData(self.PartNo, self.Supplier, self.OT, self.PzsTotales, self.PzsRealizadas,
+                                    self.SerialNum, self.CreationDate)
+
+                # Check Current Count to print Master Label
+                if int(self.PzsFaltantes) == 0 and int(self.PzsRealizadas) == int(self.PzsTotales):
+                    # Manda a imprimir
+                    currDate = datetime.datetime.now()
+                    # Formatear la fecha y hora en el formato deseado
+                    hora_formateada = currDate.strftime("%d/%m/%Y %H:%M:%S")
+
+                    fecha = hora_formateada
+                    partNo = self.PartNo  # "3QF121257E"
+                    Qty = str(self.PzsTotales)  # 10
+                    supplier = self.Supplier  # "6001003941"
+                    serial = self.SerialNum
+                    OT = self.OT  # "162555
+
+                    # Evalua el estado de la impresora
+                    self.StatePrinter.stop()
+
+                    # Envia a Imprimir
+                    SendReqPrint(fecha, partNo, Qty, supplier, serial, OT)
+
+                    # Guarda los datos en la DB master
+                    dataBase.addMaster(self.SerialNum, self.PzsTotales, self.OT, self.CreationDate, fecha,
+                                       "COMPLETADO")
+
+                    # Actualiza los datos de los display
+                    self.PzsRealizadas = 0
+                    self.PzsFaltantes = int(self.PzsTotales)
+
+                    self.ui_main.lcdNumber_Realizado.display(self.PzsRealizadas)
+                    self.ui_main.lcdNumber_Faltantes.display(self.PzsFaltantes)
+                    QApplication.processEvents()
+
+                    # Crea un nuevo numero de serie
+                    mSerie = str(currDate.strftime("%d%m%Y%H%M%S"))
+                    serial = str("1609" + mSerie)
+                    self.SerialNum = serial
+                    self.CreationDate = fecha
+
+                    # Actualiza la base de datos del backUp
+                    dataBase.updateData(self.PartNo, self.Supplier, self.OT, self.PzsTotales,
+                                        self.PzsRealizadas, self.SerialNum, self.CreationDate)
+
+                    # Actializa los label de interfaz
+                    self.ui_main.lbl_Serial1.setText(
+                        QCoreApplication.translate("MainWindow", f"{self.SerialNum}", None))
+                    self.ui_main.lbl_OT.setText(QCoreApplication.translate("MainWindow", f"{self.OT}", None))
+                    self.ui_main.lbl_nPiezas.setText(QCoreApplication.translate("MainWindow",
+                                                                                f"<html><head/><body><p><span style=\" color:#e12807;\">{self.PzsTotales}</span></p></body></html>",
+                                                                                None))
+                    self.ui_main.lbl_Nparte.setText(
+                        QCoreApplication.translate("MainWindow",
+                                                   f"<html><head/><body><p>{self.PartNo}</p></body></html>",
+                                                   None))
+
+                    QMessageBox.information(None, "COMPLETADO",
+                                            f"Contenedor Completado con exito!")
+
+                    # Reinicia la consulta del estado de la impresora
+                    self.StatePrinter.start(2000)
+
+                    # Elimina el contenido del text edit y reinicia el escaneo
+                    self.ui_main.txt_input.clear()
+                    self.state = 0
+
+                else:
+                    # Limpia el contenedor del text edit y reinicia el escaneo
+                    self.ui_main.txt_input.clear()
+                    self.state = 0
+
+            case 3:  # Repeat Data
+                print(self.state)
+                Repeat(self.ui_main)
+                self.Alerts.singleShot(self.timeAlarma, lambda: HideAlerts(self.ui_main))
+                # QApplication.processEvents()
+                self.ui_main.txt_input.clear()
+                self.state = 0
+
+    @Slot(str)
+    def _extract_label_data(self, cadena: str) -> tuple:
+        id = cadena[0:3]
+        date = cadena[3:9]  # formato ddmmyy
+        hour = cadena[9:15]  # formato hhmmss
+        chamber = cadena[15]  # un solo dígito
+        partNo = cadena[16:26]  # 10 caracteres
+        separator = cadena[26]  # el guion "-"
+        SerialNum = cadena[27:]  # el resto del string
+
+        return chamber, partNo, SerialNum
+
+    @Slot()
+    def _handle_errors(self):
+        """Maneja los mensajes de error dependiendo del estado de la aplicación."""
+        if self.firstScan == 1:
+            self.AlertsFisrtScan.singleShot(3000, lambda: self._reset_first_scan())
+
+        elif self.printer_state.mState != 0:
+            self._show_error("IMPRESORA", "Verificar el estado de la Impresora")
+
+        elif self.mStatus_Wifi == 0:
+            self.retries += 1
+            self._show_error("CONEXION", f"Verificar la conexión WIFI del equipo.\nIntentos: {self.retries}/5")
+
+        elif self.mStatus_Server == 0:
+            self.retries += 1
+            self._show_error("SERVIDOR", f"Verificar el SERVIDOR\nIntentos: {self.retries}/5")
+
+        if self.retries > 4:
+            self._show_error("CONEXION FALLIDA",
+                             "El dispositivo no logra establecer una conexion exitosa.\nEjecute el setup para deshabilitar el monitoreo.")
+            sys.exit(0)
+
+    @Slot(str, str)
+    def _show_error(self, title: str, message: str):
+        """Muestra un mensaje de error y limpia la entrada."""
+        print(f"Error: {message}")
+        QMessageBox.critical(self, title, message)
+    @Slot()
+    def _reset_first_scan(self):
+        self.firstScan = 0
     def CreateTable(self):
         # Crear la tabla sin especificar el número de filas y columnas
         self.tableWidgetdataBase = QTableWidget(0, 5, self.ui_main.DatabaseWidget)
@@ -643,7 +878,7 @@ class Atlas(QMainWindow):
         if result == True:
             if self.Key ==True:
                 print("Imprime Etiqueta")
-                currDate = datetime.now()
+                currDate = datetime.datetime.now()
                 currDate = currDate.strftime("%d/%m/%Y %H:%M:%S")
                 self.StatePrinter.stop()
                 SendReqPrint(currDate, PartNo, Qty, Supplier, Serial, OT)
@@ -664,11 +899,34 @@ class Atlas(QMainWindow):
         loggin.exec()
         self.Key = loggin.state
 
-        if self.Key == True:
+        if self.Key == 1:
+            # Muestra los botones de editar e imprimir
+            self.ui_main.btn_PrintAction.show()
+            self.ui_main.btn_EditAction.show()
+
+            # Esconde el boton de Delete Register
+            self.ui_main.btn_deleteRegister.setVisible(False)
+
+            # Envia la GUI a la pagina de Accion
             self.ui_main.MenuPrincipal.setCurrentIndex(1)
+        elif self.Key ==2:
+            # Oculta los botones de editar e imprimir
+            self.ui_main.btn_PrintAction.hide()
+            self.ui_main.btn_EditAction.hide()
+
+            # Muestra el boton de Delete Register
+            self.ui_main.btn_deleteRegister.setVisible(True)
+
+            # Envia la GUI a la pagina de Accion
+            self.ui_main.MenuPrincipal.setCurrentIndex(1)
+
         else:
+            # Esconde el boton de Delete Register
+            self.ui_main.btn_deleteRegister.setVisible(False)
+
+            # Envia la GUI a la pagina Principal
             self.ui_main.MenuPrincipal.setCurrentIndex(6)
-            self.Key=False
+            self.Key = 0
     def SetCurrentData(self):
         if len(self.ui_main.initBox_PartNo.currentText())>0 and len(self.ui_main.initBox_Cantidad.currentText())>0 and len(self.ui_main.initBox_Proveedor.currentText())>0 and len(self.ui_main.initTxt_OT.toPlainText())>0:
             print("Guardar Datos")
@@ -677,11 +935,11 @@ class Atlas(QMainWindow):
             Proveedor = self.ui_main.initBox_Proveedor.currentText()
             OT = self.ui_main.initTxt_OT.toPlainText()
 
-            currDate = datetime.now()
+            currDate = datetime.datetime.now()
             hora_formateada = currDate.strftime("%d/%m/%Y %H:%M:%S")
             fecha = hora_formateada
             mSerie = str(currDate.strftime("%d%m%Y%H%M%S"))
-            serial = str("1802" + mSerie)
+            serial = str("1609" + mSerie)
             self.SerialNum = serial
             self.CreationDate = fecha
 
@@ -712,18 +970,19 @@ class Atlas(QMainWindow):
             self.ui_main.lcdNumber_Faltantes.display(self.PzsFaltantes)
 
             self.ui_main.MenuPrincipal.setCurrentIndex(6)
-            self.Key = False
+            self.Key = 0
             QMessageBox.information(None, "Informacion Actualizada", "Datos Actualizados Correctamente")
 
         else:
             QMessageBox.warning(None, "Informacion Incompleta", "Verificar que todos los campos esten correctamente especificados")
     def CancelChange(self):
-        self.Key=False
+        self.Key=0
         self.ui_main.MenuPrincipal.setCurrentIndex(6)
 
     def GetPrinetMode(self):
         # Abre y lee el contenido del archivo JSON
-        with open('data.json', 'r') as file:
+        archivo = "./Data/data.json"
+        with open(archivo, 'r') as file:
             data = json.load(file)
 
         # Extrae los enteros del JSON
@@ -737,6 +996,107 @@ class Atlas(QMainWindow):
             SendTemplate()
         elif calibrate == 1:
             SendLabelCalibrate()
+
+    @Slot()
+    def Read_Json(self):
+        """
+        Metodo que obtiene los valores base de cada estacion. Se define los Puertos COM y direcciones IP.
+        :return:
+        """
+        archivo = "./Data/setup.json"
+        with open(archivo, "r", encoding="utf-8") as f:
+            data = json.load(f)
+
+        # Asignar los valores a variables individuales
+        WIFI = data["WIFI"]
+        SERVER = data["SERVER"]
+        CODE = data["CODE"]
+        return WIFI, SERVER, CODE
+
+    @Slot()
+    def delete_CurrData(self):
+        # obtiene el valor actual del contador de piezas realizadas
+        count = int(self.ui_main.lcdNumber_Realizado.value())
+        print(count)
+
+        if count > 0:
+            # Elimina los registros grabados sin cerrar orden
+            dataBase._delete_last_registers(dataBase.DB_table, count)
+
+            # Eliminar los ultimos n registros de la tabla
+            dataBase._delete_last_rows(self.tableWidgetdataBase, count)
+
+            # Muestra el aviso de que los registros han sido Eliminados
+            QMessageBox.warning(self, "Regitros Eliminados",
+                                f"Se han eliminado los ultimos {count} registros con exito")
+
+            # Actualiza el valor de piezas realizadas
+            self.PzsRealizadas = 0
+
+            # Actualiza el valor de piezas faltantes
+            self.PzsFaltantes = int(self.PzsTotales)
+
+            # Actualiza la base de datos del backUp
+            dataBase.updateData(self.PartNo, self.Supplier, self.OT, self.PzsTotales, self.PzsRealizadas,
+                                self.SerialNum,
+                                self.CreationDate)
+
+            # Actualiza los LCD de la GUI.
+            self.ui_main.lcdNumber_Realizado.display(self.PzsRealizadas)
+            self.ui_main.lcdNumber_Faltantes.display(self.PzsTotales)
+
+            # Manda la GUI a la interfaz principal
+            self.ui_main.MenuPrincipal.setCurrentIndex(6)
+        else:
+            # Muestra el aviso de que los registros han sido Eliminados
+            QMessageBox.warning(self, "Sin Registros",
+                                f"No existen registros a eliminar.")
+            # Manda la GUI a la interfaz principal
+            self.ui_main.MenuPrincipal.setCurrentIndex(6)
+
+    @Slot()
+    def _Get_InitConditions(self):
+        try:
+            wifi, server, code = self.Read_Json()
+            self.wifiControl = wifi == "1"
+            self.Servercontrol = server == "1"
+            self.codeControl = code == "1"  # si es True es DMC si es False es CODE BAR
+
+        except Exception as e:
+            QMessageBox.critical(self, "Alerta de Registro", "No se encontro registro solicitado, ejecuta el setup!")
+
+            # Si el archivo esta roto se procede a eliminarlo
+            archivo = "./Data/setup.json"
+            if os.path.exists(archivo):
+                os.remove(archivo)
+                print(f"{archivo} ha sido eliminado")
+
+            else:
+                print(f"{archivo} no se encontró")
+            sys.exit(0)
+
+    @Slot()
+    def _Update_ViewLabels(self):
+        self.ui_main.lbl_Serial1.setText(QCoreApplication.translate("MainWindow", f"{self.SerialNum}", None))
+        self.ui_main.lbl_OT.setText(QCoreApplication.translate("MainWindow", f"{self.OT}", None))
+        self.ui_main.lbl_nPiezas.setText(QCoreApplication.translate("MainWindow",
+                                                                    f"<html><head/><body><p><span style=\" color:#e12807;\">{self.PzsTotales}</span></p></body></html>",
+                                                                    None))
+        self.ui_main.lbl_Nparte.setText(
+            QCoreApplication.translate("MainWindow", f"<html><head/><body><p>{self.PartNo}</p></body></html>", None))
+        self.ui_main.lbl_PrinterState.setText(QCoreApplication.translate("MainWindow",
+                                                                         u"<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; font-weight:700;\">IMPRESORA:<br/></span><span style=\" font-size:16pt; font-weight:700; color:#ffc400;\">CONECTANDO...</span></p></body></html>",
+                                                                         None))
+        self.ui_main.lbl_ServerState.setStyleSheet(u"QLabel {\n"
+                                                   "    border: 2px solid #00aa00;\n"
+                                                   "	border-color:rgb(0, 85, 255);\n"
+                                                   "	border-radius:5px;\n"
+                                                   "}")
+        self.ui_main.lbl_ServerState.setText(QCoreApplication.translate("MainWindow",
+                                                                        u"<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; font-weight:700;\">SERVIDOR:<br/></span><span style=\" font-size:16pt; font-weight:700; color:#ffc400;\">CONECTANDO...</span></p></body></html>",
+                                                                        None))
+
+        self.ui_main.lbl_labelMasterEdit.setPixmap(QPixmap(u"./Label_Master.PNG"))
 
 if __name__ == "__main__":
     app = QApplication([])

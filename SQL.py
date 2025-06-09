@@ -16,6 +16,7 @@ class managerDataBase:
         self.CreateTable()
         self.CreateTableMaster()
         self.CreateTableData("BackUp")
+        self.DB_table = "Atlas"
 
     def connect(self):
         if self.connection is None or not self.connection.is_connected():
@@ -165,7 +166,7 @@ class managerDataBase:
         self.execute_query(
             f"INSERT IGNORE INTO {table} "
             "(id, PartNo, Supplier, OT, PzsTotales, PzsRealizadas, SerialNum, FechaCreacion) "
-            "VALUES (1, '3QF121257E', '6001003941', '162555', '10', '0', '180210052024151305', '0')"
+            "VALUES (1, '3QF121257E', '6001003941', '162555', '10', '0', '160910052024151305', '0')"
         )
 
     def updateData(self, PartNo, Supplier, OT, PzsTotales, PzsRealizadas, SerialNum, Fcreacion):
@@ -229,3 +230,58 @@ class managerDataBase:
             except Exception as e:
                 print(f"Error al ejecutar la consulta: {e}")
         return []
+
+    def _delete_last_registers(self, table, n):
+        """
+            Elimina los últimos 'n' registros insertados en la tabla especificada.
+
+            :param nombre_tabla: Nombre de la tabla de la cual se eliminarán los registros.
+            :param n: Número de registros a eliminar.
+            """
+        # Verificar que 'n' sea un entero positivo
+        if not isinstance(n, int) or n <= 0:
+            print("El número de registros a eliminar debe ser un entero positivo.")
+            return
+
+        # Consulta para obtener el número total de registros en la tabla
+        consulta_contar = f"SELECT COUNT(*) FROM {table}"
+        cursor = self.execute_query(consulta_contar)
+        total_registros = cursor.fetchone()[0]
+
+        if total_registros == 0:
+            print("La tabla está vacía. No hay registros para eliminar.")
+            return
+
+        # Determinar cuántos registros eliminar realmente
+        registros_a_eliminar = min(n, total_registros)
+
+        # Consulta para eliminar los últimos 'registros_a_eliminar' registros
+        consulta_delete = f"""
+                DELETE FROM {table}
+                WHERE id IN (
+                    SELECT id FROM (
+                        SELECT id FROM {table}
+                        ORDER BY id DESC
+                        LIMIT {registros_a_eliminar}
+                    ) AS subconsulta
+                )
+            """
+        cursor = self.execute_query(consulta_delete)
+        if cursor:
+            print(f"Se eliminaron {cursor.rowcount} registros.")
+        else:
+            print("No se pudieron eliminar los registros.")
+
+    def _delete_last_rows(self, table, n):
+        """
+        Elimina las últimas 'n' filas de un QTableWidget.
+
+        :param table: El QTableWidget del cual se eliminarán las filas.
+        :param n: Número de filas a eliminar desde el final de la tabla.
+        """
+        total_filas = table.rowCount()
+        if n > total_filas:
+            n = total_filas  # Si 'n' es mayor que el total de filas, ajustamos 'n' al total disponible
+
+        for i in range(n):
+            table.removeRow(total_filas - 1 - i)

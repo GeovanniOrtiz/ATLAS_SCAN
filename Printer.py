@@ -4,6 +4,7 @@ from main import *
 import socket
 COM = "COM12"
 HOST = "192.168.100.85"#85
+#HOST = "192.168.1.20"#85
 
 class PrinterState:
     def __init__(self):
