@@ -102,4 +102,11 @@ CreationDate = data[7]
 
 currDate = datetime.now()
 currDate = currDate.strftime("%d/%m/%Y %H:%M:%S")
-SendReqPrint(currDate, PartNo, PzsTotales, Supplier, SerialNum, OT)
+#SendReqPrint(currDate, PartNo, PzsTotales, Supplier, SerialNum, OT)
+
+# Convierte el serial en base 36
+serialNumber = "zzz"
+_serial = int(serialNumber, 36)
+station = "2"
+_station = int(station)
+print(_serial, _station)

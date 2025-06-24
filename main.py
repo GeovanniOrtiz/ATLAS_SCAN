@@ -196,8 +196,8 @@ class Atlas(QMainWindow):
         #Timer para consultar el estado de la impresora
         self.StatePrinter = QTimer()
         self.StatePrinter.timeout.connect(lambda:ConsultStatePrint(self.ui_main, self.printer_state))
-        self.StatePrinter.start(2000)
-        ConsultStatePrint(self.ui_main, self.printer_state)
+        #self.StatePrinter.start(2000)
+        #ConsultStatePrint(self.ui_main, self.printer_state)
 
         # Esconde el boton de eliminar registros
         self.ui_main.btn_deleteRegister.setVisible(False)
@@ -288,8 +288,11 @@ class Atlas(QMainWindow):
         #Inivializa los combox de configuracion inicial
         self.ui_main.initBox_PartNo.addItems(["3QF121251E"])
         #self.ui_main.initBox_Cantidad.addItems(["5", "6", "7", "8", "9", "10"])
+
         # Cargar los valores desde el JSON
-        self.load_items_from_json()
+        #self.load_items_from_json()
+        self.Read_Json(1)
+
         mData = dataBase.GetDataBackUp()
         PzsTotales = mData[4]
         self.ui_main.initBox_Cantidad.setCurrentText(PzsTotales)
@@ -306,8 +309,11 @@ class Atlas(QMainWindow):
         self.ssid = "ADMINISTRATIVOS"  # SSID
         self.password = "M3X1C086"  # Password
 
+        #self.ssid = "FAMILIA ORTIZ"    # SSID
+        #self.password = "123OrtizFam"  # Password
+
         # Instancia de la Clase de Red Wifi
-        self.WIFI = WifiMonitor(self.ssid, self.password)
+        self.WIFI = WifiMonitor(self.ssid, self.password, self.descriptionAdapter)
         self.WIFI.connection_status_changed.connect(self.Update_WifiLabel)
 
         # Crear el monitor de conexión
@@ -315,17 +321,6 @@ class Atlas(QMainWindow):
         self.ServerMonitor.connection_status_changed.connect(self.Update_ServerLabel)
         self.ServerMonitor.start()
 
-    def load_items_from_json(self):
-        # Leer el archivo JSON
-        archivo = "./Data/data.json"
-        with open(archivo, 'r') as file:
-            config_data = json.load(file)
-
-        # Obtener el valor máximo
-        max_value = config_data.get("cantidad", 10)  # 10 es un valor por defecto
-
-        # Llenar el ComboBox con los valores desde 1 hasta max_value
-        self.ui_main.initBox_Cantidad.addItems([str(i) for i in range(1, max_value + 1)])
     def UpdateLabelStatus_printer(self):
         mState = self.printer_state.mState
         mText = self.printer_state.mText
@@ -998,20 +993,35 @@ class Atlas(QMainWindow):
             SendLabelCalibrate()
 
     @Slot()
-    def Read_Json(self):
+    def Read_Json(self, app):
         """
         Metodo que obtiene los valores base de cada estacion. Se define los Puertos COM y direcciones IP.
         :return:
         """
-        archivo = "./Data/setup.json"
-        with open(archivo, "r", encoding="utf-8") as f:
-            data = json.load(f)
 
-        # Asignar los valores a variables individuales
-        WIFI = data["WIFI"]
-        SERVER = data["SERVER"]
-        CODE = data["CODE"]
-        return WIFI, SERVER, CODE
+        if app == 1:
+            archivo = "./Data/data.json"
+            with open(archivo, 'r') as file:
+                config_data = json.load(file)
+
+            # Obtener el valor máximo
+            max_value = config_data.get("cantidad", 10)  # 10 es un valor por defecto
+            self.descriptionAdapter = config_data.get("perfil")
+            print(self.descriptionAdapter)
+
+            # Llenar el ComboBox con los valores desde 1 hasta max_value
+            self.ui_main.initBox_Cantidad.addItems([str(i) for i in range(1, max_value + 1)])
+
+        elif app == 2:
+            archivo = "./Data/setup.json"
+            with open(archivo, "r", encoding="utf-8") as f:
+                data = json.load(f)
+
+            # Asignar los valores a variables individuales
+            WIFI = data["WIFI"]
+            SERVER = data["SERVER"]
+            CODE = data["CODE"]
+            return WIFI, SERVER, CODE
 
     @Slot()
     def delete_CurrData(self):
@@ -1057,7 +1067,7 @@ class Atlas(QMainWindow):
     @Slot()
     def _Get_InitConditions(self):
         try:
-            wifi, server, code = self.Read_Json()
+            wifi, server, code = self.Read_Json(2)
             self.wifiControl = wifi == "1"
             self.Servercontrol = server == "1"
             self.codeControl = code == "1"  # si es True es DMC si es False es CODE BAR
